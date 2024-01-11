@@ -9,6 +9,7 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" onclick="clearNews()"></button>
                 </div>
                 <input type="hidden" name="id" id="id">
+                <input name="type" type="hidden" value="{{$type}}">
                 <div class="modal-body">
                     <label for="title">Tiêu đề</label>
                     <input type="text" class="form-control" name="title" id="title"/>
@@ -29,7 +30,5 @@
         </div>
     </div>
 </div>
-@section('script')
-    <script src="script/news.js"></script>
-@endsection
+
 

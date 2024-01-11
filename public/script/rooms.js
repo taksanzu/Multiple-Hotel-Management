@@ -42,8 +42,10 @@ function getRoomsId(id) {
                         'position': 'relative', // Cho phép đặt vị trí tương đối
                     }).append(roomsImage, deleteButton);
 
-                    deleteButton.on('click', function() {
+                    deleteButton.on('click', function(e) {
                         deleteRoomsImage(image.id);
+                        imageContainer.remove();
+                        e.preventDefault();
                     });
 
                     outputContainer.append(imageContainer);
@@ -56,14 +58,12 @@ function getRoomsId(id) {
     });
 }
 
-function deleteRoomsImage(id) {
+function deleteRoomsImage(id, e) {
     if (confirm('Bạn có chắc chắn muốn xóa?')) {
         $.ajax({
             type: 'GET',
             url: '/rooms/delete/image/' + id,
             success: function (data) {
-                alert('Xóa thành công');
-                location.reload();
             },
             error: function (error) {
                 console.log(error);
@@ -123,9 +123,7 @@ $(document).ready(function() {
             outputContainer.append(imageContainer);
             filesArray.push(files[i]);
         }
-    })
-
-
+    });
 
     function updateInputFiles() {
         var dataTransfer = new DataTransfer();

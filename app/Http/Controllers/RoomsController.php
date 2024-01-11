@@ -9,15 +9,25 @@ use Illuminate\Support\Facades\Auth;
 
 class RoomsController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
         if (Auth::check()) {
-            $rooms = Rooms::where('deleted',0)->get();
+            $rooms = Rooms::where('deleted',0)->paginate(12);
             $user = Auth::user();
+            $search = $request->search;
+            if ($search != null){
+                $rooms = Rooms::where('name', 'like', '%' . $search . '%')->where('deleted',0)->paginate(12);
+            }
             return view('pages.rooms.loaiphong', ['rooms' => $rooms], ['user' => $user]);
         } else {
-            // Người dùng chưa đăng nhập, bạn có thể thực hiện xử lý khác ở đây
             return redirect()->route('login');
+        }
+    }
+    function paginationAjax(Request $request)
+    {
+        if ($request->ajax()) {
+            $rooms = Rooms::where('deleted',0)->paginate(12);
+            return view('pages.rooms.roomsTable', ['rooms' => $rooms])->render();
         }
     }
 
@@ -40,7 +50,7 @@ class RoomsController extends Controller
                 'description' => $request->description,
                 'number_of_rooms' => $request->number_of_rooms
             ]);
-            $room_id = $id;
+            $room_id = $rooms->id;
             if ($request->hasFile('image')) {
                 $images = $request->file('image');
                 foreach ($images as $image) {
@@ -62,7 +72,7 @@ class RoomsController extends Controller
                 'number_of_rooms' => $request->number_of_rooms
             ]);
             $room->save();
-            $room_id = $id;
+            $room_id = $room->id;
             if ($request->hasFile('image')) {
                 $images = $request->file('image');
                 foreach ($images as $image) {

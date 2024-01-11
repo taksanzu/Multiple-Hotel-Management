@@ -19,6 +19,7 @@ class News extends Model
         'title',
         'description',
         'contents',
+        'type',
         'status',
         'deleted',
         'created_at',

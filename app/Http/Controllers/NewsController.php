@@ -8,27 +8,40 @@ use Illuminate\Support\Facades\Auth;
 
 class NewsController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
         if (Auth::check()) {
-            $news = News::where('deleted', 0)->get();
+            $type = $request->type;
+            $news = News::where('deleted', 0)->where('type',$type)->paginate(12);
             $user = Auth::user();
-            return view('pages.news.tintuc', ['news' => $news], ['user' => $user]);
+            $search = $request->search;
+            if ($search != null) {
+                $news = News::where('title', 'like', '%' . $search . '%')->where('deleted', 0)->where('type', $type)->paginate(12);
+            }
+            return view('pages.news.tintuc', ['news' => $news, 'user' => $user, 'type' => $type]);
         } else {
-            // Người dùng chưa đăng nhập, bạn có thể thực hiện xử lý khác ở đây
             return redirect()->route('login');
         }
     }
+
+    function paginationAjax(Request $request)
+    {
+        if ($request->ajax()) {
+            $news = News::where('deleted', 0)->where('type',$request->type)->paginate(12);
+            return view('pages.news.newsTable', ['news' => $news])->render();
+        }
+    }
+
     public function store(Request $request)
     {
         $request->validate([
             'title' => 'required',
             'description' => 'nullable',
             'contents' => 'nullable',
+            'type' => 'nullable',
             'created_by' => 'nullable',
             'updated_by' => 'nullable'
         ]);
-
         $id = $request->id;
         if ($id) {
             $news = News::findOrFail($id);
@@ -36,6 +49,7 @@ class NewsController extends Controller
                 'title' => $request->title,
                 'description' => $request->description,
                 'contents' => $request->contents,
+                'type' => $request->type,
                 'updated_by' => Auth::user()->id,
             ]);
         } else {
@@ -43,12 +57,13 @@ class NewsController extends Controller
                 'title' => $request->title,
                 'description' => $request->description,
                 'contents' => $request->contents,
+                'type' => $request->type,
                 'created_by' => Auth::user()->id,
                 'updated_by' => null,
             ]);
         }
 
-        return redirect()->route('news');
+        return redirect()->route('news', ['type' => $request->type]);
     }
     public function getNews(Request $request)
     {

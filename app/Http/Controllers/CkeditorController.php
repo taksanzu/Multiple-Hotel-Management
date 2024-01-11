@@ -13,10 +13,8 @@ class CkeditorController extends Controller
             $fileName = pathinfo($originName, PATHINFO_FILENAME);
             $extension = $request->file('upload')->getClientOriginalExtension();
             $fileName = $fileName . '_' . time() . '.' . $extension;
-
             $request->file('upload')->move(public_path('images'), $fileName);
-
-            $url = asset('images/' . $fileName);
+            $url = asset('images/news/' . $fileName);
             return response()->json(['fileName' => $fileName, 'uploaded'=> 1, 'url' => $url]);
         }
     }

@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AuthenticationController;
 use App\Http\Controllers\CkeditorController;
+use App\Http\Controllers\ImagesController;
 use App\Http\Controllers\NewsController;
 use App\Http\Controllers\RoomsController;
 use App\Http\Controllers\userHomeController;
@@ -33,7 +34,11 @@ Route::get('/userHome',[UserHomeController::class, 'index'])->name('userHome');
 Route::get('/logout', [AuthenticationController::class, 'logout'] )->name('logout');
 
 // Xử lý trang tin tức
-Route::get('/news',[NewsController::class, 'index'])->name('news');
+Route::controller(NewsController::class)->group(function () {
+    Route::get('/news', [NewsController::class, 'index'])->name('news');
+    Route::get('/news/pagination_ajax', [NewsController::class, 'paginationAjax'])->name('news.pagination_ajax');
+    Route::get('/news/search', [NewsController::class, 'index'])->name('news.search');
+});
 
 // Xử lý trang thêm tin tức
 Route::post('/news',[NewsController::class, 'store'])->name('news.store');
@@ -48,7 +53,11 @@ Route::get('/news/{id}',[NewsController::class, 'getNews'])->name('news.edit');
 Route::get('/news/delete/{id}',[NewsController::class, 'delete'])->name('news.delete');
 
 // Xử lý trang loại phòng
-Route::get('/rooms', [RoomsController::class, 'index'])->name('rooms');
+Route::controller(RoomsController::class)->group(function () {
+    Route::get('/rooms', [RoomsController::class, 'index'])->name('rooms');
+    Route::get('/rooms/pagination_ajax', [RoomsController::class, 'paginationAjax'])->name('rooms.pagination_ajax');
+    Route::get('/rooms/search', [RoomsController::class, 'index'])->name('rooms.search');
+});
 
 // Xử lý trang thêm loại phòng
 Route::post('/rooms', [RoomsController::class, 'store'])->name('rooms.store');
@@ -61,3 +70,16 @@ Route::get('/rooms/delete/{id}',[RoomsController::class, 'deleteRooms'])->name('
 
 // Xử lý xóa ảnh loại phòng
 Route::get('/rooms/delete/image/{id}',[RoomsController::class, 'deleteImages'])->name('rooms.delete.image');
+
+// Xử lý trang hình ảnh
+Route::controller(ImagesController::class)->group(function () {
+    Route::get('/imagesGallery', [ImagesController::class, 'index'])->name('images');
+//    Route::get('/images/pagination_ajax', [ImagesController::class, 'paginationAjax'])->name('images.pagination_ajax');
+//    Route::get('/images/search', [ImagesController::class, 'index'])->name('images.search');
+});
+
+// Xử lý trang thêm hình ảnh
+Route::post('/imagesGallery', [ImagesController::class, 'store'])->name('images.store');
+
+// Xử lý xóa hình ảnh
+Route::get('/imagesGallery/delete/{id}',[ImagesController::class, 'delete'])->name('images.delete');
