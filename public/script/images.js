@@ -7,6 +7,23 @@ function clearImage() {
     $('#image').val('');
     $('#output').html('');
 }
+function deleteImages(id) {
+    if (confirm('Bạn có chắc chắn muốn xóa?')) {
+        $.ajax({
+            type: 'GET',
+            url: '/imagesgallery/delete/' + id,
+            success: function (data) {
+                location.reload();
+            },
+            error: function (error) {
+                console.log(error);
+            }
+        });
+    }
+}
+function getImagesId(src) {
+    $('#imageShow').attr('src', src);
+}
 $(document).ready(function() {
     var input = document.getElementById('image');
     var outputContainer = $('#output');
@@ -52,3 +69,4 @@ $(document).ready(function() {
         input.files = dataTransfer.files;
     }
 });
+

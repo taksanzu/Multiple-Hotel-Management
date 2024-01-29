@@ -14,6 +14,7 @@
         </div>
     </div>
     @include('pages.images.modal')
+    @include('pages.images.showModal')
 @endsection
 @section('script')
     <script src="script/images.js"></script>

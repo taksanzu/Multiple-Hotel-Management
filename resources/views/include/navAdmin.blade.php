@@ -1,4 +1,4 @@
-<nav class="nav flex-column container shadow p-2 bg-body rounded" style="max-width: 250px; height: 90vh" id="myDIV">
+<nav class="nav flex-column container shadow p-2 bg-body rounded d-sm-block d-none" style="max-width: 250px; height: 90vh" id="myDIV">
     <ul class="nav nav-pills flex-column">
         <li class="nav-item">
             <a type="button" href="{{ route('userHome') }}" class="nav-link link-dark {{ request()->routeIs('userHome') ? 'active' : '' }}">

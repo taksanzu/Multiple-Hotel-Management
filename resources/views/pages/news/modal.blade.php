@@ -19,6 +19,13 @@
                     <input type="text" class="form-control" name="description" id="description"/>
                 </div>
                 <div class="modal-body">
+                    <label for="imageNews" id="fileLabel">Ảnh:</label>
+                    <input type="file" class="form-control" name="imageNews" id="imageNews" accept="image/*"/>
+                </div>
+                <div class="modal-body">
+                    <div id="output" class="d-flex flex-row flex-wrap"></div>
+                </div>
+                <div class="modal-body">
                     <label for="contents">Nội dung</label>
                     <textarea id="contents" class="form-control" name="contents"></textarea>
                 </div>

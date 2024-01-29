@@ -11,7 +11,7 @@ class ImagesController extends Controller
     public function index()
     {
         if (Auth::check()) {
-            $images = Images::where('deleted', 0)->paginate(18);
+            $images = Images::where('deleted', 0)->paginate(24);
             $user = Auth::user();
             return view('pages.images.index', ['user' => $user, 'images' => $images]);
         } else {
@@ -19,10 +19,18 @@ class ImagesController extends Controller
         }
     }
 
+    public function paginationAjax(Request $request)
+    {
+        if ($request->ajax()) {
+            $images = Images::where('deleted', 0)->paginate(24);
+            return view('pages.images.imagesGallery', ['images' => $images])->render();
+        }
+    }
+
     public function store(Request $request)
     {
         $request->validate([
-            'image.*' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
+            'image.*' => 'required|image|mimes:jpeg,png,jpg,gif',
         ]);
 
         if ($request->hasFile('image')) {
@@ -30,10 +38,11 @@ class ImagesController extends Controller
             foreach ($images as $image) {
                 $imagesName = $image->getClientOriginalName();
                 $path = $image->move(public_path() . '/images/hotel/', $imagesName);
-                Images::create([
+                $imagesHotel = Images::create([
                     'name' => $imagesName,
-                    'size' => $path->getSize() / 1024,
+                    'size' => $path->getSize()  / 1024,
                 ]);
+                $imagesHotel->save();
             }
         }
         return redirect()->route('images');
@@ -47,5 +56,11 @@ class ImagesController extends Controller
             'deleted' => 1
         ]);
         return redirect()->route('images');
+    }
+    public function getImages(Request $request)
+    {
+        $id = $request->id;
+        $image = Images::findOrFail($id);
+        return response()->json('images', $image);
     }
 }

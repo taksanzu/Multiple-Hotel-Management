@@ -26,7 +26,7 @@ ClassicEditor
 //         e.preventDefault();
 //         $.ajax({
 //             type: 'POST',
-//             url: '/news', // Thay đổi đường dẫn tương ứng
+//             url: '/tintuc', // Thay đổi đường dẫn tương ứng
 //             data: {
 //                 id: id,
 //                 title: title,
@@ -54,7 +54,22 @@ function getNewsId(id) {
             $('#title').val(data.news.title);
             $('#description').val(data.news.description);
             editors.setData(data.news.contents);
-            $('#id').val(data.news.id);
+            $('#id').val(data.news.id)
+            var outputContainer = $('#output');
+            if (data.news.images){
+                let newsImage = $('<img>').attr('src', '/images/news/mainnews/' + data.news.images).css({
+                    'width': '200px',
+                    'height': '150px',
+                    'object-fit': 'cover',
+                }).addClass('m-2');
+
+                let imageContainer = $('<div>').css({
+                    'position': 'relative', // Cho phép đặt vị trí tương đối
+                }).append(newsImage);
+
+                outputContainer.append(imageContainer);
+            }
+
         },
         error: function (error) {
             console.log(error);
@@ -66,6 +81,8 @@ function clearNews() {
     $('#description').val('');
     editors.setData('');
     $('#id').val('');
+    $('#imageNews').val('');
+    $('#output').empty();
 }
 
 function deleteNews(id) {
@@ -82,3 +99,48 @@ function deleteNews(id) {
         });
     }
 }
+$(document).ready(function() {
+    var input = document.getElementById('image');
+    var outputContainer = $('#output');
+    var filesArray = [];
+
+    $('#imageNews').on('change', function(event) {
+        outputContainer.empty();
+        var files = event.target.files;
+        for (let i = 0; i < files.length; i++) {
+            let image = $('<img>').attr('src', URL.createObjectURL(files[i])).css({
+                'width': '200px',
+                'height': '150px',
+                'object-fit': 'cover',
+            }).addClass('m-2');
+
+            let deleteButton = $('<button>').html('&times;').addClass('btn btn-danger btn-sm delete-btn').css({
+                'position': 'absolute',
+                'top': '0',
+                'right': '0',
+            });
+
+            let imageContainer = $('<div>').css({
+                'position': 'relative', // Cho phép đặt vị trí tương đối
+            }).append(image, deleteButton);
+
+            deleteButton.on('click', function() {
+                imageContainer.remove();
+                let index = filesArray.indexOf(files[i]);
+                filesArray.splice(index, 1);
+                updateInputFiles();
+            });
+
+            outputContainer.append(imageContainer);
+            filesArray.push(files[i]);
+        }
+    });
+
+    function updateInputFiles() {
+        var dataTransfer = new DataTransfer();
+
+        filesArray.forEach(file => dataTransfer.items.add(file));
+
+        input.files = dataTransfer.files;
+    }
+});

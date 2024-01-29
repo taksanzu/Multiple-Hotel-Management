@@ -40,19 +40,27 @@ class NewsController extends Controller
             'contents' => 'nullable',
             'type' => 'nullable',
             'created_by' => 'nullable',
-            'updated_by' => 'nullable'
+            'updated_by' => 'nullable',
+            'images.*' => 'nullable|image|mimes:jpeg,png,jpg,gif',
         ]);
         $id = $request->id;
         if ($id) {
             $news = News::findOrFail($id);
+            $images = $request->file('imageNews');
+            $imagesName = $images->getClientOriginalName();
+            $path = $images->move(public_path() . '/images/news/mainnews/', $imagesName);
             $news->update([
                 'title' => $request->title,
                 'description' => $request->description,
                 'contents' => $request->contents,
                 'type' => $request->type,
                 'updated_by' => Auth::user()->id,
+                'images' => $imagesName,
             ]);
         } else {
+            $images = $request->file('imageNews');
+            $imagesName = $images->getClientOriginalName();
+            $path = $images->move(public_path() . '/images/news/mainnews/', $imagesName);
             News::create([
                 'title' => $request->title,
                 'description' => $request->description,
@@ -60,6 +68,7 @@ class NewsController extends Controller
                 'type' => $request->type,
                 'created_by' => Auth::user()->id,
                 'updated_by' => null,
+                'images' => $imagesName,
             ]);
         }
 

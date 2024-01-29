@@ -15,10 +15,8 @@
         @include('include.navUser')
         <div class="d-flex flex-row">
             @include('include.navAdmin')
-            @else
-                @include('include.nav')
             @endif
-            <div class="container-fluid">
+            <div class="container-fluid" style="width: calc(100vw - 250px);">
                 @yield('content')
             </div>
         </div>

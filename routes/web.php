@@ -3,9 +3,14 @@
 use App\Http\Controllers\AuthenticationController;
 use App\Http\Controllers\CkeditorController;
 use App\Http\Controllers\ImagesController;
+use App\Http\Controllers\MainImagesController;
+use App\Http\Controllers\MainNewsController;
+use App\Http\Controllers\MainRoomsController;
+use App\Http\Controllers\MainServicesController;
 use App\Http\Controllers\NewsController;
 use App\Http\Controllers\RoomsController;
 use App\Http\Controllers\userHomeController;
+use App\Http\Controllers\WelcomeController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -18,10 +23,6 @@ use Illuminate\Support\Facades\Route;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
-
-Route::get('/', function () {
-    return view('pages.welcome');
-});
 
 // Xử lý đăng nhập
 Route::get('/login', [AuthenticationController::class, 'loginIndex'] )->name('login');
@@ -73,13 +74,34 @@ Route::get('/rooms/delete/image/{id}',[RoomsController::class, 'deleteImages'])-
 
 // Xử lý trang hình ảnh
 Route::controller(ImagesController::class)->group(function () {
-    Route::get('/imagesGallery', [ImagesController::class, 'index'])->name('images');
-//    Route::get('/images/pagination_ajax', [ImagesController::class, 'paginationAjax'])->name('images.pagination_ajax');
-//    Route::get('/images/search', [ImagesController::class, 'index'])->name('images.search');
+    Route::get('/imagesgallery', [ImagesController::class, 'index'])->name('images');
+    Route::get('/imagesgallery/pagination_ajax', [ImagesController::class, 'paginationAjax'])->name('images.pagination_ajax');
 });
 
 // Xử lý trang thêm hình ảnh
-Route::post('/imagesGallery', [ImagesController::class, 'store'])->name('images.store');
+Route::post('/imagestore', [ImagesController::class, 'store'])->name('images.store');
+
+// Xử lý trang xem hình ảnh
+Route::get('/imagesgallery/{id}',[ImagesController::class, 'getImages'])->name('images.watch');
 
 // Xử lý xóa hình ảnh
-Route::get('/imagesGallery/delete/{id}',[ImagesController::class, 'delete'])->name('images.delete');
+Route::get('/imagesgallery/delete/{id}',[ImagesController::class, 'delete'])->name('images.delete');
+
+// Xử lý chào mừng
+Route::get('/', [WelcomeController::class, 'index'])->name('welcome');
+
+// Xử lý loại phòng chính
+Route::controller(MainRoomsController::class)->group(function () {
+    Route::get('/loaiphong', [MainRoomsController::class, 'index'])->name('loaiphong.index');
+    Route::get('/loaiphong/{id}', [MainRoomsController::class, 'detail'])->name('loaiphong.detail');
+});
+
+
+// Xử lý tin tức chính
+Route::get('/tintuc', [MainNewsController::class, 'index'])->name('tintuc.index');
+
+// Xử lý hình ảnh chính
+Route::get('/hinhanh', [MainImagesController::class, 'index'])->name('hinhanh.index');
+
+//Xử lý tiện ích chính
+Route::get('/tienich', [MainServicesController::class, 'index'])->name('tienich.index');

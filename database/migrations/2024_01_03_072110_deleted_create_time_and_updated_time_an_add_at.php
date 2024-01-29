@@ -11,7 +11,7 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::table('news', function (Blueprint $table) {
+        Schema::table('tintuc', function (Blueprint $table) {
             $table->dropColumn('created_time');
             $table->dropColumn('updated_time');
             $table->timestamp('created_at');
@@ -24,7 +24,7 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::table('news', function (Blueprint $table) {
+        Schema::table('tintuc', function (Blueprint $table) {
             //
         });
     }

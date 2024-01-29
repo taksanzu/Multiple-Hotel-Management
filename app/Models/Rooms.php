@@ -22,4 +22,9 @@ class Rooms extends Model
         'number_of_rooms',
         'deleted'
     ];
+
+    public function roomImages()
+    {
+        return $this->hasMany(room_images::class, 'room_id', 'id');
+    }
 }

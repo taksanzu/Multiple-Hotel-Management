@@ -38,7 +38,7 @@ class RoomsController extends Controller
             'stars' => 'nullable',
             'description' => 'nullable',
             'number_of_rooms' => 'nullable',
-            'images.*' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048'
+            'images.*' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg'
         ]);
         $id = $request->id;
 

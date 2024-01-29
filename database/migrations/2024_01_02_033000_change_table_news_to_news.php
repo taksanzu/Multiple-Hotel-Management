@@ -11,7 +11,7 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::rename('table_news', 'news');
+        Schema::rename('table_news', 'tintuc');
 
     }
 
@@ -20,7 +20,7 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::table('news', function (Blueprint $table) {
+        Schema::table('tintuc', function (Blueprint $table) {
             //
         });
     }
