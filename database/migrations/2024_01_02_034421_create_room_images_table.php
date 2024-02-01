@@ -16,7 +16,7 @@ return new class extends Migration
             $table->integer('room_id');
             $table->string('name');
             $table->integer('size');
-            $table->integer('deleted');
+            $table->integer('deleted')->default(0);
             $table->timestamps();
         });
     }

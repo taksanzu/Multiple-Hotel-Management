@@ -11,7 +11,7 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::table('tintuc', function (Blueprint $table) {
+        Schema::table('news', function (Blueprint $table) {
             $table->text('content')->change();
         });
     }

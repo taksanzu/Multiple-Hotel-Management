@@ -43,7 +43,10 @@
     align-items: center; /* Canh giữa nút theo chiều dọc */
     justify-content: center; /* Canh giữa nút theo chiều ngang */
 }
-
+.row {
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+}
 
 
 

@@ -118,10 +118,10 @@
             @foreach($news as $new)
                 <div class="col-lg-6 mb-5">
                     <div class="card shadow">
-                        <img src="https://tiffanyhotel.com.vn/Upload/images/gallery/Tiffany%20(5).jpg" class="card-img-top rounded h-lg-100 h-md-75 h-sm-50" alt="...">
+                        <img src="/images/news/mainnews/{{$new->images}}" class="card-img-top rounded h-lg-100 h-md-75 h-sm-50" alt="...">
                         <div class="card-img-overlay">
                             <h5 class="card-title text-light">{{$new->title}}</h5>
-                            <p class="card-text text-light">{{$new->description}}</p>
+                            <p class="card-text text-light limited-lines">{{$new->description}}</p>
                         </div>
                     </div>
                 </div>

@@ -9,7 +9,10 @@
                 <div id="carouselExample" class="carousel slide" data-bs-ride="carousel">
                     <div class="carousel-inner">
                         @foreach($images as $index => $image)
-                            <div class="carousel-item {{ $index === 0 ? 'active' : '' }}" style="background-image: url('/images/hotel/{{$image->name}}'); background-size: cover; background-position: center; height: 70vh">
+                            <div class="carousel-item {{ $index === 0 ? 'active' : '' }}" style="background-image: url('/images/hotel/{{$image->name}}');
+                            background-size: cover;
+                            background-position: center;
+                            height: 70vh">
                             </div>
                         @endforeach
                     </div>

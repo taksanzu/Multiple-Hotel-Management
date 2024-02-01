@@ -92,8 +92,6 @@ class RoomsController extends Controller
     }
 
 
-
-
     public function getRooms(Request $request)
     {
         $id = $request->id;

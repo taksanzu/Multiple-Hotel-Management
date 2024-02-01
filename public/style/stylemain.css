@@ -489,5 +489,13 @@ input {
     font-size: 1.2rem;
     color: #000000;
 }
-
+.news-contents p {
+    align-self: flex-start!important;
+}
+.limited-lines {
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    -webkit-line-clamp: 2; /* Số dòng muốn hiển thị */
+}
 

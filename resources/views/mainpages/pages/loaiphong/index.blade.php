@@ -47,7 +47,7 @@
                     <div class="col-md-2">
                         <div class="card rounded-0 p-3 shadow" style="{{ $key % 2 == 0 ? 'left: 0' : 'right: 0' }}">
                             <div class="card-body">
-                                <h5 class="card-title">Phòng {{ $room->id }}</h5>
+                                <h5 class="card-title">{{ $room->name }}</h5>
                                 <p class="card-text">{{ $room->description }}</p>
                                 <p class="card-text">
                                     @for($x = 0; $x < $room->stars; $x++)
@@ -96,7 +96,7 @@
                     <div class="col-md-2">
                         <div class="card rounded-0 p-3 shadow" style="{{ $key % 2 == 0 ? 'left: 0' : 'right: 0' }}">
                             <div class="card-body">
-                                <h5 class="card-title">Phòng {{ $room->id }}</h5>
+                                <h5 class="card-title">{{ $room->name }}</h5>
                                 <p class="card-text">{{ $room->description }}</p>
                                 <p class="card-text">
                                     @for($x = 0; $x < $room->stars; $x++)
@@ -116,5 +116,5 @@
     </div>
 @endsection
 @section('script')
-    <script src="/script/mainrooms.js"></script>
+    <script src="script/mainrooms.js"></script>
 @endsection

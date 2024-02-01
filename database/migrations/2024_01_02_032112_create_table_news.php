@@ -17,12 +17,12 @@ return new class extends Migration
             $table->string('title');
             $table->string('description');
             $table->string('content');
-            $table->integer('status');
-            $table->integer('deleted');
+            $table->integer('status')->default(0);
+            $table->integer('deleted')->default(0);
             $table->timestamp('created_time');
             $table->timestamp('updated_time');
             $table->foreignIdFor(User::class, 'created_by');
-            $table->foreignIdFor(User::class, 'updated_by');
+            $table->foreignIdFor(User::class, 'updated_by')->nullable();
             $table->timestamps();
         });
     }

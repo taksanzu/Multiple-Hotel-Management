@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AuthenticationController;
+use App\Http\Controllers\BookingController;
 use App\Http\Controllers\CkeditorController;
 use App\Http\Controllers\ImagesController;
 use App\Http\Controllers\MainImagesController;
@@ -98,10 +99,19 @@ Route::controller(MainRoomsController::class)->group(function () {
 
 
 // Xử lý tin tức chính
-Route::get('/tintuc', [MainNewsController::class, 'index'])->name('tintuc.index');
+Route::controller(MainNewsController::class)->group(function () {
+    Route::get('/tintuc', [MainNewsController::class, 'index'])->name('tintuc.index');
+    Route::get('/tintuc/{id}', [MainNewsController::class, 'detail'])->name('tintuc.detail');
+});
 
 // Xử lý hình ảnh chính
 Route::get('/hinhanh', [MainImagesController::class, 'index'])->name('hinhanh.index');
 
 //Xử lý tiện ích chính
-Route::get('/tienich', [MainServicesController::class, 'index'])->name('tienich.index');
+Route::controller(MainServicesController::class)->group(function () {
+    Route::get('/tienich', [MainServicesController::class, 'index'])->name('tienich.index');
+    Route::get('/tienich/{id}', [MainServicesController::class, 'detail'])->name('tienich.detail');
+});
+
+// Xử lý đặt phòng
+Route::post('/booking', [BookingController::class, 'store'])->name('booking.store');

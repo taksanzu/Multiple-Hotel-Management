@@ -11,7 +11,7 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::rename('table_news', 'tintuc');
+        Schema::rename('table_news', 'news');
 
     }
 
