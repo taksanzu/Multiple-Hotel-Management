@@ -17,15 +17,16 @@
             <td class="text-start" width="15%">{{ $new->title }}</td>
             <td width="20%">{{ $new->description}}</td>
             <td>@if($new->status == 1)
-                    Đã đăng
+                    <span class="badge rounded-pill bg-success">Đã đăng</span>
                 @else
-                    Chưa đăng
+                    <span class="badge rounded-pill bg-warning text-dark">Chưa đăng</span>
                 @endif</td>
             <td>{{ $new->created_at->format('d-m-Y')}}</td>
             <td>{{ $new->updated_at->format('d-m-Y')}}</td>
             <td>{{ $new->userCreated()->first()->name}}</td>
             <td>{{ $new->userUpdated()->first() != null ? $new->userUpdated()->first()->name : ''}}</td>
             <td>
+                <a type="button" class="btn btn-success btn-sm text-light " onclick="postNews({{$new->id}})"><i class="fa-solid fa-upload fa-2xs"></i></a>
                 <a type="button" class="btn btn-primary btn-sm text-light " data-bs-toggle="modal" data-bs-target="#newsModal" onclick="getNewsId({{$new->id}})"><i class="fa-solid fa-pen-to-square fa-2xs"></i></a>
                 <a type="button" class="btn btn-danger btn-sm text-light " onclick="deleteNews({{$new->id}})"><i class="fa-solid fa-trash fa-2xs"></i></a>
             </td>

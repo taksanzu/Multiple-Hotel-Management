@@ -12,11 +12,19 @@ class NewsController extends Controller
     {
         if (Auth::check()) {
             $type = $request->type;
-            $news = News::where('deleted', 0)->where('type',$type)->paginate(12);
             $user = Auth::user();
-            $search = $request->search;
-            if ($search != null) {
-                $news = News::where('title', 'like', '%' . $search . '%')->where('deleted', 0)->where('type', $type)->paginate(12);
+            if ($user->roles == 0) {
+                $news = News::where('deleted', 0)->where('type', $type)->paginate(12);
+                $search = $request->search;
+                if ($search != null) {
+                    $news = News::where('title', 'like', '%' . $search . '%')->where('deleted', 0)->where('type', $type)->paginate(12);
+                }
+            } else {
+                $news = News::where('deleted', 0)->where('type', $type)->where('created_by', Auth::id())->paginate(12);
+                $search = $request->search;
+                if ($search != null) {
+                    $news = News::where('title', 'like', '%' . $search . '%')->where('deleted', 0)->where('type', $type)->where('created_by', Auth::id())->paginate(12);
+                }
             }
             return view('pages.news.tintuc', ['news' => $news, 'user' => $user, 'type' => $type]);
         } else {
@@ -24,13 +32,6 @@ class NewsController extends Controller
         }
     }
 
-    function paginationAjax(Request $request)
-    {
-        if ($request->ajax()) {
-            $news = News::where('deleted', 0)->where('type',$request->type)->paginate(12);
-            return view('pages.news.newsTable', ['news' => $news])->render();
-        }
-    }
 
     public function store(Request $request)
     {
@@ -47,16 +48,26 @@ class NewsController extends Controller
         if ($id) {
             $news = News::findOrFail($id);
             $images = $request->file('imageNews');
-            $imagesName = $images->getClientOriginalName();
-            $path = $images->move(public_path() . '/images/news/mainnews/', $imagesName);
-            $news->update([
-                'title' => $request->title,
-                'description' => $request->description,
-                'contents' => $request->contents,
-                'type' => $request->type,
-                'updated_by' => Auth::user()->id,
-                'images' => $imagesName,
-            ]);
+            if ($images) {
+                $imagesName = $images->getClientOriginalName();
+                $path = $images->move(public_path() . '/images/news/mainnews/', $imagesName);
+                $news->update([
+                    'title' => $request->title,
+                    'description' => $request->description,
+                    'contents' => $request->contents,
+                    'type' => $request->type,
+                    'updated_by' => Auth::user()->id,
+                    'images' => $imagesName,
+                ]);
+            } else {
+                $news->update([
+                    'title' => $request->title,
+                    'description' => $request->description,
+                    'contents' => $request->contents,
+                    'type' => $request->type,
+                    'updated_by' => Auth::user()->id,
+                ]);
+            }
         } else {
             $images = $request->file('imageNews');
             $imagesName = $images->getClientOriginalName();
@@ -87,6 +98,15 @@ class NewsController extends Controller
         $news = News::findOrFail($id);
         $news->update([
             'deleted' => 1
+        ]);
+    }
+
+    public function postNews(Request $request)
+    {
+        $id = $request->id;
+        $news = News::findOrFail($id);
+        $news->update([
+            'status' => 1
         ]);
     }
 }

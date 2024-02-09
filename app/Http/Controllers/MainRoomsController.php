@@ -11,6 +11,7 @@ class MainRoomsController extends Controller
     public function index()
     {
         $rooms = Rooms::where('deleted', 0)
+            ->where('status', 1)
             ->withCount('roomImages')
             ->paginate(4);
         return view('mainpages.pages.loaiphong.index', ['rooms' => $rooms]);

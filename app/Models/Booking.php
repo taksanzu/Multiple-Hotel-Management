@@ -23,6 +23,7 @@ class Booking extends Model
         'room_type',
         'created_at',
         'updated_at',
+        'status',
     ];
 
     public function room()

@@ -99,6 +99,21 @@ function deleteNews(id) {
         });
     }
 }
+function postNews(id) {
+    if (confirm('Bạn có chắc chắn muốn đăng tin này không?')) {
+        $.ajax({
+            type: 'GET',
+            url: '/news/post/' + id,
+            success: function (data) {
+                alert('Đăng tin thành công');
+                location.reload();
+            },
+            error: function (error) {
+                console.log(error);
+            }
+        });
+    }
+}
 $(document).ready(function() {
     var input = document.getElementById('image');
     var outputContainer = $('#output');

@@ -19,11 +19,12 @@
             <td class="w-25" >{{ $room->description}}</td>
             <td>{{ $room->number_of_rooms}}</td>
             <td>@if($room->status == 1)
-                    Đã đăng
+                    <span class="badge rounded-pill bg-success">Đã đăng</span>
                 @else
-                    Chưa đăng
+                    <span class="badge rounded-pill bg-warning text-dark">Chưa đăng</span>
                 @endif</td>
             <td>
+                <a type="button" class="btn btn-success btn-sm text-light" onclick="postRooms({{$room->id}})"><i class="fa-solid fa-upload fa-2xs"></i></a>
                 <a type="button" class="btn btn-primary btn-sm text-light" data-bs-toggle="modal" data-bs-target="#roomsModal" onclick="getRoomsId({{$room->id}})"><i class="fa-solid fa-pen-to-square fa-2xs"></i></a>
                 <a type="button" class="btn btn-danger btn-sm text-light" onclick="deleteRooms({{$room->id}})"><i class="fa-solid fa-trash fa-2xs"></i></a>
             </td>

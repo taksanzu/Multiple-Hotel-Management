@@ -10,6 +10,7 @@ use App\Http\Controllers\MainRoomsController;
 use App\Http\Controllers\MainServicesController;
 use App\Http\Controllers\NewsController;
 use App\Http\Controllers\RoomsController;
+use App\Http\Controllers\UserController;
 use App\Http\Controllers\userHomeController;
 use App\Http\Controllers\WelcomeController;
 use Illuminate\Support\Facades\Route;
@@ -30,48 +31,38 @@ Route::get('/login', [AuthenticationController::class, 'loginIndex'] )->name('lo
 Route::post('/login', [AuthenticationController::class, 'loginStore'] )->name('login.store');
 
 // Xử lý trang chủ khi đăng nhập thành công
-Route::get('/userHome',[UserHomeController::class, 'index'])->name('userHome');
-
+Route::controller(UserHomeController::class)->group(function () {
+    Route::get('/userHome', [UserHomeController::class, 'index'])->name('userHome');
+    Route::get('/userHome/accept/{id}', [UserHomeController::class, 'accept'])->name('userHome.accept');
+    Route::get('/userHome/cancel/{id}', [UserHomeController::class, 'cancel'])->name('userHome.cancel');
+    Route::get('/userHome/{id}', [UserHomeController::class, 'getBooking'])->name('userHome.booking');
+});
 // Xử lý đăng xuất
 Route::get('/logout', [AuthenticationController::class, 'logout'] )->name('logout');
 
 // Xử lý trang tin tức
 Route::controller(NewsController::class)->group(function () {
     Route::get('/news', [NewsController::class, 'index'])->name('news');
-    Route::get('/news/pagination_ajax', [NewsController::class, 'paginationAjax'])->name('news.pagination_ajax');
     Route::get('/news/search', [NewsController::class, 'index'])->name('news.search');
+    Route::post('/news',[NewsController::class, 'store'])->name('news.store');
+    Route::get('/news/{id}',[NewsController::class, 'getNews'])->name('news.edit');
+    Route::get('/news/delete/{id}',[NewsController::class, 'delete'])->name('news.delete');
+    Route::get('/news/post/{id}',[NewsController::class, 'postNews'])->name('news.post');
 });
-
-// Xử lý trang thêm tin tức
-Route::post('/news',[NewsController::class, 'store'])->name('news.store');
 
 //Xử lý thêm ảnh từ ckeditor
 Route::post('/ckeditor/upload', [CkeditorController::class, 'uploadImage'])->name('ckeditor.upload');
 
-// Xử lý trang sửa tin tức
-Route::get('/news/{id}',[NewsController::class, 'getNews'])->name('news.edit');
-
-//Xử lý xóa tin tức
-Route::get('/news/delete/{id}',[NewsController::class, 'delete'])->name('news.delete');
-
 // Xử lý trang loại phòng
 Route::controller(RoomsController::class)->group(function () {
     Route::get('/rooms', [RoomsController::class, 'index'])->name('rooms');
-    Route::get('/rooms/pagination_ajax', [RoomsController::class, 'paginationAjax'])->name('rooms.pagination_ajax');
     Route::get('/rooms/search', [RoomsController::class, 'index'])->name('rooms.search');
+    Route::post('/rooms', [RoomsController::class, 'store'])->name('rooms.store');
+    Route::get('/rooms/{id}',[RoomsController::class, 'getRooms'])->name('rooms.edit');
+    Route::get('/rooms/delete/{id}',[RoomsController::class, 'deleteRooms'])->name('rooms.delete');
+    Route::get('/rooms/delete/image/{id}',[RoomsController::class, 'deleteImages'])->name('rooms.delete.image');
+    Route::get('/rooms/post/{id}',[RoomsController::class, 'postRooms'])->name('rooms.post');
 });
-
-// Xử lý trang thêm loại phòng
-Route::post('/rooms', [RoomsController::class, 'store'])->name('rooms.store');
-
-// Xử lý trang sửa loại phòng
-Route::get('/rooms/{id}',[RoomsController::class, 'getRooms'])->name('rooms.edit');
-
-//Xử lý xóa loại phòng
-Route::get('/rooms/delete/{id}',[RoomsController::class, 'deleteRooms'])->name('rooms.delete');
-
-// Xử lý xóa ảnh loại phòng
-Route::get('/rooms/delete/image/{id}',[RoomsController::class, 'deleteImages'])->name('rooms.delete.image');
 
 // Xử lý trang hình ảnh
 Route::controller(ImagesController::class)->group(function () {
@@ -97,7 +88,6 @@ Route::controller(MainRoomsController::class)->group(function () {
     Route::get('/loaiphong/{id}', [MainRoomsController::class, 'detail'])->name('loaiphong.detail');
 });
 
-
 // Xử lý tin tức chính
 Route::controller(MainNewsController::class)->group(function () {
     Route::get('/tintuc', [MainNewsController::class, 'index'])->name('tintuc.index');
@@ -115,3 +105,8 @@ Route::controller(MainServicesController::class)->group(function () {
 
 // Xử lý đặt phòng
 Route::post('/booking', [BookingController::class, 'store'])->name('booking.store');
+
+// Xử lý trang quản lý người dùng
+Route::controller(UserController::class)->group(function () {
+    Route::get('/userList', [UserController::class, 'index'])->name('userList');
+});

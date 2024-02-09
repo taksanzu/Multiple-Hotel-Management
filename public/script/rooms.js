@@ -59,7 +59,7 @@ function getRoomsId(id) {
 }
 
 function deleteRoomsImage(id, e) {
-    if (confirm('Bạn có chắc chắn muốn xóa?')) {
+    if (confirm('Bạn có chắc chắn muốn xóa ảnh này không?')) {
         $.ajax({
             type: 'GET',
             url: '/rooms/delete/image/' + id,
@@ -72,7 +72,7 @@ function deleteRoomsImage(id, e) {
     }
 }
 function deleteRooms(id) {
-    if (confirm('Bạn có chắc chắn muốn xóa?')) {
+    if (confirm('Bạn có chắc chắn muốn xóa phòng này không?')) {
         $.ajax({
             type: 'GET',
             url: '/rooms/delete/' + id,
@@ -87,6 +87,21 @@ function deleteRooms(id) {
     }
 }
 
+function postRooms(id) {
+    if (confirm('Bạn có chắc chắn muốn đăng phòng này không?')) {
+        $.ajax({
+            type: 'GET',
+            url: '/rooms/post/' + id,
+            success: function (data) {
+                alert('Đăng phòng thành công');
+                location.reload();
+            },
+            error: function (error) {
+                console.log(error);
+            }
+        });
+    }
+}
 
 $(document).ready(function() {
     var input = document.getElementById('image');
@@ -114,10 +129,12 @@ $(document).ready(function() {
             }).append(image, deleteButton);
 
             deleteButton.on('click', function() {
-                imageContainer.remove();
-                let index = filesArray.indexOf(files[i]);
-                filesArray.splice(index, 1);
-                updateInputFiles();
+                if (confirm('Bạn có chắc chắn muốn xóa ảnh này không?')) {
+                    imageContainer.remove();
+                    let index = filesArray.indexOf(files[i]);
+                    filesArray.splice(index, 1);
+                    updateInputFiles();
+                }
             });
 
             outputContainer.append(imageContainer);

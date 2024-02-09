@@ -12,22 +12,23 @@ class RoomsController extends Controller
     public function index(Request $request)
     {
         if (Auth::check()) {
-            $rooms = Rooms::where('deleted',0)->paginate(12);
             $user = Auth::user();
-            $search = $request->search;
-            if ($search != null){
-                $rooms = Rooms::where('name', 'like', '%' . $search . '%')->where('deleted',0)->paginate(12);
+            if ($user->roles == 0) {
+                $rooms = Rooms::where('deleted', 0)->paginate(12);
+                $search = $request->search;
+                if ($search != null) {
+                    $rooms = Rooms::where('name', 'like', '%' . $search . '%')->where('deleted', 0)->paginate(12);
+                }
+            } else {
+                $rooms = Rooms::where('deleted', 0)->where('created_by', Auth::id())->paginate(12);
+                $search = $request->search;
+                if ($search != null) {
+                    $rooms = Rooms::where('name', 'like', '%' . $search . '%')->where('deleted', 0)->where('created_by', Auth::id())->paginate(12);
+                }
             }
             return view('pages.rooms.loaiphong', ['rooms' => $rooms], ['user' => $user]);
         } else {
             return redirect()->route('login');
-        }
-    }
-    function paginationAjax(Request $request)
-    {
-        if ($request->ajax()) {
-            $rooms = Rooms::where('deleted',0)->paginate(12);
-            return view('pages.rooms.roomsTable', ['rooms' => $rooms])->render();
         }
     }
 
@@ -115,6 +116,15 @@ class RoomsController extends Controller
         $images = room_images::findOrFail($id);
         $images->update([
             'deleted' => 1
+        ]);
+    }
+
+    public function postRooms(Request $request)
+    {
+        $id = $request->id;
+        $rooms = Rooms::findOrFail($id);
+        $rooms->update([
+            'status' => 1
         ]);
     }
 }
