@@ -22,4 +22,37 @@ class UserController extends Controller
             return redirect()->route('login');
         }
     }
+
+    public function store(Request $request)
+    {
+        $id = $request->id;
+        if ($id) {
+            $user = User::findOrFail($id);
+            $user->update([
+                'name' => $request->name,
+                'email' => $request->email,
+                'phone' => $request->phone,
+                'domain' => $request->domain,
+                'roles' => $request->roles
+            ]);
+        }else{
+            User::create([
+                'name' => $request->name,
+                'email' => $request->email,
+                'phone' => $request->phone,
+                'domain' => $request->domain,
+                'password' => 1,
+                'roles' => $request->roles
+            ]);
+        }
+        return redirect()->route('userList');
+    }
+
+    public function getUser(Request $request)
+    {
+        $id = $request->id;
+        $user = User::findOrFail($id);
+        return response()->json(['user' => $user]);
+    }
+
 }

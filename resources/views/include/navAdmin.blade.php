@@ -39,7 +39,7 @@
             </li>
         @endif
         <li class="nav-item mb-3">
-            <a href="" class="nav-link link-dark ">
+            <a href="{{route('settings')}}" class="nav-link link-dark ">
                 <i class="fa-solid fa-cog fa-2xs"></i>
                 <strong>Setting</strong>
             </a>

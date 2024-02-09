@@ -10,6 +10,7 @@ use App\Http\Controllers\MainRoomsController;
 use App\Http\Controllers\MainServicesController;
 use App\Http\Controllers\NewsController;
 use App\Http\Controllers\RoomsController;
+use App\Http\Controllers\SettingController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\userHomeController;
 use App\Http\Controllers\WelcomeController;
@@ -109,4 +110,9 @@ Route::post('/booking', [BookingController::class, 'store'])->name('booking.stor
 // Xử lý trang quản lý người dùng
 Route::controller(UserController::class)->group(function () {
     Route::get('/userList', [UserController::class, 'index'])->name('userList');
+    Route::post('/userList', [UserController::class, 'store'])->name('userList.store');
+    Route::get('/userList/{id}', [UserController::class, 'getUser'])->name('userList.edit');
 });
+
+// Xử lý trang cấu hình
+Route::get('/settings', [SettingController::class, 'index'])->name('settings');
