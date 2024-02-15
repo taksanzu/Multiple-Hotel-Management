@@ -12,7 +12,7 @@ use App\Http\Controllers\NewsController;
 use App\Http\Controllers\RoomsController;
 use App\Http\Controllers\SettingController;
 use App\Http\Controllers\UserController;
-use App\Http\Controllers\userHomeController;
+use App\Http\Controllers\UserHomeController;
 use App\Http\Controllers\WelcomeController;
 use Illuminate\Support\Facades\Route;
 
