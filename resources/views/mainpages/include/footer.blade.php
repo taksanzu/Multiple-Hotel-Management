@@ -3,7 +3,7 @@
         <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3924.4020007547283!2d107.10199377471866!3d10.389611289736584!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31757170d7720627%3A0x47b9227d76b6999f!2z4buQYyBuw7NuZyBUaOG6o28!5e0!3m2!1svi!2s!4v1705549994702!5m2!1svi!2s" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
     </div>
 </div>
-<footer class="bg-white text-dark p-5 pb-0">
+<footer class="bg-white text-dark py-5 pb-0">
     <div class="container ">
         <div class="row">
             <div class="col-md-3 mb-5">

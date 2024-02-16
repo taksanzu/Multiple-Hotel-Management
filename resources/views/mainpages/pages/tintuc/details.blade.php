@@ -15,4 +15,10 @@
             {!! $news->contents !!}
         </div>
     </div>
+    <style>
+        .news-contents img {
+            width: 100%;
+            height: auto;
+        }
+    </style>
 @endsection

@@ -56,7 +56,7 @@
     </div>
     <!-- End Header -->
     <!-- Rooms Infomations -->
-    <div class="container p-5 rooms-section">
+    <div class="container py-5 rooms-section">
         <h1 class="text-center mb-5">CÁC LOẠI PHÒNG</h1>
         <div class="row mb-3">
            @foreach($rooms as $room)
