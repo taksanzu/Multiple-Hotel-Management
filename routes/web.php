@@ -116,3 +116,5 @@ Route::controller(UserController::class)->group(function () {
 
 // Xử lý trang cấu hình
 Route::get('/settings', [SettingController::class, 'index'])->name('settings');
+
+
