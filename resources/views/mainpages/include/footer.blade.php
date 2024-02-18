@@ -11,9 +11,27 @@
             </div>
             <div class="col-md-3 contact-info mb-5">
                 <h4>Thông tin liên hệ</h4>
-                <p class="mb-3"><i class="fas fa-map-marker-alt"></i> D3 79-80 Khu đô thị biển Phan Thiết, phường Phú thủy, Tp. Phan Thiết, Bình Thuận</p>
-                <p class="mb-3"><i class="fas fa-phone"></i> 02523 824 824 - 02523 822 622</p>
-                <p class="mb-3"><i class="fas fa-envelope"></i> receptionist@tiffanyhotel.com.vn</p>
+                <p class="mb-3"><i class="fas fa-map-marker-alt"></i>
+                    @foreach($settings as $setting)
+                        @if($setting->name == 'Địa chỉ')
+                            {{$setting->value}}
+                        @endif
+                    @endforeach
+                </p>
+                <p class="mb-3"><i class="fas fa-phone"></i>
+                    @foreach($settings as $setting)
+                        @if($setting->name == 'Số điện thoại')
+                            {{$setting->value}}
+                        @endif
+                    @endforeach
+                </p>
+                <p class="mb-3"><i class="fas fa-envelope"></i>
+                    @foreach($settings as $setting)
+                        @if($setting->name == 'Email')
+                            {{$setting->value}}
+                        @endif
+                    @endforeach
+                </p>
                 <p class="">Tiffany hotel đạt chuẩn 3 sao theo QĐ số 53 ngày 28/01/2022</p>
             </div>
             <div class="col-md-3 categories mb-5">

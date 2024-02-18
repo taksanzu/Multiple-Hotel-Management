@@ -9,10 +9,16 @@ class Setting extends Model
 {
     use HasFactory;
 
-    protected $table = 'settings';
+    /**
+     * The attributes that are mass assignable.
+     *
+     * @var array<int, string>
+     */
+    protected $table = 'setting';
     protected $fillable = [
         'name',
         'value',
         'description',
+        'user_id',
     ];
 }

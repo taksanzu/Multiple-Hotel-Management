@@ -11,6 +11,7 @@ use App\Http\Controllers\MainServicesController;
 use App\Http\Controllers\NewsController;
 use App\Http\Controllers\RoomsController;
 use App\Http\Controllers\SettingController;
+use App\Http\Controllers\SettingImageController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\UserHomeController;
 use App\Http\Controllers\WelcomeController;
@@ -115,4 +116,13 @@ Route::controller(UserController::class)->group(function () {
 });
 
 // Xử lý trang cấu hình
-Route::get('/settings', [SettingController::class, 'index'])->name('settings');
+Route::controller(SettingController::class)->group(function () {
+    Route::get('/setting', [SettingController::class, 'index'])->name('setting');
+    Route::post('/setting', [SettingController::class, 'store'])->name('setting.store');
+});
+
+// Xử lý trang cấu hình ảnh
+Route::controller(SettingImageController::class)->group(function () {
+    Route::get('/settingImage', [SettingImageController::class, 'index'])->name('settingImage');
+//    Route::post('/settingImage', [SettingImageController::class, 'store'])->name('settingImage.store');
+});

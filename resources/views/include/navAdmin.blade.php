@@ -39,10 +39,22 @@
             </li>
         @endif
         <li class="nav-item mb-3">
-            <a href="{{route('settings')}}" class="nav-link link-dark ">
+            <a class="nav-link link-dark ">
                 <i class="fa-solid fa-cog fa-2xs"></i>
-                <strong>Setting</strong>
+                <strong>Cài đặt</strong>
             </a>
+            <ul class="nav flex-column mx-3">
+                <li class="nav-item">
+                    <a href="{{ route('setting') }}" class="nav-link link-dark {{ request()->routeIs('setting') ? 'active' : '' }}">
+                        Thông tin
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="{{route('settingImage')}}" class="nav-link link-dark {{ request()->routeIs('settingImage') ? 'active' : '' }}">
+                        Hình ảnh
+                    </a>
+                </li>
+            </ul>
         </li>
     </ul>
 </nav>
