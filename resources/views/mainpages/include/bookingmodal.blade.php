@@ -58,9 +58,11 @@
                                 <label class="input-group-text" for="roomType"><i class="fas fa-bed"></i></label>
                                 <select class="form-select" id="roomType" name="room_type">
                                     <option selected>Chọn loại phòng...</option>
-                                    @foreach($roomTypes as $roomType)
-                                        <option value="{{$roomType->id}}">{{$roomType->name}}</option>
-                                    @endforeach
+                                   @if($roomTypes)
+                                        @foreach($roomTypes as $roomType)
+                                            <option value="{{$roomType->id}}">{{$roomType->name}}</option>
+                                        @endforeach
+                                   @endif
                                 </select>
                             </div>
                         </div>
