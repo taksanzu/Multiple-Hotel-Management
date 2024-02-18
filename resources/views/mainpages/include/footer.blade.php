@@ -12,21 +12,21 @@
             <div class="col-md-3 contact-info mb-5">
                 <h4>Thông tin liên hệ</h4>
                 <p class="mb-3"><i class="fas fa-map-marker-alt"></i>
-                    @foreach($settings as $setting)
+                    @foreach($user->settings as $setting)
                         @if($setting->name == 'Địa chỉ')
                             {{$setting->value}}
                         @endif
                     @endforeach
                 </p>
                 <p class="mb-3"><i class="fas fa-phone"></i>
-                    @foreach($settings as $setting)
+                    @foreach($user->settings as $setting)
                         @if($setting->name == 'Số điện thoại')
                             {{$setting->value}}
                         @endif
                     @endforeach
                 </p>
                 <p class="mb-3"><i class="fas fa-envelope"></i>
-                    @foreach($settings as $setting)
+                    @foreach($user->settings as $setting)
                         @if($setting->name == 'Email')
                             {{$setting->value}}
                         @endif
