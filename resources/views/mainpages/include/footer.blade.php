@@ -11,7 +11,6 @@
             </div>
             <div class="col-md-3 contact-info mb-5">
                 <h4>Thông tin liên hệ</h4>
-                <p>{{ $user->name }}</p>
                 <p class="mb-3"><i class="fas fa-map-marker-alt"></i>
                     @if($user)
                         @foreach($user->settings as $setting)
