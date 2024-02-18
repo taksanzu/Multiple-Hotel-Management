@@ -116,7 +116,6 @@ Route::controller(UserController::class)->group(function () {
 });
 
 // Xử lý trang cấu hình
-<<<<<<< HEAD
 Route::controller(SettingController::class)->group(function () {
     Route::get('/setting', [SettingController::class, 'index'])->name('setting');
     Route::post('/setting', [SettingController::class, 'store'])->name('setting.store');
@@ -127,8 +126,5 @@ Route::controller(SettingImageController::class)->group(function () {
     Route::get('/settingImage', [SettingImageController::class, 'index'])->name('settingImage');
 //    Route::post('/settingImage', [SettingImageController::class, 'store'])->name('settingImage.store');
 });
-=======
-Route::get('/settings', [SettingController::class, 'index'])->name('settings');
 
 
->>>>>>> 41a4e53716c4345300f63c2209f6110d54cd7534
