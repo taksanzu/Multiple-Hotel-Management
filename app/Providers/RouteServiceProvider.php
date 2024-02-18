@@ -29,6 +29,9 @@ class RouteServiceProvider extends ServiceProvider
         });
 
         $this->routes(function () {
+            Route::domain('{subdomain}.dulich.test')
+                ->group(base_path('routes/subdomain.php'));
+
             Route::middleware('api')
                 ->prefix('api')
                 ->group(base_path('routes/api.php'));
