@@ -124,7 +124,7 @@ Route::controller(SettingController::class)->group(function () {
 // Xử lý trang cấu hình ảnh
 Route::controller(SettingImageController::class)->group(function () {
     Route::get('/settingImage', [SettingImageController::class, 'index'])->name('settingImage');
-//    Route::post('/settingImage', [SettingImageController::class, 'store'])->name('settingImage.store');
+    Route::post('/settingImage', [SettingImageController::class, 'store'])->name('settingImage.store');
 });
 
 

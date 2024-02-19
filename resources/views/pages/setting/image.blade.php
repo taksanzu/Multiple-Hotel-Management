@@ -4,7 +4,7 @@
         <h6 class="text-primary mb-0">Cài đặt > Hình ảnh</h6>
     </div>
     <div class="container-fluid shadow px-3 py-3 bg-body rounded" style="background: white">
-        <form id="settingForm" enctype="multipart/form-data" action="{{route('setting.store')}}" method="POST">
+        <form id="settingForm" enctype="multipart/form-data" action="{{route('settingImage.store')}}" method="POST">
             @csrf
             <div class="row px-0">
                 <div class="col-lg-4">
@@ -12,7 +12,7 @@
                         <label>Logo</label>
                         <input type="file" class="form-control" name="logo" id="logo"/>
                         @if($user->settings->where('name', 'logo')->first())
-                            <img src="{{ asset('images').'/'.optional($user->settings->where('name', 'logo')->first())->value }}" alt="" style="object-fit: contain; margin-top: 10px" width="200" height="100">
+                            <img src="{{ asset('logo').'/'.optional($user->settings->where('name', 'logo')->first())->value }}" alt="" style="object-fit: contain; margin-top: 10px" width="200" height="100">
                         @endif
                     </div>
                     <div class="form-group mb-3">
@@ -47,7 +47,7 @@
                         @endif
                     </div>
                     <div class="form-group mb-3">
-                        <label>Ảnh tiện ích 2/label>
+                        <label>Ảnh tiện ích 2</label>
                         <input type="file" class="form-control" name="image5" id="logo"/>
                         @if($user->settings->where('name', 'image5')->first())
                             <img src="{{ asset('images').'/'.optional($user->settings->where('name', 'image5')->first())->value }}" alt="" style="object-fit: contain; margin-top: 10px" width="200" height="100">

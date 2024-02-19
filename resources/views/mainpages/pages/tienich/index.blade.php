@@ -1,6 +1,6 @@
 @extends('mainpages.layout.layout')
 @section('content')
-    <div class="main-header">
+    <div class="main-header" @if($user->settings->where('name', 'image11')->first()) style="background: url('{{ asset('images'.'/'.$user->settings->where('name', 'image11')->first()->value) }}')" @endif>
         <div class="container">
             <div class="row">
                 <div class="col-md-12">

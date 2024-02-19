@@ -2,12 +2,24 @@
 @section('content')
     <div id="carouselExample" class="carousel slide " data-bs-ride="carousel">
         <div class="carousel-inner">
-            <div class="carousel-item active" style="background-image: url('https://tiffanyhotel.com.vn/Upload/images/Slide/1.jpg');">
-                <div class="overlay"></div>
-            </div>
-            <div class="carousel-item" style="background-image: url('https://tiffanyhotel.com.vn/Upload/images/Slide/2.jpg');">
-                <div class="overlay"></div>
-            </div>
+            @if($user->settings->where('name', 'image1')->first())
+                <div class="carousel-item active" style="background-image: url('{{ asset('images').'/'.optional($user->settings->where('name', 'image1')->first())->value }}');">
+                    <div class="overlay"></div>
+                </div>
+            @else
+                <div class="carousel-item active" style="background-image: url('https://tiffanyhotel.com.vn/Upload/images/Slide/1.jpg');">
+                    <div class="overlay"></div>
+                </div>
+            @endif
+            @if($user->settings->where('name', 'image2')->first())
+                <div class="carousel-item active" style="background-image: url('{{ asset('images').'/'.optional($user->settings->where('name', 'image2')->first())->value }}');">
+                    <div class="overlay"></div>
+                </div>
+            @else
+                <div class="carousel-item" style="background-image: url('https://tiffanyhotel.com.vn/Upload/images/Slide/2.jpg');">
+                    <div class="overlay"></div>
+                </div>
+            @endif
         </div>
         <div class="carousel-text">
             <h1>{{ optional($user->settings->where('name', 'gioi_thieu_1')->first())->value }}</h1>
@@ -45,7 +57,7 @@
         </form>
     </div>
     <!-- Header -->
-    <div class="container-fluid about-us-section">
+    <div class="container-fluid about-us-section" @if($user->settings->where('name', 'image3')->first()) style="background: url('{{ asset('images').'/'.optional($user->settings->where('name', 'image3')->first())->value }}') no-repeat; background-size: cover" @endif>
         <div class="row">
             <div class="col-lg-6 mx-auto text-dark">
                 <h2>TẬN HƯỞNG KỲ NGHỈ TẠI</h2>
@@ -86,10 +98,14 @@
     <div class="row">
         <div class="col-lg-6 p-0">
             <div class="services-img">
-                <img src="https://tiffanyhotel.com.vn/Content/client/images/banner/bg-tienich-left.jpg" alt="Services" >
+                @if($user->settings->where('name', 'image4')->first())
+                    <img src="{{ asset('images').'/'.optional($user->settings->where('name', 'image4')->first())->value }}" alt="Services" >
+                @else
+                    <img src="https://tiffanyhotel.com.vn/Content/client/images/banner/bg-tienich-left.jpg" alt="Services" >
+                @endif
             </div>
         </div>
-        <div class="col-lg-6 p-5" style="background-image: url('https://tiffanyhotel.com.vn/Content/client/images/banner/bg-tienich.jpg')">
+        <div class="col-lg-6 p-5" @if($user->settings->where('name', 'image5')->first()) style="background-image: url('{{ asset('images').'/'.optional($user->settings->where('name', 'image5')->first())->value }}')" @else style="background-image: url('https://tiffanyhotel.com.vn/Content/client/images/banner/bg-tienich.jpg')"  @endif>
             <div class="service-wrap">
                 <div class="single-service-wrap mb-5" style="">
                     <div class="service-content">
@@ -133,7 +149,7 @@
         </div>
     </div>
     <!-- Foods -->
-    <div class="container-fluid foods-section">
+    <div class="container-fluid foods-section" @if($user->settings->where('name', 'image6')->first()) style="background: url('{{ asset('images').'/'.optional($user->settings->where('name', 'image6')->first())->value }}') no-repeat; background-size: cover" @endif>
         <div class="row">
             <div class="col-lg-6 mx-auto text-light">
                 <h2>Đa dạng ẩm thực á âu</h2>
@@ -142,37 +158,33 @@
         </div>
     </div>
     <div class="row mt-n1 pt-lg-0 pb-5 d-none d-lg-flex px-100">
-        <div class="col-lg-3">
-            <div class="foods-img">
-                <img src="https://tiffanyhotel.com.vn/Upload/images/brand-logo/ga-ham-sam-2-min.jpeg" alt="Foods" height="300px" width="100%">
-            </div>
-        </div>
-        <div class="col-lg-3">
-            <div class="foods-img">
-                <img src="https://tiffanyhotel.com.vn/Upload/images/brand-logo/ga-ham-sam-2-min.jpeg" alt="Foods" height="300px" width="100%">
-            </div>
-        </div>
-        <div class="col-lg-3">
-            <div class="foods-img">
-                <img src="https://tiffanyhotel.com.vn/Upload/images/brand-logo/ga-ham-sam-2-min.jpeg" alt="Foods" height="300px" width="100%">
-            </div>
-        </div>
-        <div class="col-lg-3">
-            <div class="foods-img">
-                <img src="https://tiffanyhotel.com.vn/Upload/images/brand-logo/ga-ham-sam-2-min.jpeg" alt="Foods" height="300px" width="100%">
-            </div>
-        </div>
+        @for($i = 7; $i <= 10; $i++)
+            @if ($user->settings->where('name', 'image'.$i)->first())
+                <div class="col-lg-3 ">
+                    <div class="foods-img" >
+                        <img style="height: 300px; object-fit: cover" src="{{ asset('images').'/'.optional($user->settings->where('name', 'image'.$i)->first())->value }}" alt="Foods">
+                    </div>
+                </div>
+            @else
+                <div class="col-lg-3 ">
+                    <div class="foods-img">
+                        <img style="height: 300px; object-fit: cover" src="https://tiffanyhotel.com.vn/Upload/images/brand-logo/ga-ham-sam-2-min.jpeg" alt="Foods">
+                    </div>
+                </div>
+            @endif
+        @endfor
     </div>
     <div id="carouselExampleFade" class="carousel slide d-lg-none" data-bs-ride="carousel">
         <div class="carousel-inner p-3">
-            <div class="carousel-item foods-img-sm active" style="background-image: url('https://tiffanyhotel.com.vn/Upload/images/brand-logo/ga-ham-sam-2-min.jpeg'); height: 50vh">
-            </div>
-            <div class="carousel-item foods-img-sm" style="background-image: url('https://tiffanyhotel.com.vn/Upload/images/brand-logo/ga-ham-sam-2-min.jpeg'); height: 50vh">
-            </div>
-            <div class="carousel-item foods-img-sm" style="background-image: url('https://tiffanyhotel.com.vn/Upload/images/brand-logo/ga-ham-sam-2-min.jpeg'); height: 50vh">
-            </div>
-            <div class="carousel-item foods-img-sm" style="background-image: url('https://tiffanyhotel.com.vn/Upload/images/brand-logo/ga-ham-sam-2-min.jpeg'); height: 50vh">
-            </div>
+            @for($i = 7; $i <= 10; $i++)
+                @if ($user->settings->where('name', 'image'.$i)->first())
+                    <div @if($i == 7) class="carousel-item foods-img-sm active" @else class="carousel-item foods-img-sm" @endif style="background-image: url('{{ asset('images').'/'.optional($user->settings->where('name', 'image'.$i)->first())->value }}'); height: 50vh">
+                    </div>
+                @else
+                    <div class="carousel-item foods-img-sm" style="background-image: url('https://tiffanyhotel.com.vn/Upload/images/brand-logo/ga-ham-sam-2-min.jpeg'); height: 50vh">
+                    </div>
+                @endif
+            @endfor
         </div>
     </div>
     <!-- End Foods -->
