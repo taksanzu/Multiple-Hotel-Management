@@ -63,7 +63,6 @@
                     <button type="submit" class="btn btn-primary" id="settingSave">Save</button>
                 </div>
             </div>
-
         </form>
     </div>
 @endsection

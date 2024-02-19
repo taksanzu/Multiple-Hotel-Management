@@ -6,7 +6,7 @@
                 @csrf
                 <div class="modal-header">
                     <h1 class="modal-title fs-5" id="exampleModalLabel">Người dùng</h1>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" onclick=""></button>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" onclick="clearUser()"></button>
                 </div>
                 <input type="hidden" name="id" id="id">
                 <div class="modal-body">
