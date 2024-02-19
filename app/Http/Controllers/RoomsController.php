@@ -70,7 +70,8 @@ class RoomsController extends Controller
                 'name' => $request->name,
                 'stars' => $request->stars,
                 'description' => $request->description,
-                'number_of_rooms' => $request->number_of_rooms
+                'number_of_rooms' => $request->number_of_rooms,
+                'created_by' => Auth::user()->id
             ]);
             $room->save();
             $room_id = $room->id;

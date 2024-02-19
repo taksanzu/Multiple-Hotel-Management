@@ -10,8 +10,8 @@
             </div>
         </div>
         <div class="carousel-text">
-            <h1>Điểm đến du lịch tuyệt vời bên</h1>
-            <h2>Vịnh biển phan thiết</h2>
+            <h1>{{ optional($user->settings->where('name', 'gioi_thieu_1')->first())->value }}</h1>
+            <h2>{{ optional($user->settings->where('name', 'name')->first())->value }}</h2>
             <a style="background: #0b2046" class="btn btn-primary btn-lg rounded-pill border" type="button" data-bs-toggle="modal" data-bs-target="#bookingModal"><strong>BOOK NOW</strong></a>
         </div>
     </div>
@@ -49,8 +49,10 @@
         <div class="row">
             <div class="col-lg-6 mx-auto text-dark">
                 <h2>TẬN HƯỞNG KỲ NGHỈ TẠI</h2>
-                <img class="mb-3 img-fluid" height="80" src="https://tiffanyhotel.com.vn/Upload/images/brand-logo/image_2021-12-29_163234.png">
-                <p>Tọa lạc tai ngay trung tâm Thành Phố Phan Thiết, Bình Thuận. Thuận tiện cho việc di chuyển đến các địa điểm du lịch khác như: Đồi Dương, Hàm Tiến, Mũi Né. Tiffany Hotel Sẽ là sự lựa chọn tuyệt vời nhất của quý khách trải nghiệm và tận hưởng thành phố biển Phan Thiết xinh đẹp.</p>
+                <h1 style="font-family: 'great vibes', sans-serif; font-size: 5rem; color: #0940a3">{{ optional($user->settings->where('name', 'name')->first())->value }}</h1>
+                <p>
+                    {{ optional($user->settings->where('name', 'gioi_thieu_2')->first())->value }}
+                </p>
             </div>
         </div>
     </div>
@@ -59,18 +61,17 @@
     <div class="container py-5 rooms-section">
         <h1 class="text-center mb-5">CÁC LOẠI PHÒNG</h1>
         <div class="row mb-3">
-           @foreach($rooms as $room)
+           @foreach($user->rooms as $room)
                 <div class="col-lg-6 mb-5">
                     <div class="card shadow">
                         <img src="https://tiffanyhotel.com.vn/Upload/images/gallery/Tiffany%20(5).jpg" class="card-img-top rounded h-lg-100 h-md-75 h-sm-50" alt="...">
                         <div class="card-body">
-                            <h5 class="card-title">PHÒNG GIƯỜNG ĐƠN 2 GIƯỜNG</h5>
+                            <h5 class="card-title">{{ $room->name }}</h5>
                             <p class="card-text">
                                 @for($x = 0; $x < $room->stars; $x++)
                                     <i class="fa-solid fa-star text-warning"></i>
                                 @endfor
                             </p>
-                            <p class="card-text">1.000.000 VNĐ</p>
                         </div>
                     </div>
                 </div>
@@ -115,7 +116,7 @@
     <div class="container p-5 news-section">
         <h1 class="text-center mb-5">Tin tức</h1>
         <div class="row mb-3">
-            @foreach($news as $new)
+            @foreach($user->news->where('type', 1) as $new)
                 <div class="col-lg-6 mb-5">
                     <div class="card shadow">
                         <img src="/images/news/mainnews/{{$new->images}}" class="card-img-top rounded h-lg-100 h-md-75 h-sm-50" alt="...">
