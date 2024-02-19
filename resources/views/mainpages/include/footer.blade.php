@@ -38,7 +38,7 @@
             </div>
             <div class="col-md-3 social-media mb-5">
                 <h4>Mạng xã hội</h4>
-                <p class="mb-3">Liên hệ <strong>Tiffany Hotel</strong> qua mạng xã hội</p>
+                <p class="mb-3">Liên hệ <strong>{{ optional($user->settings->where('name', 'name')->first())->value }}</strong> qua mạng xã hội</p>
                 <ul>
                     <li><a href="{{ optional($user->settings->where('name', 'facebook')->first())->value }}" target="_blank"><i class="fab fa-facebook fa-2xl"></i></a></li>
                     <li><a href="{{ optional($user->settings->where('name', 'twitter')->first())->value }}" target="_blank"><i class="fab fa-twitter fa-2xl"></i></a></li>
