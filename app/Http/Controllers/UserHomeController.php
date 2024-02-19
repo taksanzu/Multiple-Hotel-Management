@@ -43,7 +43,7 @@ class UserHomeController extends Controller
         return redirect()->route('userHome');
     }
 
-public function cancel(Request $request)
+    public function cancel(Request $request)
     {
         $id = $request->id;
         $booking = Booking::findOrFail($id);

@@ -14,6 +14,7 @@ class Controller extends BaseController
     use AuthorizesRequests, ValidatesRequests;
     function __construct()
     {
+        $roomTypes = Rooms::where('deleted', 0)->get();
         $subdomain = explode('.', $_SERVER['HTTP_HOST']);
         $user = null;
         if(count($subdomain) > 2){
@@ -22,7 +23,6 @@ class Controller extends BaseController
                 return 'Không tìm thấy trang web';
             }
         }
-        $roomTypes = Rooms::where('deleted', 0)->get();
         view()->share(['roomTypes' => $roomTypes , 'user' => $user]);
     }
 }

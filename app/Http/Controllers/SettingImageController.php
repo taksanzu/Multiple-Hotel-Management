@@ -12,4 +12,6 @@ class SettingImageController extends Controller
         $user = Auth::user();
         return view('pages.setting.image', ['user' => $user]);
     }
+
+
 }
