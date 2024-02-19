@@ -17,7 +17,7 @@ class UserHomeController extends Controller
                     $query->select('id', 'name'); // Chọn chỉ các trường cần thiết của bảng room
                 }])->paginate(12);
             } else {
-                $bookings = Booking::with(
+                $bookings = Booking::where('user_id', Auth::user()->id)->with(
                     ['room' => function ($query) {
                         $query->select('id', 'name'); // Chọn chỉ các trường cần thiết của bảng room
                     }]
