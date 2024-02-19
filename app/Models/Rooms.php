@@ -20,7 +20,8 @@ class Rooms extends Model
         'stars',
         'status',
         'number_of_rooms',
-        'deleted'
+        'deleted',
+        'created_by',
     ];
 
     public function roomImages()
