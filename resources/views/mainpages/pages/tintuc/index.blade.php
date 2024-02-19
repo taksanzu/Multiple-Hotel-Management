@@ -10,7 +10,7 @@
         </div>
     </div>
     <div class="container news-main-section my-5">
-        @foreach($news as $new)
+        @foreach($user->news->where('type', 1) as $new)
             <div class="row">
                 <div class="col-md-4">
                     <img src="/images/news/mainnews/{{$new->images}}" class="img-fluid">

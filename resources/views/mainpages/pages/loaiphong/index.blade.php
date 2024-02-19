@@ -40,7 +40,7 @@
     </div>
     <!-- Rooms -->
     <div class="container my-5 rooms-main-section">
-        @foreach ($rooms as $key => $room)
+        @foreach ($user->rooms as $key => $room)
             <div class="row mb-5 rooms-main-items">
                 @if ($key % 2 == 0)
                     <!-- Phòng {{ $room->id }} -->
