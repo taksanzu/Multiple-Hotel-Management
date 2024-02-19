@@ -8,6 +8,8 @@ function clearUser() {
     $('#name').val('');
     $('#email').val('');
     $('#password').val('');
+    $('#phone').val('');
+    $('#domain').val('');
 }
 
 function getUserId(id) {

@@ -13,6 +13,7 @@
                     <option value="Địa chỉ">Địa chỉ</option>
                     <option value="Số điện thoại">Số điện thoại</option>
                     <option value="Email">Email</option>
+                    <option value="Facebook">Facebook</option>
                 </select>
             </div>
             <div class="modal-body">

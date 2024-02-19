@@ -8,6 +8,10 @@ class CkeditorController extends Controller
 {
     public function uploadImage(Request $request)
     {
+        $request->validate([
+            'upload' => 'required|image|mimes:jpeg,png,jpg,gif,svg',
+        ]);
+
         if ($request->hasFile('upload')) {
             $originName = $request->file('upload')->getClientOriginalName();
             $fileName = pathinfo($originName, PATHINFO_FILENAME);
