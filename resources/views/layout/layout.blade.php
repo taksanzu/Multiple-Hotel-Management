@@ -7,16 +7,17 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/paginationjs@2.1.5/dist/pagination.min.css">
     <link href="{{asset('style/style.css')}}" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="csrf-token" content="{{ csrf_token() }}">
 </head>
 <body>
 @if(auth()->check())
-    <div class="d-flex" style="background: rgba(236, 249, 250, 0.8)">
+    <div style="background: rgba(236, 249, 250, 0.8)">
         <div class="d-flex flex-column">
             @include('include.navUser')
-            <div class="d-flex flex-row">
+            <div class="row">
                 @include('include.navAdmin')
-                <div class="container-fluid" style="width: calc(100vw - 250px);">
+                <div class="container col-lg-10">
                     @yield('content')
                 </div>
             </div>

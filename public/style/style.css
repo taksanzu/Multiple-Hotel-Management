@@ -2,24 +2,52 @@
     table-layout: fixed;
 }
 
-.table tbody {
-    display: block;
+@media screen and (min-width: 768px) {
+    .table tbody {
+        display: block;
+        overflow: auto;
+        width: 100%;
+    }
+    .table thead, .table tbody tr {
+        display: table;
+        width: 100%;
+        table-layout: fixed;
+        font-size: 1em;
+    }
+    .table th {
+        background: rgba(0, 255, 231, 0.13);
+        text-align: center;
+        font-size: 1em;
+    }
+    .table td {
+        padding: 2px 2px 0;
+        vertical-align: middle;
+        text-align: center;
+        font-size: 1em;
+    }
 }
 
-.table thead, .table tbody tr {
-    display: table;
-    width: 100%;
-    table-layout: fixed;
-    font-size: small;
-}
-.table th {
-    background: rgba(0, 255, 231, 0.13);
-    text-align: center;
-}
-.table td {
-    padding: 2px 2px 0;
-    vertical-align: middle;
-    text-align: center;
+@media (max-width: 768px) {
+    .table tbody {
+        display: table-row-group;
+    }
+    .table thead, .table tbody tr {
+        display: table;
+        width: 100%;
+        table-layout: fixed;
+        font-size: 0.5em;
+    }
+    .table th {
+        background: rgba(0, 255, 231, 0.13);
+        text-align: center;
+        font-size: 0.5em;
+    }
+    .table td {
+        padding: 2px 2px 0;
+        vertical-align: middle;
+        text-align: center;
+        font-size: 0.5em;
+    }
 }
 .nav-link:hover {
     background-color: rgba(0, 255, 231, 0.13);
