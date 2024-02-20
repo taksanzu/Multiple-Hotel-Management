@@ -39,6 +39,8 @@ class RoomsController extends Controller
             'stars' => 'nullable',
             'description' => 'nullable',
             'number_of_rooms' => 'nullable',
+            'videolink' => 'nullable',
+            'link360' => 'nullable',
             'images.*' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg'
         ]);
         $id = $request->id;
@@ -49,7 +51,9 @@ class RoomsController extends Controller
                 'name' => $request->name,
                 'stars' => $request->stars,
                 'description' => $request->description,
-                'number_of_rooms' => $request->number_of_rooms
+                'number_of_rooms' => $request->number_of_rooms,
+                'videolink' => $request->videolink,
+                'link360' => $request->link360,
             ]);
             $room_id = $rooms->id;
             if ($request->hasFile('image')) {
@@ -71,6 +75,8 @@ class RoomsController extends Controller
                 'stars' => $request->stars,
                 'description' => $request->description,
                 'number_of_rooms' => $request->number_of_rooms,
+                'videolink' => $request->videolink,
+                'link360' => $request->link360,
                 'created_by' => Auth::user()->id
             ]);
             $room->save();

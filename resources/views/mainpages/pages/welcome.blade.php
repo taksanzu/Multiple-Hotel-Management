@@ -75,17 +75,19 @@
         <div class="row mb-3">
            @foreach($user->rooms as $room)
                 <div class="col-lg-6 mb-5">
-                    <div class="card shadow">
-                        <img src="https://tiffanyhotel.com.vn/Upload/images/gallery/Tiffany%20(5).jpg" class="card-img-top rounded h-lg-100 h-md-75 h-sm-50" alt="...">
-                        <div class="card-body">
-                            <h5 class="card-title">{{ $room->name }}</h5>
-                            <p class="card-text">
-                                @for($x = 0; $x < $room->stars; $x++)
-                                    <i class="fa-solid fa-star text-warning"></i>
-                                @endfor
-                            </p>
+                    <a href="{{route('loaiphong.detail', ['id' => $room->id])}}" style="text-decoration:none">
+                        <div class="card shadow">
+                            <img src="images/rooms/{{$room->roomImages()->first()->name}}" class="card-img-top rounded h-lg-100 h-md-75 h-sm-50" alt="...">
+                            <div class="card-body">
+                                <h5 class="card-title text-uppercase">{{ $room->name }}</h5>
+                                <p class="card-text">
+                                    @for($x = 0; $x < $room->stars; $x++)
+                                        <i class="fa-solid fa-star text-warning"></i>
+                                    @endfor
+                                </p>
+                            </div>
                         </div>
-                    </div>
+                    </a>
                 </div>
            @endforeach
         </div>
@@ -134,13 +136,15 @@
         <div class="row mb-3">
             @foreach($user->news->where('type', 1) as $new)
                 <div class="col-lg-6 mb-5">
-                    <div class="card shadow">
-                        <img src="/images/news/mainnews/{{$new->images}}" class="card-img-top rounded h-lg-100 h-md-75 h-sm-50" alt="...">
-                        <div class="card-img-overlay">
-                            <h5 class="card-title text-light">{{$new->title}}</h5>
-                            <p class="card-text text-light limited-lines">{{$new->description}}</p>
+                    <a href="{{route('tintuc.detail', ['id' => $new->id])}}" style="text-decoration:none">
+                        <div class="card shadow">
+                            <img src="/images/news/mainnews/{{$new->images}}" class="card-img-top rounded h-lg-100 h-md-75 h-sm-50" alt="...">
+                            <div class="card-img-overlay">
+                                <h5 class="card-title text-light">{{$new->title}}</h5>
+                                <p class="card-text text-light limited-lines">{{$new->description}}</p>
+                            </div>
                         </div>
-                    </div>
+                    </a>
                 </div>
             @endforeach
         </div>

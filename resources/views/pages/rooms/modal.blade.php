@@ -26,6 +26,14 @@
                     <input type="number" step="1" min="0" class="form-control" name="number_of_rooms" id="number_of_rooms"/>
                 </div>
                 <div class="modal-body">
+                    <label for="videolink">Link Video:</label>
+                    <input type="text" class="form-control" name="videolink" id="videolink"/>
+                </div>
+                <div class="modal-body">
+                    <label for="link360">Link 360:</label>
+                    <input type="text" class="form-control" name="link360" id="link360"/>
+                </div>
+                <div class="modal-body">
                     <label for="image" id="fileLabel">Ảnh:</label>
                     <input type="file"  multiple class="form-control" name="image[]" id="image" accept="image/*"/>
                 </div>

@@ -22,6 +22,8 @@ class Rooms extends Model
         'number_of_rooms',
         'deleted',
         'created_by',
+        'videolink',
+        'link360',
     ];
 
     public function roomImages()

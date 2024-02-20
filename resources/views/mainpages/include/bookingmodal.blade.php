@@ -28,7 +28,7 @@
                             <label class="text-center mb-2">Ghi chú:</label>
                             <div class="input-group mb-3">
                                 <span class="input-group-text"><i class="fas fa-sticky-note"></i></span>
-                                <textarea class="form-control" placeholder="Ghi chú" name="notes"></textarea>
+                                <textarea class="form-control" placeholder="Ghi chú" name="notes" rows="4"></textarea>
                             </div>
                         </div>
                         <div class="col-md-6">

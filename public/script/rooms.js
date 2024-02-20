@@ -9,6 +9,8 @@ function clearRoom() {
     $('#description').val('');
     $('#stars').val('');
     $('#number_of_rooms').val('');
+    $('#videolink').val('');
+    $('#link360').val('');
     $('#image').val('');
     $('#output').empty();
 
@@ -22,6 +24,8 @@ function getRoomsId(id) {
             $('#name').val(data.rooms.name);
             $('#stars').val(data.rooms.stars);
             $('#description').val(data.rooms.description);
+            $('#videolink').val(data.rooms.videolink);
+            $('#link360').val(data.rooms.link360);
             $('#number_of_rooms').val(data.rooms.number_of_rooms);
             var outputContainer = $('#output');
             if (data.images){
