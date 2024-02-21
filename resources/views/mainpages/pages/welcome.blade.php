@@ -77,7 +77,13 @@
                 <div class="col-lg-6 mb-5">
                     <a href="{{route('loaiphong.detail', ['id' => $room->id])}}" style="text-decoration:none">
                         <div class="card shadow">
-                            <img src="images/rooms/{{$room->roomImages()->first()->name}}" class="card-img-top rounded h-lg-100 h-md-75 h-sm-50" alt="...">
+                            <div class="rooms-img-section">
+                                <img src="images/rooms/{{$room->roomImages()->first()->name}}" class="card-img-top rounded h-lg-100 h-md-75 h-sm-50" alt="...">
+                                <div class="rooms-btn-overlay">
+                                    <a href="{{$room->videolink}}" target="_blank" class="btn btn-danger btn-lg rounded-pill"><i class="fa-brands fa-youtube"></i></a>
+                                    <a href="{{$room->link360}}" target="_blank" class="btn btn-primary btn-lg rounded-pill">360</a>
+                                </div>
+                            </div>
                             <div class="card-body">
                                 <h5 class="card-title text-uppercase">{{ $room->name }}</h5>
                                 <p class="card-text">

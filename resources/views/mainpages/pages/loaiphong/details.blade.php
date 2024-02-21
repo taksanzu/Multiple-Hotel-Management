@@ -11,8 +11,12 @@
     <div class="container pt-5">
         <div class="owl-carousel owl-theme">
             @foreach($images as $image)
-                <div class="item">
+                <div class="item rooms-img-section">
                     <img src="/images/rooms/{{$image->name}}" alt="">
+                    <div class="rooms-btn-overlay">
+                        <a href="{{$rooms->videolink}}" target="_blank" class="btn btn-danger btn-lg rounded-pill"><i class="fa-brands fa-youtube"></i></a>
+                        <a href="{{$rooms->link360}}" target="_blank" class="btn btn-primary btn-lg rounded-pill">360</a>
+                    </div>
                 </div>
             @endforeach
         </div>

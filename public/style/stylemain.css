@@ -498,4 +498,12 @@ input {
     overflow: hidden;
     -webkit-line-clamp: 2; /* Số dòng muốn hiển thị */
 }
+.rooms-img-section {
+    position: relative;
+}
 
+.rooms-img-section .rooms-btn-overlay{
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+}
