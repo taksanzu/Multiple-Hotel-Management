@@ -28,13 +28,10 @@
                         <label for="address">Giới thiệu 1: </label>
                         <input type="text" class="form-control" name="gioi_thieu_1" value="{{ optional($user->settings->where('name', 'gioi_thieu_1')->first())->value }}" id="value"/>
                     </div>
-{{--                    <div class="form-group">--}}
-{{--                        <label>Logo</label>--}}
-{{--                        <input type="file" class="form-control" name="logo" id="logo"/>--}}
-{{--                        @if($user->settings->where('name', 'logo')->first())--}}
-{{--                            <img src="{{ asset('logo').'/'.optional($user->settings->where('name', 'logo')->first())->value }}" alt="" style="object-fit: contain; margin-top: 10px" width="200" height="100">--}}
-{{--                        @endif--}}
-{{--                    </div>--}}
+                    <div class="form-group mb-3">
+                        <label for="address">Link youtube: </label>
+                        <input type="text" class="form-control" name="youtube" value="{{ optional($user->settings->where('name', 'youtube')->first())->value }}" id="value"/>
+                    </div>
                 </div>
                 <div class="col-lg-6">
                     <div class="form-group mb-3">
@@ -53,10 +50,13 @@
                         <label for="address">Google map: </label>
                         <input type="text" class="form-control" name="googlemap" value="{{ optional($user->settings->where('name', 'googlemap')->first())->value }}" id="value"/>
                     </div>
-
                     <div class="form-group mb-3">
                         <label for="address">Giới thiệu 2: </label>
                         <input type="text" class="form-control" name="gioi_thieu_2" value="{{ optional($user->settings->where('name', 'gioi_thieu_2')->first())->value }}" id="value"/>
+                    </div>
+                    <div class="form-group mb-3">
+                        <label for="address">Link 360: </label>
+                        <input type="text" class="form-control" name="linkweb" value="{{ optional($user->settings->where('name', 'linkweb')->first())->value }}" id="value"/>
                     </div>
                 </div>
                 <div class="mt-3">

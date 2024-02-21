@@ -25,6 +25,8 @@
             <h1>{{ optional($user->settings->where('name', 'gioi_thieu_1')->first())->value }}</h1>
             <h2>{{ optional($user->settings->where('name', 'name')->first())->value }}</h2>
             <a style="background: #0b2046" class="btn btn-primary btn-lg rounded-pill border" type="button" data-bs-toggle="modal" data-bs-target="#bookingModal"><strong>BOOK NOW</strong></a>
+            <a data-bs-toggle="modal" data-bs-target="#videoModal" data-youtube-link="{{optional($user->settings->where('name', 'youtube')->first())->value}}" class="btn btn-danger btn-lg rounded-pill"><i class="fa-brands fa-youtube"></i></a>
+            <a data-bs-toggle="modal" data-bs-target="#webModal" data-web-link="{{optional($user->settings->where('name', 'linkweb')->first())->value}}" class="btn btn-primary btn-lg rounded-pill">360</a>
         </div>
     </div>
     <div class="container bg-white p-5 border rounded shadow position-relative mt-n1 booking">
@@ -80,8 +82,8 @@
                             <div class="rooms-img-section">
                                 <img src="images/rooms/{{$room->roomImages()->first()->name}}" class="card-img-top rounded h-lg-100 h-md-75 h-sm-50" alt="...">
                                 <div class="rooms-btn-overlay">
-                                    <a href="{{$room->videolink}}" target="_blank" class="btn btn-danger btn-lg rounded-pill"><i class="fa-brands fa-youtube"></i></a>
-                                    <a href="{{$room->link360}}" target="_blank" class="btn btn-primary btn-lg rounded-pill">360</a>
+                                    <a data-bs-toggle="modal" data-bs-target="#videoModal" data-youtube-link="{{$room->videolink}}" class="btn btn-danger btn-lg rounded-pill"><i class="fa-brands fa-youtube"></i></a>
+                                    <a data-bs-toggle="modal" data-bs-target="#webModal" data-web-link="{{$room->link360}}" class="btn btn-primary btn-lg rounded-pill">360</a>
                                 </div>
                             </div>
                             <div class="card-body">
@@ -101,6 +103,8 @@
             <a href="{{route('loaiphong.index')}}" class="btn btn-primary btn-lg rounded-pill border" style="background: #0b2046"><strong>XEM THÊM</strong></a>
         </div>
     </div>
+    @include('mainpages.include.videomodal')
+    @include('mainpages.include.360modal')
     <!-- End Rooms Infomations -->
     <!-- Services -->
     <div class="row">
@@ -123,13 +127,11 @@
                 <div class="single-service-wrap mb-5" style="">
                     <div class="service-content">
                         <h3 class="service-content-title text-gradient-gold">View sân thượng</h3>
-                        <p>View sân thượng nơi thư giãn lý tưởng để quý khách ngắm toàn cảnh Phan thiết khi về đêm.</p>
                     </div>
                 </div>
                 <div class="single-service-wrap" style="">
                     <div class="service-content">
                         <h3 class="service-content-title text-gradient-gold">Bãi tắm Đồi Dương</h3>
-                        <p>Vị trí khách sạn cách bãi tắm Đồi Dương 100m rất thuận lợi cho quý khách khi tắm biển.</p>
                     </div>
                 </div>
             </div>
@@ -198,4 +200,8 @@
         </div>
     </div>
     <!-- End Foods -->
+@endsection
+@section('script')
+    <script src="/script/welcome.js">
+    </script>
 @endsection
