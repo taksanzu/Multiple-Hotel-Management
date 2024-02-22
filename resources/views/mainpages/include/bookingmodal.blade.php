@@ -13,12 +13,12 @@
                             <label class="text-center mb-2">Họ và tên:</label>
                             <div class="input-group mb-3">
                                 <span class="input-group-text"><i class="fas fa-user"></i></span>
-                                <input type="text" class="form-control" placeholder="Họ và tên" name="name">
+                                <input type="text" class="form-control" placeholder="Họ và tên" name="name" id="name">
                             </div>
                             <label class="text-center mb-2">Số điện thoại:</label>
                             <div class="input-group mb-3">
                                 <span class="input-group-text"><i class="fas fa-phone"></i></span>
-                                <input type="text" class="form-control" placeholder="Số điện thoại" name="phone">
+                                <input type="text" class="form-control" placeholder="Số điện thoại" name="phone" id="phone">
                             </div>
                             <label class="text-center mb-2">Email: </label>
                             <div class="input-group mb-3">

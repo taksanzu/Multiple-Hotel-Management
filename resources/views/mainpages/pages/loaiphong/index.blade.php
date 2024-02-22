@@ -16,25 +16,25 @@
                 <label class="text-center mb-2">Ngày đến</label>
                 <div class="input-group">
                     <span class="input-group-text"><i class="fas fa-calendar-alt"></i></span>
-                    <input type="text" placeholder="Ngày nhận phòng" class="form-control datepicker" id="datepicker" name="datepicker">
+                    <input type="text" placeholder="Ngày nhận phòng" class="form-control datepicker" id="checkinsource" name="checkinsource">
                 </div>
             </div>
             <div class="col-md-3 flex-column mb-3">
                 <label class="text-center mb-2">Ngày đi</label>
                 <div class="input-group">
                     <span class="input-group-text"><i class="fas fa-calendar-alt"></i></span>
-                    <input type="text" placeholder="Ngày trả phòng" class="form-control datepicker" id="datepicker" name="datepicker">
+                    <input type="text" placeholder="Ngày trả phòng" class="form-control datepicker" id="checkoutsource" name="checkoutsource">
                 </div>
             </div>
             <div class="col-md-3 flex-column mb-3">
                 <label class="text-center mb-2">Điện thoại</label>
                 <div class="input-group">
                     <span class="input-group-text"><i class="fas fa-phone"></i></span>
-                    <input type="text" placeholder="Số điện thoại" class="form-control" id="phone" name="phone">
+                    <input type="text" placeholder="Số điện thoại" class="form-control" id="phonesource" name="phonesource">
                 </div>
             </div>
             <div class="col-md-2 mb-3">
-                <a data-bs-toggle="modal" data-bs-target="#bookingModal" class="btn btn-primary btn-lg rounded-pill border mt-md-4" style="background: #0b2046"><strong>BOOK NOW</strong></a>
+                <a id="bookingbtn" data-bs-toggle="modal" data-bs-target="#bookingModal" class="btn btn-primary btn-lg rounded-pill border mt-md-4" style="background: #0b2046"><strong>BOOK NOW</strong></a>
             </div>
         </form>
     </div>

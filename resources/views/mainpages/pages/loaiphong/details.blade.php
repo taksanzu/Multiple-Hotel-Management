@@ -14,8 +14,8 @@
                 <div class="item rooms-img-section">
                     <img src="/images/rooms/{{$image->name}}" alt="">
                     <div class="rooms-btn-overlay">
-                        <a href="{{$rooms->videolink}}" target="_blank" class="btn btn-danger btn-lg rounded-pill"><i class="fa-brands fa-youtube"></i></a>
-                        <a href="{{$rooms->link360}}" target="_blank" class="btn btn-primary btn-lg rounded-pill">360</a>
+                        <a data-bs-toggle="modal" data-bs-target="#videoModal" data-youtube-link="{{$rooms->videolink}}" class="btn btn-danger btn-lg rounded-circle"><i class="fa-brands fa-youtube fa-xs"></i></a>
+                        <a data-bs-toggle="modal" data-bs-target="#webModal" data-web-link="{{$rooms->link360}}" class="btn btn-primary btn-lg rounded-circle p-2"><label class="fs-5">360</label></a>
                     </div>
                 </div>
             @endforeach
@@ -44,6 +44,8 @@
             </div>
         </div>
     </div>
+    @include('mainpages.include.videomodal')
+    @include('mainpages.include.360modal')
 @endsection
 @section('script')
     <script src="/script/detailrooms.js"></script>

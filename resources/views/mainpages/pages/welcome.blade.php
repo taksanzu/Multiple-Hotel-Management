@@ -25,8 +25,8 @@
             <h1>{{ optional($user->settings->where('name', 'gioi_thieu_1')->first())->value }}</h1>
             <h2>{{ optional($user->settings->where('name', 'name')->first())->value }}</h2>
             <a style="background: #0b2046" class="btn btn-primary btn-lg rounded-pill border" type="button" data-bs-toggle="modal" data-bs-target="#bookingModal"><strong>BOOK NOW</strong></a>
-            <a data-bs-toggle="modal" data-bs-target="#videoModal" data-youtube-link="{{optional($user->settings->where('name', 'youtube')->first())->value}}" class="btn btn-danger btn-lg rounded-pill"><i class="fa-brands fa-youtube"></i></a>
-            <a data-bs-toggle="modal" data-bs-target="#webModal" data-web-link="{{optional($user->settings->where('name', 'linkweb')->first())->value}}" class="btn btn-primary btn-lg rounded-pill">360</a>
+            <a data-bs-toggle="modal" data-bs-target="#videoModal" data-youtube-link="{{optional($user->settings->where('name', 'youtube')->first())->value}}" class="btn btn-danger btn-lg rounded-circle"><i class="fa-brands fa-youtube fa-xs"></i></a>
+            <a data-bs-toggle="modal" data-bs-target="#webModal" data-web-link="{{optional($user->settings->where('name', 'linkweb')->first())->value}}" class="btn btn-primary btn-lg rounded-circle p-2"><label class="fs-5">360</label></a>
         </div>
     </div>
     <div class="container bg-white p-5 border rounded shadow position-relative mt-n1 booking">
@@ -36,25 +36,25 @@
                 <label class="text-center mb-2">Ngày đến</label>
                 <div class="input-group">
                     <span class="input-group-text"><i class="fas fa-calendar-alt"></i></span>
-                    <input type="text" placeholder="Ngày nhận phòng" class="form-control datepicker" id="datepicker" name="datepicker">
+                    <input type="text" placeholder="Ngày nhận phòng" class="form-control datepicker" id="checkinsource" name="checkinsource">
                 </div>
             </div>
             <div class="col-md-3 flex-column mb-3">
                 <label class="text-center mb-2">Ngày đi</label>
                 <div class="input-group">
                     <span class="input-group-text"><i class="fas fa-calendar-alt"></i></span>
-                    <input type="text" placeholder="Ngày trả phòng" class="form-control datepicker" id="datepicker" name="datepicker">
+                    <input type="text" placeholder="Ngày trả phòng" class="form-control datepicker" id="checkoutsource" name="checkoutsource">
                 </div>
             </div>
             <div class="col-md-3 flex-column mb-3">
                 <label class="text-center mb-2">Điện thoại</label>
                 <div class="input-group">
                     <span class="input-group-text"><i class="fas fa-phone"></i></span>
-                    <input type="text" placeholder="Số điện thoại" class="form-control" id="phone" name="phone">
+                    <input type="text" placeholder="Số điện thoại" class="form-control" id="phonesource" name="phonesource">
                 </div>
             </div>
             <div class="col-md-2 mb-3">
-                <a data-bs-toggle="modal" data-bs-target="#bookingModal" class="btn btn-primary btn-lg rounded-pill border mt-md-4" style="background: #0b2046"><strong>BOOK NOW</strong></a>
+                <a id="bookingbtn" data-bs-toggle="modal" data-bs-target="#bookingModal" class="btn btn-primary btn-lg rounded-pill border mt-md-4" style="background: #0b2046"><strong>BOOK NOW</strong></a>
             </div>
         </form>
     </div>
@@ -82,8 +82,8 @@
                             <div class="rooms-img-section">
                                 <img src="images/rooms/{{$room->roomImages()->first()->name}}" class="card-img-top rounded h-lg-100 h-md-75 h-sm-50" alt="...">
                                 <div class="rooms-btn-overlay">
-                                    <a data-bs-toggle="modal" data-bs-target="#videoModal" data-youtube-link="{{$room->videolink}}" class="btn btn-danger btn-lg rounded-pill"><i class="fa-brands fa-youtube"></i></a>
-                                    <a data-bs-toggle="modal" data-bs-target="#webModal" data-web-link="{{$room->link360}}" class="btn btn-primary btn-lg rounded-pill">360</a>
+                                    <a data-bs-toggle="modal" data-bs-target="#videoModal" data-youtube-link="{{$room->videolink}}" class="btn btn-danger btn-lg rounded-circle"><i class="fa-brands fa-youtube fa-xs"></i></a>
+                                    <a data-bs-toggle="modal" data-bs-target="#webModal" data-web-link="{{$room->link360}}" class="btn btn-primary btn-lg rounded-circle p-2"><label class="fs-5">360</label></a>
                                 </div>
                             </div>
                             <div class="card-body">
