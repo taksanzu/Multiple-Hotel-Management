@@ -42,6 +42,8 @@ class NewsController extends Controller
             'type' => 'nullable',
             'created_by' => 'nullable',
             'updated_by' => 'nullable',
+            'videolink' => 'nullable',
+            'link360' => 'nullable',
             'images.*' => 'nullable|image|mimes:jpeg,png,jpg,gif',
         ]);
         $id = $request->id;
@@ -56,6 +58,8 @@ class NewsController extends Controller
                     'description' => $request->description,
                     'contents' => $request->contents,
                     'type' => $request->type,
+                    'videolink' => $request->videolink,
+                    'link360' => $request->link360,
                     'updated_by' => Auth::user()->id,
                     'images' => $imagesName,
                 ]);
@@ -65,6 +69,8 @@ class NewsController extends Controller
                     'description' => $request->description,
                     'contents' => $request->contents,
                     'type' => $request->type,
+                    'videolink' => $request->videolink,
+                    'link360' => $request->link360,
                     'updated_by' => Auth::user()->id,
                 ]);
             }
@@ -77,6 +83,8 @@ class NewsController extends Controller
                 'description' => $request->description,
                 'contents' => $request->contents,
                 'type' => $request->type,
+                'videolink' => $request->videolink,
+                'link360' => $request->link360,
                 'created_by' => Auth::user()->id,
                 'updated_by' => null,
                 'images' => $imagesName,
