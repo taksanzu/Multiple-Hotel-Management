@@ -44,8 +44,6 @@
             </div>
         </div>
     </div>
-    @include('mainpages.include.videomodal')
-    @include('mainpages.include.360modal')
 @endsection
 @section('script')
     <script src="/script/detailrooms.js"></script>

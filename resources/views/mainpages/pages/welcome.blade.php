@@ -107,8 +107,6 @@
             <a href="{{route('loaiphong.index')}}" class="btn btn-primary btn-lg rounded-pill border" style="background: #0b2046"><strong>XEM THÊM</strong></a>
         </div>
     </div>
-    @include('mainpages.include.videomodal')
-    @include('mainpages.include.360modal')
     <!-- End Rooms Infomations -->
     <!-- Services -->
     <div class="row">
@@ -205,7 +203,4 @@
     </div>
     <!-- End Foods -->
 @endsection
-@section('script')
-    <script src="/script/welcome.js">
-    </script>
-@endsection
+

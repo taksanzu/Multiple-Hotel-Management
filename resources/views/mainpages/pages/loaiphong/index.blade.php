@@ -62,7 +62,7 @@
                         </div>
                     </div>
                     <div class="col-md-10">
-                        <div id="carouselExample{{ $room->id }}" class="carousel slide" data-bs-ride="carousel">
+                        <div id="carouselExample{{ $room->id }}" class="carousel slide rooms-img-section" data-bs-ride="carousel">
                             <div class="carousel-inner">
                                 @foreach ($room->roomImages->take(2) as $imgKey => $image)
                                     <div class="carousel-item {{ $imgKey == 0 ? 'active' : '' }}">
@@ -70,16 +70,20 @@
                                     </div>
                                 @endforeach
                             </div>
-                            <button class="carousel-control-next" type="button" data-bs-target="#carouselExample{{ $room->id }}" data-bs-slide="next">
+                            <button class="carousel-control-next" type="button" data-bs-target="#carouselExample{{ $room->id }}" data-bs-slide="next" style="z-index: auto">
                                 <span class="carousel-control-next-icon" aria-hidden="true"></span>
                                 <span class="visually-hidden">Next</span>
                             </button>
+                            <div class="rooms-btn-overlay" >
+                                <a data-bs-toggle="modal" data-bs-target="#videoModal" data-youtube-link="{{$room->videolink}}" class="btn btn-danger btn-lg rounded-circle"><i class="fa-brands fa-youtube fa-xs"></i></a>
+                                <a data-bs-toggle="modal" data-bs-target="#webModal" data-web-link="{{$room->link360}}" class="btn btn-primary btn-lg rounded-circle p-2"><label class="fs-5">360</label></a>
+                            </div>
                         </div>
                     </div>
                 @else
                     <!-- Phòng {{ $room->id }} -->
                     <div class="col-md-10">
-                        <div id="carouselExample{{ $room->id }}" class="carousel slide" data-bs-ride="carousel">
+                        <div id="carouselExample{{ $room->id }}" class="carousel slide rooms-img-section" data-bs-ride="carousel">
                             <div class="carousel-inner">
                                 @foreach ($room->roomImages->take(2) as $imgKey => $image)
                                     <div class="carousel-item {{ $imgKey == 0 ? 'active' : '' }}">
@@ -87,10 +91,14 @@
                                     </div>
                                 @endforeach
                             </div>
-                            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample{{ $room->id }}" data-bs-slide="prev">
+                            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample{{ $room->id }}" data-bs-slide="prev" style="z-index: auto">
                                 <span class="carousel-control-prev-icon" aria-hidden="true"></span>
                                 <span class="visually-hidden">Previous</span>
                             </button>
+                            <div class="rooms-btn-overlay" style="left: 10px; right: unset !important;">
+                                <a data-bs-toggle="modal" data-bs-target="#videoModal" data-youtube-link="{{$room->videolink}}" class="btn btn-danger btn-lg rounded-circle"><i class="fa-brands fa-youtube fa-xs"></i></a>
+                                <a data-bs-toggle="modal" data-bs-target="#webModal" data-web-link="{{$room->link360}}" class="btn btn-primary btn-lg rounded-circle p-2"><label class="fs-5">360</label></a>
+                            </div>
                         </div>
                     </div>
                     <div class="col-md-2">
