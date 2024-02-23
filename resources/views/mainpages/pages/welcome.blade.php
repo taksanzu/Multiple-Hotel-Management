@@ -24,7 +24,7 @@
         <div class="carousel-text">
             <h1>{{ optional($user->settings->where('name', 'gioi_thieu_1')->first())->value }}</h1>
             <h2>{{ optional($user->settings->where('name', 'name')->first())->value }}</h2>
-            <div class="d-lg-flex " style="gap:5px">
+            <div class="d-lg-flex justify-content-center" style="gap:5px">
                 <a style="background: #0b2046" class="btn btn-primary btn-lg rounded-pill border mb-2 mb-lg-0" type="button" data-bs-toggle="modal" data-bs-target="#bookingModal"><strong>BOOK NOW</strong></a>
                 <div class="d-flex flex-row justify-content-center" style="gap:5px">
                     <a data-bs-toggle="modal" data-bs-target="#videoModal" data-youtube-link="{{optional($user->settings->where('name', 'youtube')->first())->value}}" class="btn btn-danger btn-lg rounded-circle"><i class="fa-brands fa-youtube fa-xs"></i></a>
