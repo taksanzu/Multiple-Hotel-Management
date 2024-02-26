@@ -15,8 +15,8 @@
                     <input type="text" class="form-control" name="title" id="title"/>
                 </div>
                 <div class="modal-body">
-                    <label for="description">Mô tả ngắn<label class="text-danger">(*)</label> :</label>
-                    <input type="text" class="form-control" name="description" id="description"/>
+                    <label for="description">Mô tả:<label class="text-danger">(*)</label> :</label>
+                    <textarea class="form-control" name="description" id="description"></textarea>
                 </div>
                 <div class="modal-body">
                     <label for="videolink">Link Video:</label>

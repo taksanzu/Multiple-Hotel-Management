@@ -3,7 +3,6 @@
     <tr>
         <th scope="col">Tên nguời dùng</th>
         <th scope="col" >Số điện thoại</th>
-        <th scope="col">Email</th>
         <th scope="col">Ngày tạo</th>
         <th scope="col">Ngày sửa</th>
         <th scope="col">Quyền</th>
@@ -17,7 +16,6 @@
         <tr>
             <td class="text-start">{{ $userList->name }}</td>
             <td>{{ $userList->phone}}</td>
-            <td>{{ $userList->email }}</td>
             <td>{{ $userList->created_at}}</td>
             <td>{{ $userList->updated_at}}</td>
             <td>

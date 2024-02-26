@@ -76,17 +76,9 @@ $(document).ready(function() {
                 accept: 'image/*'
             }
         },
-        messages: {
-            // Đặt thông báo lỗi tương ứng
-            'image[]': {
-                required: 'Vui lòng chọn ít nhất một ảnh.',
-                accept: 'Vui lòng chọn một tệp hình ảnh hợp lệ.'
-            }
-        },
         errorElement: 'span',
         errorPlacement: function (error, element) {
-            error.addClass('invalid-feedback');
-            element.closest('.modal-body').append(error);
+            element.addClass('has-error');
         },
         highlight: function (element, errorClass, validClass) {
             $(element).addClass('is-invalid').removeClass(validClass);

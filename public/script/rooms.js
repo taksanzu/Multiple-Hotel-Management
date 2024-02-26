@@ -172,28 +172,9 @@ $(document).ready(function() {
                 accept: 'image/*'
             }
         },
-        messages: {
-            name: 'Vui lòng nhập tên phòng',
-            description: 'Vui lòng nhập mô tả',
-            stars: {
-                required: 'Vui lòng nhập số sao',
-                range: 'Số sao phải nằm trong khoảng từ 0 đến 5'
-            },
-            number_of_rooms: {
-                required: 'Vui lòng nhập số phòng',
-                min: 'Số phòng phải lớn hơn hoặc bằng 0'
-            },
-            videolink: 'Vui lòng nhập link video hợp lệ',
-            link360: 'Vui lòng nhập link 360 hợp lệ',
-            'image[]': {
-                required: 'Vui lòng chọn ít nhất một ảnh',
-                accept: 'Vui lòng chọn một tệp hình ảnh hợp lệ'
-            }
-        },
         errorElement: 'span',
         errorPlacement: function (error, element) {
-            error.addClass('invalid-feedback');
-            element.closest('.modal-body').append(error);
+            element.addClass('has-error');
         },
         highlight: function (element, errorClass, validClass) {
             $(element).addClass('is-invalid').removeClass(validClass);

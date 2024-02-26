@@ -174,21 +174,9 @@ $(document).ready(function() {
             },
             contents: 'required'
         },
-        messages: {
-            title: 'Vui lòng nhập tiêu đề',
-            description: 'Vui lòng nhập mô tả ngắn',
-            videolink: 'Vui lòng nhập link video hợp lệ',
-            link360: 'Vui lòng nhập link 360 hợp lệ',
-            imageNews: {
-                required: 'Vui lòng chọn một ảnh',
-                accept: 'Vui lòng chọn một tệp hình ảnh hợp lệ'
-            },
-            contents: 'Vui lòng nhập nội dung'
-        },
         errorElement: 'span',
         errorPlacement: function (error, element) {
-            error.addClass('invalid-feedback');
-            element.closest('.modal-body').append(error);
+            element.addClass('has-error');
         },
         highlight: function (element, errorClass, validClass) {
             $(element).addClass('is-invalid').removeClass(validClass);

@@ -61,34 +61,9 @@ $(document).ready(function () {
             number_of_rooms: 'required',
             roomType: 'required'
         },
-        messages: {
-            name: 'Vui lòng nhập họ và tên',
-            phone: 'Vui lòng nhập số điện thoại',
-            email: {
-                required: 'Vui lòng nhập địa chỉ email',
-                email: 'Địa chỉ email không hợp lệ'
-            },
-            checkin: {
-                required: 'Vui lòng chọn ngày đến',
-                date: 'Vui lòng nhập ngày hợp lệ',
-                validDate: 'Vui lòng nhập ngày hợp lệ theo định dạng dd/mm/yy',
-                minDate: 'Ngày đến phải sau ngày hiện tại'
-            },
-            checkout: {
-                required: 'Vui lòng chọn ngày trả phòng',
-                date: 'Vui lòng nhập ngày hợp lệ',
-                validDate: 'Vui lòng nhập ngày hợp lệ theo định dạng dd/mm/yy',
-                greaterThanCheckin: 'Ngày trả phòng phải sau ngày đến'
-            },
-            number_of_adults: 'Vui lòng nhập số người lớn',
-            number_of_children: 'Vui lòng nhập số trẻ em',
-            number_of_rooms: 'Vui lòng nhập số lượng phòng',
-            roomType: 'Vui lòng chọn loại phòng'
-        },
         errorElement: 'span',
         errorPlacement: function (error, element) {
-            error.addClass('invalid-feedback');
-            element.closest('.input-group').append(error);
+            element.addClass('has-error');
         },
         highlight: function (element, errorClass, validClass) {
             $(element).addClass('is-invalid').removeClass(validClass);
