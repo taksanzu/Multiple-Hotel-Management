@@ -10,12 +10,12 @@
             <div class="modal-body">
                     <div class="row">
                         <div class="col-md-6">
-                            <label class="text-center mb-2">Họ và tên:</label>
+                            <label class="text-center mb-2">Họ và tên<label class="text-danger">(*)</label>:</label>
                             <div class="input-group mb-3">
                                 <span class="input-group-text"><i class="fas fa-user"></i></span>
                                 <input type="text" class="form-control" placeholder="Họ và tên" name="name" id="name">
                             </div>
-                            <label class="text-center mb-2">Số điện thoại:</label>
+                            <label class="text-center mb-2">Số điện thoại<label class="text-danger">(*)</label>:</label>
                             <div class="input-group mb-3">
                                 <span class="input-group-text"><i class="fas fa-phone"></i></span>
                                 <input type="text" class="form-control" placeholder="Số điện thoại" name="phone" id="phone">
@@ -32,28 +32,28 @@
                             </div>
                         </div>
                         <div class="col-md-6">
-                            <label class="text-center mb-2">Ngày đến:</label>
+                            <label class="text-center mb-2">Ngày đến<label class="text-danger">(*)</label>:</label>
                             <div class="input-group mb-3">
                                 <span class="input-group-text"><i class="fas fa-calendar-alt"></i></span>
                                 <input type="text" class="form-control datepicker" placeholder="Ngày đặt phòng" id="checkin" name="checkin">
                             </div>
-                            <label class="text-center mb-2">Ngày trả phòng:</label>
+                            <label class="text-center mb-2">Ngày trả phòng<label class="text-danger">(*)</label>:</label>
                             <div class="input-group mb-3">
                                 <span class="input-group-text"><i class="fas fa-calendar-alt"></i></span>
                                 <input type="text" class="form-control datepicker" placeholder="Ngày trả phòng" id="checkout" name="checkout">
                             </div>
-                            <label class="text-center mb-2">Số người:</label>
+                            <label class="text-center mb-2">Số người<label class="text-danger">(*)</label>:</label>
                             <div class="input-group mb-3">
                                 <span class="input-group-text"><i class="fas fa-users"></i></span>
                                 <input type="number" class="form-control" placeholder="Người lớn" name="number_of_adults">
                                 <input type="number" class="form-control" placeholder="Trẻ em" name="number_of_children">
                             </div>
-                            <label class="text-center mb-2">Số lượng phòng:</label>
+                            <label class="text-center mb-2">Số lượng phòng<label class="text-danger">(*)</label>:</label>
                             <div class="input-group mb-3">
                                 <span class="input-group-text"><i class="fas fa-bed"></i></span>
                                 <input type="number" class="form-control" placeholder="Số lượng phòng" name="number_of_rooms">
                             </div>
-                            <label class="text-center mb-2">Loại phòng:</label>
+                            <label class="text-center mb-2">Loại phòng<label class="text-danger">(*)</label>:</label>
                             <div class="input-group mb-3">
                                 <label class="input-group-text" for="roomType"><i class="fas fa-bed"></i></label>
                                 <select class="form-select" id="roomType" name="roomType">

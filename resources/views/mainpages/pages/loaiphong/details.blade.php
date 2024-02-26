@@ -13,10 +13,17 @@
             @foreach($images as $image)
                 <div class="item rooms-img-section">
                     <img src="/images/rooms/{{$image->name}}" alt="">
-                    <div class="rooms-btn-overlay">
-                        <a data-bs-toggle="modal" data-bs-target="#videoModal" data-youtube-link="{{$rooms->videolink}}" class="btn btn-danger btn-lg rounded-circle"><i class="fa-brands fa-youtube fa-xs"></i></a>
-                        <a data-bs-toggle="modal" data-bs-target="#webModal" data-web-link="{{$rooms->link360}}" class="btn btn-primary btn-lg rounded-circle p-2"><label class="fs-5">360</label></a>
-                    </div>
+                    @if((new \Jenssegers\Agent\Agent())->isDesktop())
+                        <div class="rooms-btn-overlay">
+                            <a data-bs-toggle="modal" data-bs-target="#videoModal" data-youtube-link="{{$rooms->videolink}}" class="btn btn-danger btn-lg rounded-circle"><i class="fa-brands fa-youtube fa-xs"></i></a>
+                            <a data-bs-toggle="modal" data-bs-target="#webModal" data-web-link="{{$rooms->link360}}" class="btn btn-primary btn-lg rounded-circle p-2"><label class="fs-5">360</label></a>
+                        </div>
+                    @else
+                        <div class="rooms-btn-overlay">
+                            <a href="{{$rooms->videolink}}" target="_blank" class="btn btn-danger btn-lg rounded-circle"><i class="fa-brands fa-youtube fa-xs"></i></a>
+                            <a href="{{$rooms->link360}}" target="_blank" class="btn btn-primary btn-lg rounded-circle p-2"><label class="fs-5">360</label></a>
+                        </div>
+                    @endif
                 </div>
             @endforeach
         </div>
@@ -36,9 +43,7 @@
             <div class="col-md-12">
                 <h3>Mô tả dài của phòng</h3>
                 <p>
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed tristique massa vel nulla fermentum, non vulputate justo condimentum.
-                    Proin et efficitur neque, vel euismod justo. Vivamus vitae posuere libero. In hac habitasse platea dictumst. Ut nec leo non libero tincidunt
-                    tincidunt. Fusce at metus vitae nulla vestibulum suscipit. Nulla facilisi. Proin in ligula ac sapien tristique vulputate.
+                    {{$rooms->longdesc}}
                 </p>
                 <a class="btn btn-primary rounded-pill border " style="background: #0b2046" data-bs-toggle="modal" data-bs-target="#bookingModal"><strong>BOOK NOW</strong></a>
             </div>

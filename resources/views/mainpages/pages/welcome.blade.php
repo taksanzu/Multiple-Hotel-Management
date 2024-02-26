@@ -26,10 +26,17 @@
             <h2>{{ optional($user->settings->where('name', 'name')->first())->value }}</h2>
             <div class="d-lg-flex justify-content-center" style="gap:5px">
                 <a style="background: #0b2046" class="btn btn-primary btn-lg rounded-pill border mb-2 mb-lg-0" type="button" data-bs-toggle="modal" data-bs-target="#bookingModal"><strong>BOOK NOW</strong></a>
-                <div class="d-flex flex-row justify-content-center" style="gap:5px">
-                    <a data-bs-toggle="modal" data-bs-target="#videoModal" data-youtube-link="{{optional($user->settings->where('name', 'youtube')->first())->value}}" class="btn btn-danger btn-lg rounded-circle"><i class="fa-brands fa-youtube fa-xs"></i></a>
-                    <a data-bs-toggle="modal" data-bs-target="#webModal" data-web-link="{{optional($user->settings->where('name', 'linkweb')->first())->value}}" class="btn btn-primary btn-lg rounded-circle p-2"><label class="fs-5">360</label></a>
-                </div>
+                @if((new Jenssegers\Agent\Agent())->isDesktop())
+                    <div class="d-flex flex-row justify-content-center" style="gap:5px">
+                        <a data-bs-toggle="modal" data-bs-target="#videoModal" data-youtube-link="{{optional($user->settings->where('name', 'youtube')->first())->value}}" class="btn btn-danger btn-lg rounded-circle"><i class="fa-brands fa-youtube fa-xs"></i></a>
+                        <a data-bs-toggle="modal" data-bs-target="#webModal" data-web-link="{{optional($user->settings->where('name', 'linkweb')->first())->value}}" class="btn btn-primary btn-lg rounded-circle p-2"><label class="fs-5">360</label></a>
+                    </div>
+                @else
+                    <div class="d-flex flex-row justify-content-center" style="gap:5px">
+                        <a href="{{optional($user->settings->where('name', 'youtube')->first())->value}}" target="_blank" class="btn btn-danger btn-lg rounded-circle"><i class="fa-brands fa-youtube fa-xs"></i></a>
+                        <a href="{{optional($user->settings->where('name', 'linkweb')->first())->value}}" target="_blank" class="btn btn-primary btn-lg rounded-circle p-2"><label class="fs-5">360</label></a>
+                    </div>
+                @endif
             </div>
         </div>
     </div>
@@ -85,10 +92,17 @@
                         <div class="card shadow">
                             <div class="rooms-img-section">
                                 <img src="images/rooms/{{$room->roomImages()->first()->name}}" class="card-img-top rounded h-lg-100 h-md-75 h-sm-50" alt="...">
-                                <div class="rooms-btn-overlay">
-                                    <a data-bs-toggle="modal" data-bs-target="#videoModal" data-youtube-link="{{$room->videolink}}" class="btn btn-danger btn-lg rounded-circle"><i class="fa-brands fa-youtube fa-xs"></i></a>
-                                    <a data-bs-toggle="modal" data-bs-target="#webModal" data-web-link="{{$room->link360}}" class="btn btn-primary btn-lg rounded-circle p-2"><label class="fs-5">360</label></a>
-                                </div>
+                                @if((new \Jenssegers\Agent\Agent())->isDesktop())
+                                    <div class="rooms-btn-overlay">
+                                        <a data-bs-toggle="modal" data-bs-target="#videoModal" data-youtube-link="{{$room->videolink}}" class="btn btn-danger btn-lg rounded-circle"><i class="fa-brands fa-youtube fa-xs"></i></a>
+                                        <a data-bs-toggle="modal" data-bs-target="#webModal" data-web-link="{{$room->link360}}" class="btn btn-primary btn-lg rounded-circle p-2"><label class="fs-5">360</label></a>
+                                    </div>
+                                @else
+                                    <div class="rooms-btn-overlay">
+                                        <a href="{{$room->videolink}}" target="_blank" class="btn btn-danger btn-lg rounded-circle"><i class="fa-brands fa-youtube fa-xs"></i></a>
+                                        <a href="{{$room->link360}}" target="_blank" class="btn btn-primary btn-lg rounded-circle p-2"><label class="fs-5">360</label></a>
+                                    </div>
+                                @endif
                             </div>
                             <div class="card-body">
                                 <h5 class="card-title text-uppercase">{{ $room->name }}</h5>
@@ -192,7 +206,12 @@
         <div class="carousel-inner p-3">
             @for($i = 7; $i <= 10; $i++)
                 @if ($user->settings->where('name', 'image'.$i)->first())
-                    <div @if($i == 7) class="carousel-item foods-img-sm active" @else class="carousel-item foods-img-sm" @endif style="background-image: url('{{ asset('images').'/'.optional($user->settings->where('name', 'image'.$i)->first())->value }}'); height: 50vh">
+                    <div @if($i == 7)
+                             class="carousel-item foods-img-sm active"
+                         @else
+                             class="carousel-item foods-img-sm"
+                         @endif
+                         style="background-image: url('{{ asset('images').'/'.optional($user->settings->where('name', 'image'.$i)->first())->value }}'); height: 50vh">
                     </div>
                 @else
                     <div class="carousel-item foods-img-sm" style="background-image: url('https://tiffanyhotel.com.vn/Upload/images/brand-logo/ga-ham-sam-2-min.jpeg'); height: 50vh">
