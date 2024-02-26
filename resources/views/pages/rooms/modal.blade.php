@@ -2,7 +2,7 @@
 <div class="modal fade" id="roomsModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-xl">
         <div class="modal-content">
-            <form id="newsForm" enctype="multipart/form-data" action="{{route('rooms.store')}}" method="POST">
+            <form id="roomsForm" enctype="multipart/form-data" action="{{route('rooms.store')}}" method="POST">
                 @csrf
                 <div class="modal-header">
                     <h1 class="modal-title fs-5" id="exampleModalLabel">Loại phòng</h1>

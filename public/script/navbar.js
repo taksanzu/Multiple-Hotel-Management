@@ -14,5 +14,7 @@ if($('.navbar').length > 0){
     });
 }
 $(document).ready(function(){
-    $('.datepicker').datepicker();
+    $('.datepicker').datepicker({
+        format: 'dd/mm/yyyy',
+    });
 });

@@ -11,11 +11,11 @@
                 <input type="hidden" name="id" id="id">
                 <input name="type" type="hidden" value="{{$type}}">
                 <div class="modal-body">
-                    <label for="title">Tiêu đề</label>
+                    <label for="title">Tiêu đề<label class="text-danger">(*)</label> :</label>
                     <input type="text" class="form-control" name="title" id="title"/>
                 </div>
                 <div class="modal-body">
-                    <label for="description">Mô tả ngắn</label>
+                    <label for="description">Mô tả ngắn<label class="text-danger">(*)</label> :</label>
                     <input type="text" class="form-control" name="description" id="description"/>
                 </div>
                 <div class="modal-body">
@@ -27,14 +27,14 @@
                     <input type="text" class="form-control" name="link360" id="link360"/>
                 </div>
                 <div class="modal-body">
-                    <label for="imageNews" id="fileLabel">Ảnh:</label>
+                    <label for="imageNews" id="fileLabel">Ảnh<label class="text-danger">(*)</label> :</label>
                     <input type="file" class="form-control" name="imageNews" id="imageNews" accept="image/*"/>
                 </div>
                 <div class="modal-body">
                     <div id="output" class="d-flex flex-row flex-wrap"></div>
                 </div>
                 <div class="modal-body">
-                    <label for="contents">Nội dung</label>
+                    <label for="contents">Nội dung<label class="text-danger">(*)</label> :</label>
                     <textarea id="contents" class="form-control" name="contents"></textarea>
                 </div>
                 <div class="modal-footer">

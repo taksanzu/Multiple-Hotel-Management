@@ -20,7 +20,7 @@
                                 <span class="input-group-text"><i class="fas fa-phone"></i></span>
                                 <input type="text" class="form-control" placeholder="Số điện thoại" name="phone" id="phone">
                             </div>
-                            <label class="text-center mb-2">Email: </label>
+                            <label class="text-center mb-2">Email<label class="text-danger">(*)</label>: </label>
                             <div class="input-group mb-3">
                                 <span class="input-group-text"><i class="fas fa-envelope"></i></span>
                                 <input type="text" class="form-control" placeholder="Email" name="email">
@@ -57,7 +57,7 @@
                             <div class="input-group mb-3">
                                 <label class="input-group-text" for="roomType"><i class="fas fa-bed"></i></label>
                                 <select class="form-select" id="roomType" name="roomType">
-                                    <option selected>Chọn loại phòng...</option>
+                                    <option selected></option>
                                     @foreach($user->rooms as $roomType)
                                         <option value="{{$roomType->id}}">{{$roomType->name}}</option>
                                     @endforeach
