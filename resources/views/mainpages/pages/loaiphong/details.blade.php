@@ -13,17 +13,14 @@
             @foreach($images as $image)
                 <div class="item rooms-img-section">
                     <img src="/images/rooms/{{$image->name}}" alt="">
-                    @if((new \Jenssegers\Agent\Agent())->isDesktop())
-                        <div class="rooms-btn-overlay">
-                            <a data-bs-toggle="modal" data-bs-target="#videoModal" data-youtube-link="{{$rooms->videolink}}" class="btn btn-danger btn-lg rounded-circle"><i class="fa-brands fa-youtube fa-xs"></i></a>
-                            <a data-bs-toggle="modal" data-bs-target="#webModal" data-web-link="{{$rooms->link360}}" class="btn btn-primary btn-lg rounded-circle p-2"><label class="fs-5">360</label></a>
-                        </div>
-                    @else
-                        <div class="rooms-btn-overlay">
-                            <a href="{{$rooms->videolink}}" target="_blank" class="btn btn-danger btn-lg rounded-circle"><i class="fa-brands fa-youtube fa-xs"></i></a>
-                            <a href="{{$rooms->link360}}" target="_blank" class="btn btn-primary btn-lg rounded-circle p-2"><label class="fs-5">360</label></a>
-                        </div>
-                    @endif
+                    <div class="rooms-btn-overlay d-md-block d-none">
+                        <a data-bs-toggle="modal" data-bs-target="#videoModal" data-youtube-link="{{$rooms->videolink}}" class="btn btn-danger btn-lg rounded-circle"><i class="fa-brands fa-youtube fa-xs"></i></a>
+                        <a data-bs-toggle="modal" data-bs-target="#webModal" data-web-link="{{$rooms->link360}}" class="btn btn-primary btn-lg rounded-circle p-2"><label class="fs-5">360</label></a>
+                    </div>
+                    <div class="rooms-btn-overlay d-block d-md-none">
+                        <a href="{{$rooms->videolink}}" target="_blank" class="btn btn-danger btn-lg rounded-circle"><i class="fa-brands fa-youtube fa-xs"></i></a>
+                        <a href="{{$rooms->link360}}" target="_blank" class="btn btn-primary btn-lg rounded-circle p-2"><label class="fs-5">360</label></a>
+                    </div>
                 </div>
             @endforeach
         </div>
