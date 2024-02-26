@@ -19,4 +19,23 @@ $(document).ready(function () {
             }
         });
     });
+    $('#checkinsource').on('input', function () {
+        var checkin = $(this).val();
+        $('#checkin').val(checkin);
+    });
+    $('#checkoutsource').on('input', function () {
+        var checkout = $(this).val();
+        $('#checkout').val(checkout);
+    });
+    $('#phonesource').on('input', function () {
+        var phone = $(this).val();
+        $('#phone').val(phone);
+    });
+    $('#bookingbtn').on('click', function () {
+        $('#checkinsource').trigger('input');
+        $('#checkoutsource').trigger('input');
+        $('#phonesource').trigger('input');
+    });
 });
+
+

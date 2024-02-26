@@ -5,6 +5,20 @@
             <div class="row">
                 <div class="col-md-12">
                     <h1>Loại phòng</h1>
+                    <div class="d-lg-flex justify-content-center" style="gap:5px">
+                        <a style="background: #0b2046" class="btn btn-primary btn-lg rounded-pill border mb-2 mb-lg-0" type="button" data-bs-toggle="modal" data-bs-target="#bookingModal"><strong>BOOK NOW</strong></a>
+                        @if((new Jenssegers\Agent\Agent())->isDesktop())
+                            <div class="d-flex flex-row justify-content-center" style="gap:5px">
+                                <a data-bs-toggle="modal" data-bs-target="#videoModal" data-youtube-link="{{optional($user->settings->where('name', 'youtube')->first())->value}}" class="btn btn-danger btn-lg rounded-circle"><i class="fa-brands fa-youtube fa-xs"></i></a>
+                                <a data-bs-toggle="modal" data-bs-target="#webModal" data-web-link="{{optional($user->settings->where('name', 'linkweb')->first())->value}}" class="btn btn-primary btn-lg rounded-circle p-2"><label class="fs-5">360</label></a>
+                            </div>
+                        @else
+                            <div class="d-flex flex-row justify-content-center" style="gap:5px">
+                                <a href="{{optional($user->settings->where('name', 'youtube')->first())->value}}" target="_blank" class="btn btn-danger btn-lg rounded-circle"><i class="fa-brands fa-youtube fa-xs"></i></a>
+                                <a href="{{optional($user->settings->where('name', 'linkweb')->first())->value}}" target="_blank" class="btn btn-primary btn-lg rounded-circle p-2"><label class="fs-5">360</label></a>
+                            </div>
+                        @endif
+                    </div>
                 </div>
             </div>
         </div>
@@ -16,25 +30,25 @@
                 <label class="text-center mb-2">Ngày đến</label>
                 <div class="input-group">
                     <span class="input-group-text"><i class="fas fa-calendar-alt"></i></span>
-                    <input type="text" placeholder="Ngày nhận phòng" class="form-control datepicker" id="datepicker" name="datepicker">
+                    <input type="text" placeholder="Ngày nhận phòng" class="form-control datepicker" id="checkinsource" name="checkinsource">
                 </div>
             </div>
             <div class="col-md-3 flex-column mb-3">
                 <label class="text-center mb-2">Ngày đi</label>
                 <div class="input-group">
                     <span class="input-group-text"><i class="fas fa-calendar-alt"></i></span>
-                    <input type="text" placeholder="Ngày trả phòng" class="form-control datepicker" id="datepicker" name="datepicker">
+                    <input type="text" placeholder="Ngày trả phòng" class="form-control datepicker" id="checkoutsource" name="checkoutsource">
                 </div>
             </div>
             <div class="col-md-3 flex-column mb-3">
                 <label class="text-center mb-2">Điện thoại</label>
                 <div class="input-group">
                     <span class="input-group-text"><i class="fas fa-phone"></i></span>
-                    <input type="text" placeholder="Số điện thoại" class="form-control" id="phone" name="phone">
+                    <input type="text" placeholder="Số điện thoại" class="form-control" id="phonesource" name="phonesource">
                 </div>
             </div>
             <div class="col-md-2 mb-3">
-                <a data-bs-toggle="modal" data-bs-target="#bookingModal" class="btn btn-primary btn-lg rounded-pill border mt-md-4" style="background: #0b2046"><strong>BOOK NOW</strong></a>
+                <a id="bookingbtn" data-bs-toggle="modal" data-bs-target="#bookingModal" class="btn btn-primary btn-lg rounded-pill border mt-md-4" style="background: #0b2046"><strong>BOOK NOW</strong></a>
             </div>
         </form>
     </div>
@@ -62,7 +76,7 @@
                         </div>
                     </div>
                     <div class="col-md-10">
-                        <div id="carouselExample{{ $room->id }}" class="carousel slide" data-bs-ride="carousel">
+                        <div id="carouselExample{{ $room->id }}" class="carousel slide rooms-img-section" data-bs-ride="carousel">
                             <div class="carousel-inner">
                                 @foreach ($room->roomImages->take(2) as $imgKey => $image)
                                     <div class="carousel-item {{ $imgKey == 0 ? 'active' : '' }}">
@@ -70,16 +84,27 @@
                                     </div>
                                 @endforeach
                             </div>
-                            <button class="carousel-control-next" type="button" data-bs-target="#carouselExample{{ $room->id }}" data-bs-slide="next">
+                            <button class="carousel-control-next" type="button" data-bs-target="#carouselExample{{ $room->id }}" data-bs-slide="next" style="z-index: auto">
                                 <span class="carousel-control-next-icon" aria-hidden="true"></span>
                                 <span class="visually-hidden">Next</span>
                             </button>
+                            @if((new Jenssegers\Agent\Agent())->isDesktop())
+                                <div class="rooms-btn-overlay" >
+                                    <a data-bs-toggle="modal" data-bs-target="#videoModal" data-youtube-link="{{$room->videolink}}" class="btn btn-danger btn-lg rounded-circle"><i class="fa-brands fa-youtube fa-xs"></i></a>
+                                    <a data-bs-toggle="modal" data-bs-target="#webModal" data-web-link="{{$room->link360}}" class="btn btn-primary btn-lg rounded-circle p-2"><label class="fs-5">360</label></a>
+                                </div>
+                            @else
+                                <div class="rooms-btn-overlay" >
+                                    <a href="{{$room->videolink}}" target="_blank" class="btn btn-danger btn-lg rounded-circle"><i class="fa-brands fa-youtube fa-xs"></i></a>
+                                    <a href="{{$room->link360}}" target="_blank" class="btn btn-primary btn-lg rounded-circle p-2"><label class="fs-5">360</label></a>
+                                </div>
+                            @endif
                         </div>
                     </div>
                 @else
                     <!-- Phòng {{ $room->id }} -->
                     <div class="col-md-10">
-                        <div id="carouselExample{{ $room->id }}" class="carousel slide" data-bs-ride="carousel">
+                        <div id="carouselExample{{ $room->id }}" class="carousel slide rooms-img-section" data-bs-ride="carousel">
                             <div class="carousel-inner">
                                 @foreach ($room->roomImages->take(2) as $imgKey => $image)
                                     <div class="carousel-item {{ $imgKey == 0 ? 'active' : '' }}">
@@ -87,10 +112,21 @@
                                     </div>
                                 @endforeach
                             </div>
-                            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample{{ $room->id }}" data-bs-slide="prev">
+                            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample{{ $room->id }}" data-bs-slide="prev" style="z-index: auto">
                                 <span class="carousel-control-prev-icon" aria-hidden="true"></span>
                                 <span class="visually-hidden">Previous</span>
                             </button>
+                            @if((new Jenssegers\Agent\Agent())->isDesktop())
+                                <div class="rooms-btn-overlay" >
+                                    <a data-bs-toggle="modal" data-bs-target="#videoModal" data-youtube-link="{{$room->videolink}}" class="btn btn-danger btn-lg rounded-circle"><i class="fa-brands fa-youtube fa-xs"></i></a>
+                                    <a data-bs-toggle="modal" data-bs-target="#webModal" data-web-link="{{$room->link360}}" class="btn btn-primary btn-lg rounded-circle p-2"><label class="fs-5">360</label></a>
+                                </div>
+                            @else
+                                <div class="rooms-btn-overlay" style="left: 10px; right: unset !important;">
+                                    <a href="{{$room->videolink}}" target="_blank" class="btn btn-danger btn-lg rounded-circle"><i class="fa-brands fa-youtube fa-xs"></i></a>
+                                    <a href="{{$room->link360}}" target="_blank" class="btn btn-primary btn-lg rounded-circle p-2"><label class="fs-5">360</label></a>
+                                </div>
+                            @endif
                         </div>
                     </div>
                     <div class="col-md-2">

@@ -5,6 +5,20 @@
             <div class="row">
                 <div class="col-md-12">
                     <h1>Tin tức & khuyến mãi</h1>
+                    <div class="d-lg-flex justify-content-center" style="gap:5px">
+                        <a style="background: #0b2046" class="btn btn-primary btn-lg rounded-pill border mb-2 mb-lg-0" type="button" data-bs-toggle="modal" data-bs-target="#bookingModal"><strong>BOOK NOW</strong></a>
+                        @if((new Jenssegers\Agent\Agent())->isDesktop())
+                            <div class="d-flex flex-row justify-content-center" style="gap:5px">
+                                <a data-bs-toggle="modal" data-bs-target="#videoModal" data-youtube-link="{{optional($user->settings->where('name', 'youtube')->first())->value}}" class="btn btn-danger btn-lg rounded-circle"><i class="fa-brands fa-youtube fa-xs"></i></a>
+                                <a data-bs-toggle="modal" data-bs-target="#webModal" data-web-link="{{optional($user->settings->where('name', 'linkweb')->first())->value}}" class="btn btn-primary btn-lg rounded-circle p-2"><label class="fs-5">360</label></a>
+                            </div>
+                        @else
+                            <div class="d-flex flex-row justify-content-center" style="gap:5px">
+                                <a href="{{optional($user->settings->where('name', 'youtube')->first())->value}}" class="btn btn-danger btn-lg rounded-circle"><i class="fa-brands fa-youtube fa-xs"></i></a>
+                                <a href="{{optional($user->settings->where('name', 'linkweb')->first())->value}}" class="btn btn-primary btn-lg rounded-circle p-2"><label class="fs-5">360</label></a>
+                            </div>
+                        @endif
+                    </div>
                 </div>
             </div>
         </div>
@@ -13,7 +27,28 @@
         @foreach($user->news->where('type', 1) as $new)
             <div class="row">
                 <div class="col-md-4">
-                    <img src="/images/news/mainnews/{{$new->images}}" class="img-fluid">
+                    <div class="rooms-img-section">
+                        <img src="/images/news/mainnews/{{$new->images}}" class="img-fluid">
+                       @if((new Jenssegers\Agent\Agent())->isDesktop())
+                            <div class="rooms-btn-overlay">
+                                @if($new->videolink)
+                                    <a data-bs-toggle="modal" data-bs-target="#videoModal" data-youtube-link="{{$new->videolink}}" class="btn btn-danger btn-lg rounded-circle"><i class="fa-brands fa-youtube fa-xs"></i></a>
+                                @endif
+                                @if($new->link360)
+                                    <a data-bs-toggle="modal" data-bs-target="#webModal" data-web-link="{{$new->link360}}" class="btn btn-primary btn-lg rounded-circle p-2"><label class="fs-5">360</label></a>
+                                @endif
+                            </div>
+                        @else
+                            <div class="rooms-btn-overlay">
+                                @if($new->videolink)
+                                    <a href="{{$new->videolink}}" class="btn btn-danger btn-lg rounded-circle"><i class="fa-brands fa-youtube fa-xs"></i></a>
+                                @endif
+                                @if($new->link360)
+                                    <a href="{{$new->link360}}" class="btn btn-primary btn-lg rounded-circle p-2"><label class="fs-5">360</label></a>
+                                @endif
+                            </div>
+                       @endif
+                    </div>
                 </div>
                 <div class="col-md-8">
                     <div class="card p-3 h-100">
