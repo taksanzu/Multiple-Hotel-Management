@@ -51,5 +51,5 @@
 <hr>
 <div class="text-center p-2" style="background-color: #ffffff">
     © 2023
-    <a class="text-dark" href="https://mdbootstrap.com/">MDBootstrap.com</a>
+    <a class="text-dark" href="{{ route('welcome') }}">{{ optional($user->settings->where('name', 'name')->first())->value }}</a>
 </div>
