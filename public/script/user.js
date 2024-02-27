@@ -29,3 +29,27 @@ function getUserId(id) {
         }
     });
 }
+$(document).ready(function () {
+    $('#usersForm').validate({
+        rules: {
+            name: 'required',
+            email: {
+                required: true,
+                email: true
+            },
+            phone: 'required',
+            roles: 'required',
+            domain: 'required'
+        },
+        errorElement: 'span',
+        errorPlacement: function (error, element) {
+            element.addClass('has-error');
+        },
+        highlight: function (element, errorClass, validClass) {
+            $(element).addClass('is-invalid').removeClass(validClass);
+        },
+        unhighlight: function (element, errorClass, validClass) {
+            $(element).removeClass('is-invalid').addClass(validClass);
+        }
+    });
+});
