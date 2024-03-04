@@ -33,8 +33,8 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.20.0/jquery.validate.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.20.0/additional-methods.min.js"></script>
-<script src="script/navbar.js"></script>
-<script src="script/booking.js"></script>
+<script src="/script/navbar.js"></script>
+<script src="/script/booking.js"></script>
 <script src="/script/welcome.js"></script>
 <script src="https://www.youtube.com/iframe_api"></script>
 @yield('script')

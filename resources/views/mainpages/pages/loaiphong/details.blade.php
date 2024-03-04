@@ -9,7 +9,7 @@
         </div>
     </div>
     <div class="container pt-5">
-        <div class="owl-carousel owl-theme">
+        <div class="owl-carousel owl-theme" id="main-carousel">
             @foreach($images as $image)
                 <div class="item rooms-img-section">
                     <img src="/images/rooms/{{$image->name}}" alt="">
@@ -24,14 +24,14 @@
                 </div>
             @endforeach
             @if($rooms->image360)
-                <div class="item ">
-                    <a class="d-block d-md-none" href="{{$rooms->link360}}" target="_blank">
-                        <img src="/images/rooms/{{$rooms->image360}}" alt="">
-                    </a>
-                    <a class="d-md-block d-none" data-bs-toggle="modal" data-bs-target="#webModal" data-web-link="{{$rooms->link360}}">
-                        <img src="/images/rooms/{{$rooms->image360}}" alt="">
-                    </a>
-                </div>
+                    <div class="item">
+                        <a class="d-block d-md-none" href="{{$rooms->link360}}" target="_blank">
+                            <img src="/images/rooms/{{$rooms->image360}}" alt="">
+                        </a>
+                        <a class="d-md-block d-none" data-bs-toggle="modal" data-bs-target="#webModal" data-web-link="{{$rooms->link360}}">
+                            <img src="/images/rooms/{{$rooms->image360}}" alt="">
+                        </a>
+                    </div>
             @endif
         </div>
     </div>
