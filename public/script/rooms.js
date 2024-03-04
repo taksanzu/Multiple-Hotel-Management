@@ -13,6 +13,8 @@ function clearRoom() {
     $('#link360').val('');
     $('#image').val('');
     $('#output').empty();
+    $('#image360').val('');
+    $('#output360').empty();
 
 }
 function getRoomsId(id) {
@@ -27,6 +29,20 @@ function getRoomsId(id) {
             $('#videolink').val(data.rooms.videolink);
             $('#link360').val(data.rooms.link360);
             $('#number_of_rooms').val(data.rooms.number_of_rooms);
+            if (data.rooms.image360){
+                var outputContainer360 = $('#output360');
+                let roomsImage360 = $('<img>').attr('src', '/images/rooms/' + data.rooms.image360).css({
+                    'width': '200px',
+                    'height': '150px',
+                    'object-fit': 'cover',
+                }).addClass('m-2');
+
+                let imageContainer360 = $('<div>').css({
+                    'position': 'relative', // Cho phép đặt vị trí tương đối
+                }).append(roomsImage360);
+
+                outputContainer360.append(imageContainer360);
+            }
             var outputContainer = $('#output');
             if (data.images){
                 data.images.forEach(image => {
@@ -153,6 +169,51 @@ $(document).ready(function() {
 
         input.files = dataTransfer.files;
     }
+    var input360 = document.getElementById('image360');
+    var outputContainer360 = $('#output360');
+    var filesArray360 = [];
+
+    $('#image360').on('change', function(event) {
+        var files = event.target.files;
+
+        for (let i = 0; i < files.length; i++) {
+            let image = $('<img>').attr('src', URL.createObjectURL(files[i])).css({
+                'width': '200px',
+                'height': '150px',
+                'object-fit': 'cover',
+            }).addClass('m-2');
+
+            let deleteButton = $('<button>').html('&times;').addClass('btn btn-danger btn-sm delete-btn').css({
+                'position': 'absolute',
+                'top': '0',
+                'right': '0',
+            });
+
+            let imageContainer = $('<div>').css({
+                'position': 'relative', // Cho phép đặt vị trí tương đối
+            }).append(image, deleteButton);
+
+            deleteButton.on('click', function() {
+                if (confirm('Bạn có chắc chắn muốn xóa ảnh này không?')) {
+                    imageContainer.remove();
+                    let index = filesArray360.indexOf(files[i]);
+                    filesArray360.splice(index, 1);
+                    updateInputFiles360();
+                }
+            });
+
+            outputContainer360.append(imageContainer);
+            filesArray360.push(files[i]);
+        }
+    });
+
+    function updateInputFiles360() {
+        var dataTransfer = new DataTransfer();
+
+        filesArray360.forEach(file => dataTransfer.items.add(file));
+
+        input360.files = dataTransfer.files;
+    }
     $('#roomsForm').validate({
         rules: {
             name: 'required',
@@ -168,7 +229,7 @@ $(document).ready(function() {
             videolink: 'url', // Kiểm tra xem link video có đúng định dạng URL không
             link360: 'url', // Kiểm tra xem link 360 có đúng định dạng URL không
             'image[]': {
-                required: true,
+                required: false,
                 accept: 'image/*'
             }
         },

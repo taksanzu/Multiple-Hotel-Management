@@ -24,6 +24,7 @@ class Rooms extends Model
         'created_by',
         'videolink',
         'link360',
+        'image360',
     ];
 
     public function roomImages()

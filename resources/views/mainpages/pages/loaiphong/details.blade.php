@@ -23,6 +23,16 @@
                     </div>
                 </div>
             @endforeach
+            @if($rooms->image360)
+                <div class="item ">
+                    <a class="d-block d-md-none" href="{{$rooms->link360}}" target="_blank">
+                        <img src="/images/rooms/{{$rooms->image360}}" alt="">
+                    </a>
+                    <a class="d-md-block d-none" data-bs-toggle="modal" data-bs-target="#webModal" data-web-link="{{$rooms->link360}}">
+                        <img src="/images/rooms/{{$rooms->image360}}" alt="">
+                    </a>
+                </div>
+            @endif
         </div>
     </div>
     <div class="container my-5 rooms-detail">

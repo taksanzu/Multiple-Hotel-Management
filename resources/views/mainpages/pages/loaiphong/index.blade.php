@@ -80,6 +80,16 @@
                                         <img src="/images/rooms/{{ $image->name }}" class="d-block w-100" alt="Ảnh phòng {{ $room->id }}">
                                     </div>
                                 @endforeach
+                                    @if($room->image360)
+                                        <div class="carousel-item">
+                                            <a class="d-md-block d-none" data-bs-toggle="modal" data-bs-target="#webModal" data-web-link="{{$room->link360}}">
+                                                <img src="/images/rooms/{{ $room->image360 }}" class="d-block w-100" alt="Ảnh phòng {{ $room->id }}" style="object-fit: cover">
+                                            </a>
+                                            <a class="d-block d-md-none" href="{{$room->link360}}" target="_blank">
+                                                <img src="/images/rooms/{{ $room->image360 }}" class="d-block w-100" alt="Ảnh phòng {{ $room->id }}" style="object-fit: cover">
+                                            </a>
+                                        </div>
+                                    @endif
                             </div>
                             <button class="carousel-control-next" type="button" data-bs-target="#carouselExample{{ $room->id }}" data-bs-slide="next" style="z-index: auto">
                                 <span class="carousel-control-next-icon" aria-hidden="true"></span>
@@ -105,6 +115,16 @@
                                         <img src="/images/rooms/{{ $image->name }}" class="d-block w-100" alt="Ảnh phòng {{ $room->id }}">
                                     </div>
                                 @endforeach
+                                    @if($room->image360)
+                                        <div class="carousel-item">
+                                            <a class="d-md-block d-none" data-bs-toggle="modal" data-bs-target="#webModal" data-web-link="{{$room->link360}}">
+                                                <img src="/images/rooms/{{ $room->image360 }}" class="d-block w-100" alt="Ảnh phòng {{ $room->id }}" style="object-fit: cover">
+                                            </a>
+                                            <a class="d-block d-md-none" href="{{$room->link360}}" target="_blank">
+                                                <img src="/images/rooms/{{ $room->image360 }}" class="d-block w-100" alt="Ảnh phòng {{ $room->id }}" style="object-fit: cover">
+                                            </a>
+                                        </div>
+                                    @endif
                             </div>
                             <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample{{ $room->id }}" data-bs-slide="prev" style="z-index: auto">
                                 <span class="carousel-control-prev-icon" aria-hidden="true"></span>

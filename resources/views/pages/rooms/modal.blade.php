@@ -34,6 +34,13 @@
                     <input type="text" class="form-control" name="link360" id="link360"/>
                 </div>
                 <div class="modal-body">
+                    <label for="image360">Ảnh 360:</label>
+                    <input type="file" class="form-control" name="image360" id="image360" accept="image/*"/>
+                </div>
+                <div class="modal-body">
+                    <div id="output360" class="d-flex flex-row flex-wrap"></div>
+                </div>
+                <div class="modal-body">
                     <label for="image" id="fileLabel">Ảnh:</label>
                     <input type="file"  multiple class="form-control" name="image[]" id="image" accept="image/*"/>
                 </div>

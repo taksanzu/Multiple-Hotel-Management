@@ -41,12 +41,20 @@ class RoomsController extends Controller
             'number_of_rooms' => 'nullable',
             'videolink' => 'nullable',
             'link360' => 'nullable',
-            'images.*' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg'
+            'images.*' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg',
+            'image360' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg',
         ]);
         $id = $request->id;
 
         if ($id) {
             $rooms = Rooms::findOrFail($id);
+            if ($request->hasFile('image360')) {
+                $image360 = $request->file('image360');
+                $image360Name = $image360->getClientOriginalName();
+                $path = $image360->move(public_path() . '/images/rooms/', $image360Name);
+            }else{
+                $image360Name = null;
+            }
             $rooms->update([
                 'name' => $request->name,
                 'stars' => $request->stars,
@@ -54,6 +62,7 @@ class RoomsController extends Controller
                 'number_of_rooms' => $request->number_of_rooms,
                 'videolink' => $request->videolink,
                 'link360' => $request->link360,
+                'image360' => $image360Name,
             ]);
             $room_id = $rooms->id;
             if ($request->hasFile('image')) {
@@ -70,6 +79,13 @@ class RoomsController extends Controller
                 }
             }
         } else {
+            if ($request->hasFile('image360')) {
+                $image360 = $request->file('image360');
+                $image360Name = $image360->getClientOriginalName();
+                $path = $image360->move(public_path() . '/images/rooms/', $image360Name);
+            }else{
+                $image360Name = null;
+            }
             $room = Rooms::create([
                 'name' => $request->name,
                 'stars' => $request->stars,
@@ -77,7 +93,8 @@ class RoomsController extends Controller
                 'number_of_rooms' => $request->number_of_rooms,
                 'videolink' => $request->videolink,
                 'link360' => $request->link360,
-                'created_by' => Auth::user()->id
+                'created_by' => Auth::user()->id,
+                'image360' => $image360Name,
             ]);
             $room->save();
             $room_id = $room->id;

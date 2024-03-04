@@ -38,7 +38,7 @@
 {{--                       <a class="nav-link" href="https://lmtsupply.vn/" >Liên hệ</a>--}}
 {{--                   </li>--}}
                    <li class="nav-item mx-3">
-                       <a class="nav-link btn btn-outline-light rounded-pill w-100 p-2" data-bs-toggle="modal" data-bs-target="#bookingModal" >Book now</a>
+                       <a class="nav-link btn btn-outline-light rounded-pill w-100 p-2" href="{{route('loaiphong.index')}}" >Book now</a>
                    </li>
                    <li class="nav-item mx-3">
                        <a class="nav-link" href="{{ route('welcome') }}" ><i class="fa-solid fa-language"></i> EN</a>
