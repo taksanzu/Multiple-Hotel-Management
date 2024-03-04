@@ -42,7 +42,7 @@ class RoomsController extends Controller
             'videolink' => 'nullable',
             'link360' => 'nullable',
             'images.*' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg',
-            'image360' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg',
+            'image360.*' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg',
         ]);
         $id = $request->id;
 
