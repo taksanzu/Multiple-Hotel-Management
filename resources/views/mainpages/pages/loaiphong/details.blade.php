@@ -52,7 +52,11 @@
                 <p>
                     {{$rooms->longdesc}}
                 </p>
-                <a class="btn btn-primary rounded-pill border " style="background: #0b2046" data-bs-toggle="modal" data-bs-target="#bookingModal"><strong>BOOK NOW</strong></a>
+                @if(optional($user->settings->where('name', 'bookinglink')->first())->value != null)
+                    <a href="{{ optional($user->settings->where('name', 'bookinglink')->first())->value }}" target="_blank" class="btn btn-primary btn-lg rounded-pill border" style="background: #0b2046"><strong>BOOK NOW</strong></a>
+                @else
+                    <a data-bs-toggle="modal" data-bs-target="#bookingModal" class="btn btn-primary btn-lg rounded-pill border" style="background: #0b2046"><strong>BOOK NOW</strong></a>
+                @endif
             </div>
         </div>
     </div>

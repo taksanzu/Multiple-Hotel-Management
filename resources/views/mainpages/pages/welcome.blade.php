@@ -62,7 +62,11 @@
                 </div>
             </div>
             <div class="col-md-2 mb-3">
-                <a id="bookingbtn" data-bs-toggle="modal" data-bs-target="#bookingModal" class="btn btn-primary btn-lg rounded-pill border mt-md-4" style="background: #0b2046"><strong>BOOK NOW</strong></a>
+                @if(optional($user->settings->where('name', 'bookinglink')->first())->value != null)
+                    <a href="{{ optional($user->settings->where('name', 'bookinglink')->first())->value }}" target="_blank" class="btn btn-primary btn-lg rounded-pill border mt-md-4" style="background: #0b2046"><strong>BOOK NOW</strong></a>
+                @else
+                    <a id="bookingbtn" data-bs-toggle="modal" data-bs-target="#bookingModal" class="btn btn-primary btn-lg rounded-pill border mt-md-4" style="background: #0b2046"><strong>BOOK NOW</strong></a>
+                @endif
             </div>
         </form>
     </div>

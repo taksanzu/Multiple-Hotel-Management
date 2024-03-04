@@ -6,7 +6,11 @@
                 <div class="col-md-12">
                     <h1>Loại phòng</h1>
                     <div class="d-lg-flex justify-content-center" style="gap:5px">
-                        <a style="background: #0b2046" class="btn btn-primary btn-lg rounded-pill border mb-2 mb-lg-0" type="button" data-bs-toggle="modal" data-bs-target="#bookingModal"><strong>BOOK NOW</strong></a>
+                        @if(optional($user->settings->where('name', 'bookinglink')->first())->value != null)
+                            <a href="{{ optional($user->settings->where('name', 'bookinglink')->first())->value }}" target="_blank" class="btn btn-primary btn-lg rounded-pill border" style="background: #0b2046"><strong>BOOK NOW</strong></a>
+                        @else
+                            <a data-bs-toggle="modal" data-bs-target="#bookingModal" class="btn btn-primary btn-lg rounded-pill border" style="background: #0b2046"><strong>BOOK NOW</strong></a>
+                        @endif
                         <div class="d-flex flex-row justify-content-center d-md-block d-none" style="gap:5px">
                             <a data-bs-toggle="modal" data-bs-target="#videoModal" data-youtube-link="{{optional($user->settings->where('name', 'youtube')->first())->value}}" class="btn btn-danger btn-lg rounded-circle"><i class="fa-brands fa-youtube fa-xs"></i></a>
                             <a data-bs-toggle="modal" data-bs-target="#webModal" data-web-link="{{optional($user->settings->where('name', 'linkweb')->first())->value}}" class="btn btn-primary btn-lg rounded-circle p-2"><label class="fs-5">360</label></a>
@@ -45,7 +49,11 @@
                 </div>
             </div>
             <div class="col-md-2 mb-3">
-                <a id="bookingbtn" data-bs-toggle="modal" data-bs-target="#bookingModal" class="btn btn-primary btn-lg rounded-pill border mt-md-4" style="background: #0b2046"><strong>BOOK NOW</strong></a>
+                @if(optional($user->settings->where('name', 'bookinglink')->first())->value != null)
+                    <a href="{{ optional($user->settings->where('name', 'bookinglink')->first())->value }}" target="_blank" class="btn btn-primary btn-lg rounded-pill border mt-md-4" style="background: #0b2046"><strong>BOOK NOW</strong></a>
+                @else
+                    <a id="bookingbtn" data-bs-toggle="modal" data-bs-target="#bookingModal" class="btn btn-primary btn-lg rounded-pill border mt-md-4" style="background: #0b2046"><strong>BOOK NOW</strong></a>
+                @endif
             </div>
         </form>
     </div>
@@ -66,7 +74,11 @@
                                     @endfor
                                 </p>
                                 <div class="text-center d-flex flex-row" style="justify-content: space-between;">
-                                    <a data-bs-toggle="modal" data-bs-target="#bookingModal" class="btn btn-primary rounded-pill border" style="background: #0b2046"><strong>BOOK NOW</strong></a>
+                                    @if(optional($user->settings->where('name', 'bookinglink')->first())->value != null)
+                                        <a href="{{ optional($user->settings->where('name', 'bookinglink')->first())->value }}" target="_blank" class="btn btn-primary btn-lg rounded-pill border" style="background: #0b2046"><strong>BOOK NOW</strong></a>
+                                    @else
+                                        <a data-bs-toggle="modal" data-bs-target="#bookingModal" class="btn btn-primary btn-lg rounded-pill border" style="background: #0b2046"><strong>BOOK NOW</strong></a>
+                                    @endif
                                     <a href="{{route('loaiphong.detail', ['id' => $room->id])}}" class="btn btn-outline-primary rounded-pill border border-primary"><strong>VIEW DETAIL</strong></a>
                                 </div>
                             </div>
@@ -151,7 +163,11 @@
                                     @endfor
                                 </p>
                                 <div class="text-center d-flex flex-row" style="justify-content: space-between;">
-                                    <a data-bs-toggle="modal" data-bs-target="#bookingModal" class="btn btn-primary rounded-pill border" style="background: #0b2046"><strong>BOOK NOW</strong></a>
+                                    @if(optional($user->settings->where('name', 'bookinglink')->first())->value != null)
+                                        <a href="{{ optional($user->settings->where('name', 'bookinglink')->first())->value }}" target="_blank" class="btn btn-primary btn-lg rounded-pill border" style="background: #0b2046"><strong>BOOK NOW</strong></a>
+                                    @else
+                                        <a data-bs-toggle="modal" data-bs-target="#bookingModal" class="btn btn-primary btn-lg rounded-pill border" style="background: #0b2046"><strong>BOOK NOW</strong></a>
+                                    @endif
                                     <a href="{{route('loaiphong.detail', ['id' => $room->id])}}" class="btn btn-outline-primary rounded-pill border border-primary"><strong>VIEW DETAIL</strong></a>
                                 </div>
                             </div>
