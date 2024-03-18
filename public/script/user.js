@@ -4,14 +4,6 @@ $.ajaxSetup({
     }
 });
 
-function clearUser() {
-    $('#name').val('');
-    $('#email').val('');
-    $('#password').val('');
-    $('#phone').val('');
-    $('#domain').val('');
-}
-
 function getUserId(id) {
     $.ajax({
         type: 'GET',
@@ -23,6 +15,7 @@ function getUserId(id) {
             $('#phone').val(data.user.phone);
             $('#roles').val(data.user.roles);
             $('#domain').val(data.user.domain);
+            $('#password').val(data.user.password);
         },
         error: function (error) {
             console.log(error);
@@ -37,9 +30,12 @@ $(document).ready(function () {
                 required: true,
                 email: true
             },
+            password: {
+                required: true,
+                minlength: 6
+            },
             phone: 'required',
             roles: 'required',
-            domain: 'required'
         },
         errorElement: 'span',
         errorPlacement: function (error, element) {
@@ -51,5 +47,10 @@ $(document).ready(function () {
         unhighlight: function (element, errorClass, validClass) {
             $(element).removeClass('is-invalid').addClass(validClass);
         }
+    });
+    $('#userAdminModal').on('hidden.bs.modal', function () {
+        $('#usersForm').trigger('reset');
+        $('#usersForm').validate().resetForm();
+        $('#usersForm').find('.is-invalid').removeClass('is-invalid');
     });
 });

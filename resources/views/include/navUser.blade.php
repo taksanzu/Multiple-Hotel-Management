@@ -10,7 +10,8 @@
                     <strong>{{$user->name}}</strong>
                 </a>
                 <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                    <li><a class="dropdown-item" href="{{route('logout')}}">Sign out</a></li>
+                    <li><a class="dropdown-item" href="{{route('logout')}}">Đăng xuất</a></li>
+                    <li><a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#changePasswordModal">Đổi mật khẩu</a></li>
                 </ul>
             </div>
         @endif

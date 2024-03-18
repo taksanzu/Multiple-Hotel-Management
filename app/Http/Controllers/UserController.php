@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
 {
@@ -33,7 +34,8 @@ class UserController extends Controller
                 'email' => $request->email,
                 'phone' => $request->phone,
                 'domain' => $request->domain,
-                'roles' => $request->roles
+                'roles' => $request->roles,
+                'password' => $request->password ? Hash::make($request->password) : $user->password,
             ]);
         }else{
             User::create([
@@ -41,7 +43,7 @@ class UserController extends Controller
                 'email' => $request->email,
                 'phone' => $request->phone,
                 'domain' => $request->domain,
-                'password' => 1,
+                'password' => Hash::make($request->password),
                 'roles' => $request->roles
             ]);
         }
@@ -54,5 +56,4 @@ class UserController extends Controller
         $user = User::findOrFail($id);
         return response()->json(['user' => $user]);
     }
-
 }

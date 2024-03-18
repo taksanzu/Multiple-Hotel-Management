@@ -31,6 +31,7 @@ use Illuminate\Support\Facades\Route;
 // Xử lý đăng nhập
 Route::get('/login', [AuthenticationController::class, 'loginIndex'] )->name('login');
 Route::post('/login', [AuthenticationController::class, 'loginStore'] )->name('login.store');
+Route::post('/changePassword', [AuthenticationController::class, 'changePassword'] )->name('changePassword');
 
 // Xử lý trang chủ khi đăng nhập thành công
 Route::controller(UserHomeController::class)->group(function () {

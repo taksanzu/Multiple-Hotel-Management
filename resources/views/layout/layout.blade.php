@@ -23,6 +23,7 @@
             </div>
         </div>
     </div>
+    @include('include.changePasswordModal')
 @else
     @yield('login')
 @endif
@@ -32,6 +33,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/paginationjs/2.6.0/pagination.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.20.0/jquery.validate.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.20.0/additional-methods.min.js"></script>
+    <script src="script/changePassword.js"></script>
     @yield('script')
 </body>
 </html>
