@@ -9,7 +9,8 @@ class MainServicesController extends Controller
 {
     public function index()
     {
-        $services = News::where('deleted', 0)->where('type', 0)->where('status', 1)->paginate(6);
+        $user = auth()->user()->id;
+        $services = News::where('deleted', 0)->where('type', 0)->where('status', 1)->where('created_by', $user)->paginate(6);
         return view('mainpages.pages.tienich.index', ['services' => $services]);
     }
     public function detail(Request $request)

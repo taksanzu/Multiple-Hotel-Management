@@ -21,7 +21,7 @@
         </div>
     </div>
     <div class="container news-main-section my-5">
-        @foreach($user->news->where('type', 1) as $new)
+        @foreach($news as $new)
             <div class="row">
                 <div class="col-md-4">
                     <div class="rooms-img-section">

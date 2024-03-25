@@ -9,7 +9,8 @@ class MainNewsController extends Controller
 {
     public function index()
     {
-        $news = News::where('deleted', 0)->where('type', 1)->where('status', 1)->paginate(6);
+        $user = auth()->user()->id;
+        $news = News::where('deleted', 0)->where('type', 1)->where('status', 1)->where('created_by', $user)->paginate(6);
         return view('mainpages.pages.tintuc.index', ['news' => $news]);
     }
     public function detail(Request $request)

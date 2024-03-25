@@ -10,8 +10,10 @@ class MainRoomsController extends Controller
 {
     public function index()
     {
+        $user = auth()->user()->id;
         $rooms = Rooms::where('deleted', 0)
             ->where('status', 1)
+            ->where('created_by', $user)
             ->withCount('roomImages')
             ->paginate(4);
         return view('mainpages.pages.loaiphong.index', ['rooms' => $rooms]);
