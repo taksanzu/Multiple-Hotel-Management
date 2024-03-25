@@ -12,7 +12,7 @@ class MainRoomsController extends Controller
     public function index()
     {
         $subdomain = explode('.', $_SERVER['HTTP_HOST']);
-        $user = User::where('id', 1)->with('settings','rooms.roomImages', 'images', 'news')->first();
+        $user = User::where('id', 1)->with('settings','rooms.roomImages', 'images', 'news')->first()->id;
         if(count($subdomain) > 2){
             $user = User::where('domain', $subdomain[0])->first()->id;
         }
