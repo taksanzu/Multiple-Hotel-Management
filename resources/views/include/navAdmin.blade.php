@@ -8,13 +8,13 @@
                 <li class="nav-item mb-3">
                     <a type="button" href="{{ route('userHome') }}" class="nav-link link-dark {{ request()->routeIs('userHome') ? 'active' : '' }}">
                         <i class="fa-solid fa-house fa-2xs"></i>
-                        <strong>Trang Chủ</strong>
+                        <strong>Khách Đặt Phòng</strong>
                     </a>
                 </li>
                 <li class="nav-item mb-3">
                     <a href="{{ route('news', ['type' => 0]) }}" class="nav-link link-dark {{ request()->routeIs('news') && request()->input('type') == 0 ? ' active' : '' }}">
                         <i class="fa-solid fa-hand-holding-dollar fa-2xs"></i>
-                        <strong>Tiện ích</strong>
+                        <strong>Dịch vụ</strong>
                     </a>
                 </li>
                 <li class="nav-item mb-3">
