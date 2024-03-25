@@ -4,13 +4,18 @@ namespace App\Http\Controllers;
 
 use App\Models\room_images;
 use App\Models\Rooms;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class MainRoomsController extends Controller
 {
     public function index()
     {
-        $user = auth()->user()->id;
+        $subdomain = explode('.', $_SERVER['HTTP_HOST']);
+        $user = null;
+        if(count($subdomain) > 2){
+            $user = User::where('domain', $subdomain[0])->first()->id;
+        }
         $rooms = Rooms::where('deleted', 0)
             ->where('status', 1)
             ->where('created_by', $user)

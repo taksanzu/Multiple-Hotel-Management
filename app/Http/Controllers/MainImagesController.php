@@ -3,13 +3,19 @@
 namespace App\Http\Controllers;
 
 use App\Models\Images;
+use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class MainImagesController extends Controller
 {
     public function index()
     {
-        $user = auth()->user()->id;
+        $subdomain = explode('.', $_SERVER['HTTP_HOST']);
+        $user = null;
+        if(count($subdomain) > 2){
+            $user = User::where('domain', $subdomain[0])->first()->id;
+        }
         $images = Images::where('deleted', 0)
             ->where('created_by', $user)
             ->paginate(16);
