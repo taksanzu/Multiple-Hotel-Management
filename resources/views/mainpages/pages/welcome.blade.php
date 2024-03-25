@@ -87,7 +87,7 @@
     <div class="container py-5 rooms-section">
         <h1 class="text-center mb-5">CÁC LOẠI PHÒNG</h1>
         <div class="row mb-3">
-           @foreach($user->rooms->where('deleted',0)->where('status', 1)->limit(2) as $room)
+           @foreach($user->rooms->where('deleted',0)->where('status', 1)->take(2) as $room)
                 <div class="col-lg-6 mb-5">
                     <a href="{{route('loaiphong.detail', ['id' => $room->id])}}" style="text-decoration:none">
                         <div class="card shadow">
@@ -156,7 +156,7 @@
     <div class="container p-5 news-section">
         <h1 class="text-center mb-5">Tin tức</h1>
         <div class="row mb-3">
-            @foreach($user->news->where('type', 1)->where('deleted',0)->where('status', 1)->limit(2) as $new)
+            @foreach($user->news->where('type', 1)->where('deleted',0)->where('status', 1)->take(2) as $new)
                 <div class="col-lg-6 mb-5">
                     <a href="{{route('tintuc.detail', ['id' => $new->id])}}" style="text-decoration:none">
                         <div class="card shadow">
