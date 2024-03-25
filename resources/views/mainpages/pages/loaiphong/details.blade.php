@@ -40,8 +40,6 @@
         <div class="row">
             <div class="col-md-6">
                 <h1>{{$rooms->name}}</h1>
-                <h2>1.000.000VND</h2>
-                <p>{{$rooms->description}}</p>
             </div>
         </div>
 
