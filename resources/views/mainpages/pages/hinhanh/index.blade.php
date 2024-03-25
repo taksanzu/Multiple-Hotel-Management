@@ -22,7 +22,7 @@
     </div>
     <div class="container p-3 images-main-gallery">
         <div class="row row-cols-1 row-cols-md-3 g-4">
-            @foreach($user->images as $index => $image)
+            @foreach($images as $index => $image)
                 <div class="col-lg-3">
                     <div class="card">
                         <div class="images-container">
