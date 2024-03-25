@@ -3,10 +3,24 @@ $.ajaxSetup({
         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('contents')
     }
 });
+var editors = null;
+ClassicEditor
+    .create( document.querySelector( '#description' ), {
+        ckfinder: {
+            uploadUrl: "/ckeditor/upload?_token=" + $('meta[name="csrf-token"]').attr('content')
+        }
+    })
+    .then( editor => {
+        console.log( editor );
+        editors = editor;
+    } )
+    .catch( error => {
+        console.error( error );
+    } );
 
 function clearRoom() {
     $('#name').val('');
-    $('#description').val('');
+    editors.setData('');
     $('#stars').val('');
     $('#number_of_rooms').val('');
     $('#videolink').val('');
@@ -25,7 +39,7 @@ function getRoomsId(id) {
             $('#id').val(data.rooms.id);
             $('#name').val(data.rooms.name);
             $('#stars').val(data.rooms.stars);
-            $('#description').val(data.rooms.description);
+            editors.setData(data.rooms.description);
             $('#videolink').val(data.rooms.videolink);
             $('#link360').val(data.rooms.link360);
             $('#number_of_rooms').val(data.rooms.number_of_rooms);

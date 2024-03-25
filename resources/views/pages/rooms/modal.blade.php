@@ -14,10 +14,6 @@
                     <input type="text" class="form-control" name="name" id="name"/>
                 </div>
                 <div class="modal-body">
-                    <label for="description">Mô tả:</label>
-                    <input type="text" class="form-control" name="description" id="description"/>
-                </div>
-                <div class="modal-body">
                     <label for="stars">Số sao:</label>
                     <input type="number" step="1" max="5" min="0" id="stars" class="form-control" name="stars">
                 </div>
@@ -46,6 +42,10 @@
                 </div>
                 <div class="modal-body">
                     <div id="output" class="d-flex flex-row flex-wrap"></div>
+                </div>
+                <div class="modal-body">
+                    <label for="description">Mô tả<label class="text-danger">(*)</label> :</label>
+                    <textarea id="description" class="form-control" name="description"></textarea>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" onclick="clearRoom()">Close</button>
