@@ -18,7 +18,6 @@
             <td >@for($x = 0; $x < $room->stars; $x++)
                     <i class="fa-solid fa-star text-warning"></i>
                 @endfor</td>
-            <td class="w-25" >{{ $room->description}}</td>
             <td>{{ $room->number_of_rooms}}</td>
             <td>{{ $room->userCreated()->first()->name}}</td>
             <td>{{ $room->created_at->format('d-m-Y')}}</td>
