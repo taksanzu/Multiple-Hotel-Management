@@ -67,7 +67,6 @@
                         <div class="card rounded-0 p-3 shadow" style="{{ $key % 2 == 0 ? 'left: 0' : 'right: 0' }}">
                             <div class="card-body">
                                 <h5 class="card-title">{{ $room->name }}</h5>
-                                <p class="card-text">{{ $room->description }}</p>
                                 <p class="card-text">
                                     @for($x = 0; $x < $room->stars; $x++)
                                         <i class="fa-solid fa-star text-warning"></i>
@@ -156,7 +155,6 @@
                         <div class="card rounded-0 p-3 shadow" style="{{ $key % 2 == 0 ? 'left: 0' : 'right: 0' }}">
                             <div class="card-body">
                                 <h5 class="card-title">{{ $room->name }}</h5>
-                                <p class="card-text">{{ $room->description }}</p>
                                 <p class="card-text">
                                     @for($x = 0; $x < $room->stars; $x++)
                                         <i class="fa-solid fa-star text-warning"></i>
