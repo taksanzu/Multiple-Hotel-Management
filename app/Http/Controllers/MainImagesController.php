@@ -9,7 +9,10 @@ class MainImagesController extends Controller
 {
     public function index()
     {
-        $images = Images::where('deleted', 0)->paginate(16);
+        $user = auth()->user()->id;
+        $images = Images::where('deleted', 0)
+            ->where('created_by', $user)
+            ->paginate(16);
         return view('mainpages.pages.hinhanh.index', ['images' => $images]);
     }
 }
