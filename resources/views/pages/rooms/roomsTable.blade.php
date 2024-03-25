@@ -5,6 +5,7 @@
         <th scope="col">Số sao</th>
         <th scope="col" class="w-25">Mô tả</th>
         <th scope="col">Số phòng</th>
+        <th scope="col">Người tạo</th>
         <th scope="col">Trạng thái</th>
         <th scope="col"></th>
     </tr>
@@ -18,6 +19,7 @@
                 @endfor</td>
             <td class="w-25" >{{ $room->description}}</td>
             <td>{{ $room->number_of_rooms}}</td>
+            <td>{{ $room->userCreated()->first()->name}}</td>
             <td>@if($room->status == 1)
                     <span class="badge rounded-pill bg-success">Đã đăng</span>
                 @else
