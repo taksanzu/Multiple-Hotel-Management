@@ -46,7 +46,7 @@
         <!-- Khối thứ hai -->
         <div class="row mt-4">
             <div class="col-md-12">
-                <h3>Mô tả dài của phòng</h3>
+                <h3>Mô tả của phòng</h3>
                 {!! $rooms->description !!}
                 @if(optional($user->settings->where('name', 'bookinglink')->first())->value != null)
                     <a href="{{ optional($user->settings->where('name', 'bookinglink')->first())->value }}" target="_blank" class="btn btn-primary btn-lg rounded-pill border" style="background: #0b2046"><strong>BOOK NOW</strong></a>
