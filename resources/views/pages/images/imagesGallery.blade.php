@@ -1,5 +1,5 @@
 <div class="row text-center text-lg-start">
-    @foreach($images as $image)
+    @forelse($images as $image)
         <div class="col-md-2 position-relative">
             <a href="#" class="d-block mb-3 position-relative">
                 <img class="img-thumbnail img-fluid" src="/images/hotel/{{$image->name}}" id="imageGallery">
@@ -9,7 +9,11 @@
                 </div>
             </a>
         </div>
-    @endforeach
+    @empty
+        <div class="col-md-12">
+            <p class="text-center">Không có dữ liệu</p>
+        </div>
+    @endforelse
 </div>
 <div class="pagination justify-content-end mt-4">
     {{ $images->links('pages.views.bootstrap-4') }}

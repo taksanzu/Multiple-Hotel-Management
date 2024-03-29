@@ -55,6 +55,8 @@ function getNewsId(id) {
             $('#description').val(data.news.description);
             editors.setData(data.news.contents);
             $('#id').val(data.news.id)
+            $('#videolink').val(data.news.videolink);
+            $('#link360').val(data.news.link360);
             var outputContainer = $('#output');
             if (data.news.images){
                 let newsImage = $('<img>').attr('src', '/images/news/mainnews/' + data.news.images).css({
@@ -83,6 +85,8 @@ function clearNews() {
     $('#id').val('');
     $('#imageNews').val('');
     $('#output').empty();
+    $('#videolink').val('');
+    $('#link360').val('');
 }
 
 function deleteNews(id) {
@@ -158,4 +162,27 @@ $(document).ready(function() {
 
         input.files = dataTransfer.files;
     }
+    $('#newsForm').validate({
+        rules: {
+            title: 'required',
+            description: 'required',
+            videolink: 'url',
+            link360: 'url',
+            imageNews: {
+                required: true,
+                accept: 'image/*'
+            },
+            contents: 'required'
+        },
+        errorElement: 'span',
+        errorPlacement: function (error, element) {
+            element.addClass('has-error');
+        },
+        highlight: function (element, errorClass, validClass) {
+            $(element).addClass('is-invalid').removeClass(validClass);
+        },
+        unhighlight: function (element, errorClass, validClass) {
+            $(element).removeClass('is-invalid').addClass(validClass);
+        }
+    });
 });

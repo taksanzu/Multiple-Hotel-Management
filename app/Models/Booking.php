@@ -24,10 +24,11 @@ class Booking extends Model
         'created_at',
         'updated_at',
         'status',
+        'user_id',
     ];
 
     public function room()
     {
-        return $this->belongsTo(Rooms::class, 'room_id');
+        return $this->belongsTo(Rooms::class, 'room_type');
     }
 }

@@ -3,14 +3,32 @@ $.ajaxSetup({
         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('contents')
     }
 });
+var editors = null;
+ClassicEditor
+    .create( document.querySelector( '#description' ), {
+        ckfinder: {
+            uploadUrl: "/ckeditor/upload?_token=" + $('meta[name="csrf-token"]').attr('content')
+        }
+    })
+    .then( editor => {
+        console.log( editor );
+        editors = editor;
+    } )
+    .catch( error => {
+        console.error( error );
+    } );
 
 function clearRoom() {
     $('#name').val('');
-    $('#description').val('');
+    editors.setData('');
     $('#stars').val('');
     $('#number_of_rooms').val('');
+    $('#videolink').val('');
+    $('#link360').val('');
     $('#image').val('');
     $('#output').empty();
+    $('#image360').val('');
+    $('#output360').empty();
 
 }
 function getRoomsId(id) {
@@ -21,8 +39,24 @@ function getRoomsId(id) {
             $('#id').val(data.rooms.id);
             $('#name').val(data.rooms.name);
             $('#stars').val(data.rooms.stars);
-            $('#description').val(data.rooms.description);
+            editors.setData(data.rooms.description);
+            $('#videolink').val(data.rooms.videolink);
+            $('#link360').val(data.rooms.link360);
             $('#number_of_rooms').val(data.rooms.number_of_rooms);
+            if (data.rooms.image360){
+                var outputContainer360 = $('#output360');
+                let roomsImage360 = $('<img>').attr('src', '/images/rooms/' + data.rooms.image360).css({
+                    'width': '200px',
+                    'height': '150px',
+                    'object-fit': 'cover',
+                }).addClass('m-2');
+
+                let imageContainer360 = $('<div>').css({
+                    'position': 'relative', // Cho phép đặt vị trí tương đối
+                }).append(roomsImage360);
+
+                outputContainer360.append(imageContainer360);
+            }
             var outputContainer = $('#output');
             if (data.images){
                 data.images.forEach(image => {
@@ -149,6 +183,81 @@ $(document).ready(function() {
 
         input.files = dataTransfer.files;
     }
+    var input360 = document.getElementById('image360');
+    var outputContainer360 = $('#output360');
+    var filesArray360 = [];
+
+    $('#image360').on('change', function(event) {
+        var files = event.target.files;
+
+        for (let i = 0; i < files.length; i++) {
+            let image = $('<img>').attr('src', URL.createObjectURL(files[i])).css({
+                'width': '200px',
+                'height': '150px',
+                'object-fit': 'cover',
+            }).addClass('m-2');
+
+            let deleteButton = $('<button>').html('&times;').addClass('btn btn-danger btn-sm delete-btn').css({
+                'position': 'absolute',
+                'top': '0',
+                'right': '0',
+            });
+
+            let imageContainer = $('<div>').css({
+                'position': 'relative', // Cho phép đặt vị trí tương đối
+            }).append(image, deleteButton);
+
+            deleteButton.on('click', function() {
+                if (confirm('Bạn có chắc chắn muốn xóa ảnh này không?')) {
+                    imageContainer.remove();
+                    let index = filesArray360.indexOf(files[i]);
+                    filesArray360.splice(index, 1);
+                    updateInputFiles360();
+                }
+            });
+
+            outputContainer360.append(imageContainer);
+            filesArray360.push(files[i]);
+        }
+    });
+
+    function updateInputFiles360() {
+        var dataTransfer = new DataTransfer();
+
+        filesArray360.forEach(file => dataTransfer.items.add(file));
+
+        input360.files = dataTransfer.files;
+    }
+    $('#roomsForm').validate({
+        rules: {
+            name: 'required',
+            description: 'required',
+            stars: {
+                required: true,
+                range: [0, 5] // Kiểm tra giá trị nằm trong khoảng từ 0 đến 5
+            },
+            number_of_rooms: {
+                required: true,
+                min: 0 // Số phòng phải lớn hơn hoặc bằng 0
+            },
+            videolink: 'url', // Kiểm tra xem link video có đúng định dạng URL không
+            link360: 'url', // Kiểm tra xem link 360 có đúng định dạng URL không
+            'image[]': {
+                required: false,
+                accept: 'image/*'
+            }
+        },
+        errorElement: 'span',
+        errorPlacement: function (error, element) {
+            element.addClass('has-error');
+        },
+        highlight: function (element, errorClass, validClass) {
+            $(element).addClass('is-invalid').removeClass(validClass);
+        },
+        unhighlight: function (element, errorClass, validClass) {
+            $(element).removeClass('is-invalid').addClass(validClass);
+        }
+    });
 });
 
 

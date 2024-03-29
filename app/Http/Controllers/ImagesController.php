@@ -15,7 +15,7 @@ class ImagesController extends Controller
             if($user->roles == 0){
                 $images = Images::where('deleted', 0)->paginate(24);
             } else {
-                $images = Images::where('deleted', 0)->where('created_by', Auth::id())->paginate(24);
+                $images = Images::where('deleted', 0)->where('created_by', Auth::user()->id)->paginate(24);
             }
             return view('pages.images.index', ['user' => $user, 'images' => $images]);
         } else {
@@ -45,6 +45,7 @@ class ImagesController extends Controller
                 $imagesHotel = Images::create([
                     'name' => $imagesName,
                     'size' => $path->getSize()  / 1024,
+                    'created_by' => Auth::user()->id
                 ]);
                 $imagesHotel->save();
             }

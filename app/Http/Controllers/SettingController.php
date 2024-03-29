@@ -6,7 +6,7 @@ use App\Models\Setting;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
-class SettingController extends Controller
+class  SettingController extends Controller
 {
     public function index()
     {
@@ -16,28 +16,25 @@ class SettingController extends Controller
 
     public function store(Request $request)
     {
-        $request->validate([
-            'name' => 'required',
-            'description' => 'nullable',
-            'value' => 'required',
-        ]);
+        foreach ($request->all() as $key => $value) {
+            if ($key != '_token' && $key != 'logo' && !strpos($key, 'image')) {
+                Setting::updateOrCreate(['user_id'=> Auth::user()->id,'name'=>$key],['user_id'=> Auth::user()->id,'name'=>$key,'value' => $value]);
+            }
+        }
+        if ($request->hasFile('logo')) {
+            $file = $request->file('logo');
+            $file_name = $file->getClientOriginalName();
+            $file->move('logo', $file_name);
+            Setting::updateOrCreate(['user_id'=> Auth::user()->id,'name'=>'logo'],['user_id'=> Auth::user()->id,'name'=>'logo','value' => $file_name]);
+        }
 
-        $id = $request->id;
-        if ($id) {
-            $setting = Setting::findOrFail($id);
-            $setting->update([
-                'name' => $request->name,
-                'description' => $request->description,
-                'value' => $request->value,
-                'user_id' => Auth::user()->id,
-            ]);
-        } else {
-            Setting::create([
-                'name' => $request->name,
-                'description' => $request->description,
-                'value' => $request->value,
-                'user_id' => Auth::user()->id,
-            ]);
+        for ($i = 1; $i <= 11; $i++) {
+            if ($request->hasFile('image' . $i)) {
+                $file = $request->file('image' . $i);
+                $file_name = $file->getClientOriginalName();
+                $file->move('images', $file_name);
+                Setting::updateOrCreate(['user_id'=> Auth::user()->id,'name'=>'image' . $i],['user_id'=> Auth::user()->id,'name'=>'image' . $i,'value' => $file_name]);
+            }
         }
         return redirect()->route('setting');
     }

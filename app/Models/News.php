@@ -21,6 +21,8 @@ class News extends Model
         'images',
         'contents',
         'type',
+        'videolink',
+        'link360',
         'status',
         'deleted',
         'created_at',

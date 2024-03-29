@@ -19,6 +19,8 @@ function getBookingId(id) {
             $('#number_of_adults').val(data.booking.number_of_adults);
             $('#number_of_children').val(data.booking.number_of_children);
             $('#number_of_rooms').val(data.booking.number_of_rooms);
+            $('#roomType').val(data.booking.room.name);
+            console.log(data.booking);
         },
         error: function (error) {
             console.log(error);

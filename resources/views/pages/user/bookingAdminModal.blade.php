@@ -55,7 +55,7 @@
                             <label class="text-center mb-2">Loại phòng:</label>
                             <div class="input-group mb-3">
                                 <label class="input-group-text" for="roomType"><i class="fas fa-bed"></i></label>
-                                <input class="form-select" id="roomName" name="roomName" disabled>
+                                <input type="text" class="form-control" id="roomType" name="roomType" disabled>
                             </div>
                         </div>
                     </div>

@@ -51,4 +51,19 @@ class User extends Authenticatable
     {
         return $this->hasMany(Setting::class, 'user_id', 'id');
     }
+
+    public function rooms()
+    {
+        return $this->hasMany(Rooms::class, 'created_by', 'id');
+    }
+
+    public function images()
+    {
+        return $this->hasMany(Images::class, 'created_by', 'id');
+    }
+
+    public function news()
+    {
+        return $this->hasMany(News::class, 'created_by', 'id');
+    }
 }

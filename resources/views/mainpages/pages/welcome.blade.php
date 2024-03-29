@@ -2,17 +2,39 @@
 @section('content')
     <div id="carouselExample" class="carousel slide " data-bs-ride="carousel">
         <div class="carousel-inner">
-            <div class="carousel-item active" style="background-image: url('https://tiffanyhotel.com.vn/Upload/images/Slide/1.jpg');">
-                <div class="overlay"></div>
-            </div>
-            <div class="carousel-item" style="background-image: url('https://tiffanyhotel.com.vn/Upload/images/Slide/2.jpg');">
-                <div class="overlay"></div>
-            </div>
+            @if($user->settings->where('name', 'image1')->first())
+                <div class="carousel-item active" style="background-image: url('{{ asset('images').'/'.optional($user->settings->where('name', 'image1')->first())->value }}');">
+                    <div class="overlay"></div>
+                </div>
+            @else
+                <div class="carousel-item active" style="background-image: url('https://tiffanyhotel.com.vn/Upload/images/Slide/1.jpg');">
+                    <div class="overlay"></div>
+                </div>
+            @endif
+            @if($user->settings->where('name', 'image2')->first())
+                <div class="carousel-item active" style="background-image: url('{{ asset('images').'/'.optional($user->settings->where('name', 'image2')->first())->value }}');">
+                    <div class="overlay"></div>
+                </div>
+            @else
+                <div class="carousel-item" style="background-image: url('https://tiffanyhotel.com.vn/Upload/images/Slide/2.jpg');">
+                    <div class="overlay"></div>
+                </div>
+            @endif
         </div>
         <div class="carousel-text">
-            <h1>Điểm đến du lịch tuyệt vời bên</h1>
-            <h2>Vịnh biển phan thiết</h2>
-            <a style="background: #0b2046" class="btn btn-primary btn-lg rounded-pill border" type="button" data-bs-toggle="modal" data-bs-target="#bookingModal"><strong>BOOK NOW</strong></a>
+            <h1>{{ optional($user->settings->where('name', 'gioi_thieu_1')->first())->value }}</h1>
+            <h2>{{ optional($user->settings->where('name', 'name')->first())->value }}</h2>
+            <div class="d-lg-flex justify-content-center" style="gap:5px">
+                <a style="background: #0b2046" class="btn btn-primary btn-lg rounded-pill border mb-2 mb-lg-0" type="button" href="{{route('loaiphong.index')}}"><strong>BOOK NOW</strong></a>
+                <div class="d-flex flex-row justify-content-center d-md-block d-none" style="gap:5px">
+                    <a data-bs-toggle="modal" data-bs-target="#videoModal" data-youtube-link="{{optional($user->settings->where('name', 'youtube')->first())->value}}" class="btn btn-danger btn-lg rounded-circle"><i class="fa-brands fa-youtube fa-xs"></i></a>
+                    <a data-bs-toggle="modal" data-bs-target="#webModal" data-web-link="{{optional($user->settings->where('name', 'linkweb')->first())->value}}" class="btn btn-primary btn-lg rounded-circle p-2"><label class="fs-5">360</label></a>
+                </div>
+                <div class="d-flex flex-row justify-content-center d-block d-md-none" style="gap:5px">
+                    <a href="{{optional($user->settings->where('name', 'youtube')->first())->value}}" target="_blank" class="btn btn-danger btn-lg rounded-circle"><i class="fa-brands fa-youtube fa-xs"></i></a>
+                    <a href="{{optional($user->settings->where('name', 'linkweb')->first())->value}}" target="_blank" class="btn btn-primary btn-lg rounded-circle p-2"><label class="fs-5">360</label></a>
+                </div>
+            </div>
         </div>
     </div>
     <div class="container bg-white p-5 border rounded shadow position-relative mt-n1 booking">
@@ -22,35 +44,41 @@
                 <label class="text-center mb-2">Ngày đến</label>
                 <div class="input-group">
                     <span class="input-group-text"><i class="fas fa-calendar-alt"></i></span>
-                    <input type="text" placeholder="Ngày nhận phòng" class="form-control datepicker" id="datepicker" name="datepicker">
+                    <input type="text" placeholder="Ngày nhận phòng" class="form-control datepicker" id="checkinsource" name="checkinsource">
                 </div>
             </div>
             <div class="col-md-3 flex-column mb-3">
                 <label class="text-center mb-2">Ngày đi</label>
                 <div class="input-group">
                     <span class="input-group-text"><i class="fas fa-calendar-alt"></i></span>
-                    <input type="text" placeholder="Ngày trả phòng" class="form-control datepicker" id="datepicker" name="datepicker">
+                    <input type="text" placeholder="Ngày trả phòng" class="form-control datepicker" id="checkoutsource" name="checkoutsource">
                 </div>
             </div>
             <div class="col-md-3 flex-column mb-3">
                 <label class="text-center mb-2">Điện thoại</label>
                 <div class="input-group">
                     <span class="input-group-text"><i class="fas fa-phone"></i></span>
-                    <input type="text" placeholder="Số điện thoại" class="form-control" id="phone" name="phone">
+                    <input type="text" placeholder="Số điện thoại" class="form-control" id="phonesource" name="phonesource">
                 </div>
             </div>
             <div class="col-md-2 mb-3">
-                <a data-bs-toggle="modal" data-bs-target="#bookingModal" class="btn btn-primary btn-lg rounded-pill border mt-md-4" style="background: #0b2046"><strong>BOOK NOW</strong></a>
+                @if(optional($user->settings->where('name', 'bookinglink')->first())->value != null)
+                    <a href="{{ optional($user->settings->where('name', 'bookinglink')->first())->value }}" target="_blank" class="btn btn-primary btn-lg rounded-pill border mt-md-4" style="background: #0b2046"><strong>BOOK NOW</strong></a>
+                @else
+                    <a id="bookingbtn" data-bs-toggle="modal" data-bs-target="#bookingModal" class="btn btn-primary btn-lg rounded-pill border mt-md-4" style="background: #0b2046"><strong>BOOK NOW</strong></a>
+                @endif
             </div>
         </form>
     </div>
     <!-- Header -->
-    <div class="container-fluid about-us-section">
+    <div class="container-fluid about-us-section" @if($user->settings->where('name', 'image3')->first()) style="background: url('{{ asset('images').'/'.optional($user->settings->where('name', 'image3')->first())->value }}') no-repeat; background-size: cover" @endif>
         <div class="row">
             <div class="col-lg-6 mx-auto text-dark">
                 <h2>TẬN HƯỞNG KỲ NGHỈ TẠI</h2>
-                <img class="mb-3 img-fluid" height="80" src="https://tiffanyhotel.com.vn/Upload/images/brand-logo/image_2021-12-29_163234.png">
-                <p>Tọa lạc tai ngay trung tâm Thành Phố Phan Thiết, Bình Thuận. Thuận tiện cho việc di chuyển đến các địa điểm du lịch khác như: Đồi Dương, Hàm Tiến, Mũi Né. Tiffany Hotel Sẽ là sự lựa chọn tuyệt vời nhất của quý khách trải nghiệm và tận hưởng thành phố biển Phan Thiết xinh đẹp.</p>
+                <h1 style="font-family: 'great vibes', sans-serif; font-size: 5rem; color: #0940a3">{{ optional($user->settings->where('name', 'name')->first())->value }}</h1>
+                <p>
+                    {{ optional($user->settings->where('name', 'gioi_thieu_2')->first())->value }}
+                </p>
             </div>
         </div>
     </div>
@@ -59,20 +87,31 @@
     <div class="container py-5 rooms-section">
         <h1 class="text-center mb-5">CÁC LOẠI PHÒNG</h1>
         <div class="row mb-3">
-           @foreach($rooms as $room)
+           @foreach($user->rooms->where('deleted',0)->where('status', 1)->take(2) as $room)
                 <div class="col-lg-6 mb-5">
-                    <div class="card shadow">
-                        <img src="https://tiffanyhotel.com.vn/Upload/images/gallery/Tiffany%20(5).jpg" class="card-img-top rounded h-lg-100 h-md-75 h-sm-50" alt="...">
-                        <div class="card-body">
-                            <h5 class="card-title">PHÒNG GIƯỜNG ĐƠN 2 GIƯỜNG</h5>
-                            <p class="card-text">
-                                @for($x = 0; $x < $room->stars; $x++)
-                                    <i class="fa-solid fa-star text-warning"></i>
-                                @endfor
-                            </p>
-                            <p class="card-text">1.000.000 VNĐ</p>
+                    <a href="{{route('loaiphong.detail', ['id' => $room->id])}}" style="text-decoration:none">
+                        <div class="card shadow">
+                            <div class="rooms-img-section">
+                                <img src="images/rooms/{{$room->roomImages()->first()->name}}" class="card-img-top rounded h-lg-100 h-md-75 h-sm-50" alt="...">
+                                <div class="rooms-btn-overlay d-md-block d-none">
+                                    <a data-bs-toggle="modal" data-bs-target="#videoModal" data-youtube-link="{{$room->videolink}}" class="btn btn-danger btn-lg rounded-circle"><i class="fa-brands fa-youtube fa-xs"></i></a>
+                                    <a data-bs-toggle="modal" data-bs-target="#webModal" data-web-link="{{$room->link360}}" class="btn btn-primary btn-lg rounded-circle p-2"><label class="fs-5">360</label></a>
+                                </div>
+                                <div class="rooms-btn-overlay d-block d-md-none">
+                                    <a href="{{$room->videolink}}" target="_blank" class="btn btn-danger btn-lg rounded-circle"><i class="fa-brands fa-youtube fa-xs"></i></a>
+                                    <a href="{{$room->link360}}" target="_blank" class="btn btn-primary btn-lg rounded-circle p-2"><label class="fs-5">360</label></a>
+                                </div>
+                            </div>
+                            <div class="card-body">
+                                <h5 class="card-title text-uppercase">{{ $room->name }}</h5>
+                                <p class="card-text">
+                                    @for($x = 0; $x < $room->stars; $x++)
+                                        <i class="fa-solid fa-star text-warning"></i>
+                                    @endfor
+                                </p>
+                            </div>
                         </div>
-                    </div>
+                    </a>
                 </div>
            @endforeach
         </div>
@@ -85,10 +124,14 @@
     <div class="row">
         <div class="col-lg-6 p-0">
             <div class="services-img">
-                <img src="https://tiffanyhotel.com.vn/Content/client/images/banner/bg-tienich-left.jpg" alt="Services" >
+                @if($user->settings->where('name', 'image4')->first())
+                    <img src="{{ asset('images').'/'.optional($user->settings->where('name', 'image4')->first())->value }}" alt="Services" >
+                @else
+                    <img src="https://tiffanyhotel.com.vn/Content/client/images/banner/bg-tienich-left.jpg" alt="Services" >
+                @endif
             </div>
         </div>
-        <div class="col-lg-6 p-5" style="background-image: url('https://tiffanyhotel.com.vn/Content/client/images/banner/bg-tienich.jpg')">
+        <div class="col-lg-6 p-5" @if($user->settings->where('name', 'image5')->first()) style="background-image: url('{{ asset('images').'/'.optional($user->settings->where('name', 'image5')->first())->value }}')" @else style="background-image: url('https://tiffanyhotel.com.vn/Content/client/images/banner/bg-tienich.jpg')"  @endif>
             <div class="service-wrap">
                 <div class="single-service-wrap mb-5" style="">
                     <div class="service-content">
@@ -98,13 +141,11 @@
                 <div class="single-service-wrap mb-5" style="">
                     <div class="service-content">
                         <h3 class="service-content-title text-gradient-gold">View sân thượng</h3>
-                        <p>View sân thượng nơi thư giãn lý tưởng để quý khách ngắm toàn cảnh Phan thiết khi về đêm.</p>
                     </div>
                 </div>
                 <div class="single-service-wrap" style="">
                     <div class="service-content">
                         <h3 class="service-content-title text-gradient-gold">Bãi tắm Đồi Dương</h3>
-                        <p>Vị trí khách sạn cách bãi tắm Đồi Dương 100m rất thuận lợi cho quý khách khi tắm biển.</p>
                     </div>
                 </div>
             </div>
@@ -115,15 +156,17 @@
     <div class="container p-5 news-section">
         <h1 class="text-center mb-5">Tin tức</h1>
         <div class="row mb-3">
-            @foreach($news as $new)
+            @foreach($user->news->where('type', 1)->where('deleted',0)->where('status', 1)->take(2) as $new)
                 <div class="col-lg-6 mb-5">
-                    <div class="card shadow">
-                        <img src="/images/news/mainnews/{{$new->images}}" class="card-img-top rounded h-lg-100 h-md-75 h-sm-50" alt="...">
-                        <div class="card-img-overlay">
-                            <h5 class="card-title text-light">{{$new->title}}</h5>
-                            <p class="card-text text-light limited-lines">{{$new->description}}</p>
+                    <a href="{{route('tintuc.detail', ['id' => $new->id])}}" style="text-decoration:none">
+                        <div class="card shadow">
+                            <img src="/images/news/mainnews/{{$new->images}}" class="card-img-top rounded h-lg-100 h-md-75 h-sm-50" alt="...">
+                            <div class="card-img-overlay">
+                                <h5 class="card-title text-light">{{$new->title}}</h5>
+                                <p class="card-text text-light limited-lines">{{$new->description}}</p>
+                            </div>
                         </div>
-                    </div>
+                    </a>
                 </div>
             @endforeach
         </div>
@@ -132,7 +175,7 @@
         </div>
     </div>
     <!-- Foods -->
-    <div class="container-fluid foods-section">
+    <div class="container-fluid foods-section" @if($user->settings->where('name', 'image6')->first()) style="background: url('{{ asset('images').'/'.optional($user->settings->where('name', 'image6')->first())->value }}') no-repeat; background-size: cover" @endif>
         <div class="row">
             <div class="col-lg-6 mx-auto text-light">
                 <h2>Đa dạng ẩm thực á âu</h2>
@@ -141,38 +184,40 @@
         </div>
     </div>
     <div class="row mt-n1 pt-lg-0 pb-5 d-none d-lg-flex px-100">
-        <div class="col-lg-3">
-            <div class="foods-img">
-                <img src="https://tiffanyhotel.com.vn/Upload/images/brand-logo/ga-ham-sam-2-min.jpeg" alt="Foods" height="300px" width="100%">
-            </div>
-        </div>
-        <div class="col-lg-3">
-            <div class="foods-img">
-                <img src="https://tiffanyhotel.com.vn/Upload/images/brand-logo/ga-ham-sam-2-min.jpeg" alt="Foods" height="300px" width="100%">
-            </div>
-        </div>
-        <div class="col-lg-3">
-            <div class="foods-img">
-                <img src="https://tiffanyhotel.com.vn/Upload/images/brand-logo/ga-ham-sam-2-min.jpeg" alt="Foods" height="300px" width="100%">
-            </div>
-        </div>
-        <div class="col-lg-3">
-            <div class="foods-img">
-                <img src="https://tiffanyhotel.com.vn/Upload/images/brand-logo/ga-ham-sam-2-min.jpeg" alt="Foods" height="300px" width="100%">
-            </div>
-        </div>
+        @for($i = 7; $i <= 10; $i++)
+            @if ($user->settings->where('name', 'image'.$i)->first())
+                <div class="col-lg-3 ">
+                    <div class="foods-img" >
+                        <img style="height: 300px; object-fit: cover" src="{{ asset('images').'/'.optional($user->settings->where('name', 'image'.$i)->first())->value }}" alt="Foods">
+                    </div>
+                </div>
+            @else
+                <div class="col-lg-3 ">
+                    <div class="foods-img">
+                        <img style="height: 300px; object-fit: cover" src="https://tiffanyhotel.com.vn/Upload/images/brand-logo/ga-ham-sam-2-min.jpeg" alt="Foods">
+                    </div>
+                </div>
+            @endif
+        @endfor
     </div>
     <div id="carouselExampleFade" class="carousel slide d-lg-none" data-bs-ride="carousel">
         <div class="carousel-inner p-3">
-            <div class="carousel-item foods-img-sm active" style="background-image: url('https://tiffanyhotel.com.vn/Upload/images/brand-logo/ga-ham-sam-2-min.jpeg'); height: 50vh">
-            </div>
-            <div class="carousel-item foods-img-sm" style="background-image: url('https://tiffanyhotel.com.vn/Upload/images/brand-logo/ga-ham-sam-2-min.jpeg'); height: 50vh">
-            </div>
-            <div class="carousel-item foods-img-sm" style="background-image: url('https://tiffanyhotel.com.vn/Upload/images/brand-logo/ga-ham-sam-2-min.jpeg'); height: 50vh">
-            </div>
-            <div class="carousel-item foods-img-sm" style="background-image: url('https://tiffanyhotel.com.vn/Upload/images/brand-logo/ga-ham-sam-2-min.jpeg'); height: 50vh">
-            </div>
+            @for($i = 7; $i <= 10; $i++)
+                @if ($user->settings->where('name', 'image'.$i)->first())
+                    <div @if($i == 7)
+                             class="carousel-item foods-img-sm active"
+                         @else
+                             class="carousel-item foods-img-sm"
+                         @endif
+                         style="background-image: url('{{ asset('images').'/'.optional($user->settings->where('name', 'image'.$i)->first())->value }}'); height: 50vh">
+                    </div>
+                @else
+                    <div class="carousel-item foods-img-sm" style="background-image: url('https://tiffanyhotel.com.vn/Upload/images/brand-logo/ga-ham-sam-2-min.jpeg'); height: 50vh">
+                    </div>
+                @endif
+            @endfor
         </div>
     </div>
     <!-- End Foods -->
 @endsection
+

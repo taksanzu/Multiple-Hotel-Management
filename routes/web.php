@@ -31,6 +31,7 @@ use Illuminate\Support\Facades\Route;
 // Xử lý đăng nhập
 Route::get('/login', [AuthenticationController::class, 'loginIndex'] )->name('login');
 Route::post('/login', [AuthenticationController::class, 'loginStore'] )->name('login.store');
+Route::post('/changePassword', [AuthenticationController::class, 'changePassword'] )->name('changePassword');
 
 // Xử lý trang chủ khi đăng nhập thành công
 Route::controller(UserHomeController::class)->group(function () {
@@ -124,7 +125,7 @@ Route::controller(SettingController::class)->group(function () {
 // Xử lý trang cấu hình ảnh
 Route::controller(SettingImageController::class)->group(function () {
     Route::get('/settingImage', [SettingImageController::class, 'index'])->name('settingImage');
-//    Route::post('/settingImage', [SettingImageController::class, 'store'])->name('settingImage.store');
+    Route::post('/settingImage', [SettingImageController::class, 'store'])->name('settingImage.store');
 });
 
 

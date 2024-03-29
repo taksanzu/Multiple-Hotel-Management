@@ -6,11 +6,14 @@ use App\Models\Booking;
 use App\Models\Rooms;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
+use App\Models\User;
 
 class BookingController extends Controller
 {
     public function store(Request $request)
     {
+        $subdomain = explode('.', $_SERVER['HTTP_HOST']);
+        $user = User::where('domain', $subdomain[0])->first();
         $request->validate([
             'name' => 'required',
             'phone' => 'required',
@@ -23,8 +26,8 @@ class BookingController extends Controller
             'number_of_rooms' => 'required',
             'room_type' => 'required',
         ]);
-        $checkin = Carbon::createFromFormat('m/d/Y', $request->checkin)->format('Y-m-d');
-        $checkout = Carbon::createFromFormat('m/d/Y', $request->checkout)->format('Y-m-d');
+        $checkin = Carbon::createFromFormat('d/m/Y', $request->checkin)->format('Y-m-d');
+        $checkout = Carbon::createFromFormat('d/m/Y', $request->checkout)->format('Y-m-d');
         $booking = Booking::create([
             'name' => $request->name,
             'phone' => $request->phone,
@@ -35,7 +38,8 @@ class BookingController extends Controller
             'number_of_adults' => $request->number_of_adults,
             'number_of_children' => $request->number_of_children,
             'number_of_rooms' => $request->number_of_rooms,
-            'room_type' => $request->room_type
+            'room_type' => $request->room_type,
+            'user_id' => $user->id,
         ]);
         $booking->save();
         return response()->json([
