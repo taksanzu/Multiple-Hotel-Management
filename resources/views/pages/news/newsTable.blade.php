@@ -2,7 +2,6 @@
     <thead>
     <tr>
         <th scope="col" width="15%">Tên</th>
-        <th scope="col" width="20%">Mô tả</th>
         <th scope="col">Trạng thái</th>
         <th scope="col">Ngày tạo</th>
         <th scope="col">Ngày sửa</th>
@@ -15,7 +14,6 @@
     @forelse($news as $new)
         <tr>
             <td class="text-start" width="15%">{{ $new->title }}</td>
-            <td width="20%">{{ $new->description}}</td>
             <td>@if($new->status == 1)
                     <span class="badge rounded-pill bg-success">Đã đăng</span>
                 @else

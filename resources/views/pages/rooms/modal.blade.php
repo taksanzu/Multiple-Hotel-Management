@@ -2,7 +2,7 @@
 <div class="modal fade" id="roomsModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-xl">
         <div class="modal-content">
-            <form id="newsForm" enctype="multipart/form-data" action="{{route('rooms.store')}}" method="POST">
+            <form id="roomsForm" enctype="multipart/form-data" action="{{route('rooms.store')}}" method="POST">
                 @csrf
                 <div class="modal-header">
                     <h1 class="modal-title fs-5" id="exampleModalLabel">Loại phòng</h1>
@@ -12,10 +12,6 @@
                 <div class="modal-body">
                     <label for="name">Tên phòng:</label>
                     <input type="text" class="form-control" name="name" id="name"/>
-                </div>
-                <div class="modal-body">
-                    <label for="description">Mô tả:</label>
-                    <input type="text" class="form-control" name="description" id="description"/>
                 </div>
                 <div class="modal-body">
                     <label for="stars">Số sao:</label>
@@ -34,11 +30,22 @@
                     <input type="text" class="form-control" name="link360" id="link360"/>
                 </div>
                 <div class="modal-body">
+                    <label for="image360">Ảnh 360:</label>
+                    <input type="file" class="form-control" name="image360" id="image360" accept="image/*"/>
+                </div>
+                <div class="modal-body">
+                    <div id="output360" class="d-flex flex-row flex-wrap"></div>
+                </div>
+                <div class="modal-body">
                     <label for="image" id="fileLabel">Ảnh:</label>
                     <input type="file"  multiple class="form-control" name="image[]" id="image" accept="image/*"/>
                 </div>
                 <div class="modal-body">
                     <div id="output" class="d-flex flex-row flex-wrap"></div>
+                </div>
+                <div class="modal-body">
+                    <label for="description">Mô tả<label class="text-danger">(*)</label> :</label>
+                    <textarea id="description" class="form-control" name="description"></textarea>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" onclick="clearRoom()">Close</button>

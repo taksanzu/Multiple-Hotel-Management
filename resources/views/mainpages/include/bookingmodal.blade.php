@@ -10,28 +10,16 @@
             <div class="modal-body">
                     <div class="row">
                         <div class="col-md-6">
-                            <label class="text-center mb-2">Họ và tên<label class="text-danger">(*)</label>:</label>
+                            <label class="text-center mb-2">Loại phòng<label class="text-danger">(*)</label>:</label>
                             <div class="input-group mb-3">
-                                <span class="input-group-text"><i class="fas fa-user"></i></span>
-                                <input type="text" class="form-control" placeholder="Họ và tên" name="name" id="name">
+                                <label class="input-group-text" for="roomType"><i class="fas fa-bed"></i></label>
+                                <select class="form-select" id="roomType" name="roomType">
+                                    <option selected></option>
+                                    @foreach($user->rooms as $roomType)
+                                        <option value="{{$roomType->id}}">{{$roomType->name}}</option>
+                                    @endforeach
+                                </select>
                             </div>
-                            <label class="text-center mb-2">Số điện thoại<label class="text-danger">(*)</label>:</label>
-                            <div class="input-group mb-3">
-                                <span class="input-group-text"><i class="fas fa-phone"></i></span>
-                                <input type="text" class="form-control" placeholder="Số điện thoại" name="phone" id="phone">
-                            </div>
-                            <label class="text-center mb-2">Email: </label>
-                            <div class="input-group mb-3">
-                                <span class="input-group-text"><i class="fas fa-envelope"></i></span>
-                                <input type="text" class="form-control" placeholder="Email" name="email">
-                            </div>
-                            <label class="text-center mb-2">Ghi chú:</label>
-                            <div class="input-group mb-3">
-                                <span class="input-group-text"><i class="fas fa-sticky-note"></i></span>
-                                <textarea class="form-control" placeholder="Ghi chú" name="notes" rows="4"></textarea>
-                            </div>
-                        </div>
-                        <div class="col-md-6">
                             <label class="text-center mb-2">Ngày đến<label class="text-danger">(*)</label>:</label>
                             <div class="input-group mb-3">
                                 <span class="input-group-text"><i class="fas fa-calendar-alt"></i></span>
@@ -53,15 +41,27 @@
                                 <span class="input-group-text"><i class="fas fa-bed"></i></span>
                                 <input type="number" class="form-control" placeholder="Số lượng phòng" name="number_of_rooms">
                             </div>
-                            <label class="text-center mb-2">Loại phòng<label class="text-danger">(*)</label>:</label>
+                        </div>
+                        <div class="col-md-6">
+                            <label class="text-center mb-2">Họ và tên<label class="text-danger">(*)</label>:</label>
                             <div class="input-group mb-3">
-                                <label class="input-group-text" for="roomType"><i class="fas fa-bed"></i></label>
-                                <select class="form-select" id="roomType" name="roomType">
-                                    <option selected>Chọn loại phòng...</option>
-                                    @foreach($user->rooms as $roomType)
-                                        <option value="{{$roomType->id}}">{{$roomType->name}}</option>
-                                    @endforeach
-                                </select>
+                                <span class="input-group-text"><i class="fas fa-user"></i></span>
+                                <input type="text" class="form-control" placeholder="Họ và tên" name="name" id="name">
+                            </div>
+                            <label class="text-center mb-2">Số điện thoại<label class="text-danger">(*)</label>:</label>
+                            <div class="input-group mb-3">
+                                <span class="input-group-text"><i class="fas fa-phone"></i></span>
+                                <input type="text" class="form-control" placeholder="Số điện thoại" name="phone" id="phone">
+                            </div>
+                            <label class="text-center mb-2">Email<label class="text-danger">(*)</label>: </label>
+                            <div class="input-group mb-3">
+                                <span class="input-group-text"><i class="fas fa-envelope"></i></span>
+                                <input type="text" class="form-control" placeholder="Email" name="email">
+                            </div>
+                            <label class="text-center mb-2">Ghi chú:</label>
+                            <div class="input-group mb-3">
+                                <span class="input-group-text"><i class="fas fa-sticky-note"></i></span>
+                                <textarea class="form-control" placeholder="Ghi chú" name="notes" rows="4"></textarea>
                             </div>
                         </div>
                     </div>

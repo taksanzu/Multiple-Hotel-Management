@@ -24,10 +24,15 @@ class Rooms extends Model
         'created_by',
         'videolink',
         'link360',
+        'image360',
     ];
 
     public function roomImages()
     {
         return $this->hasMany(room_images::class, 'room_id', 'id');
+    }
+    public function userCreated()
+    {
+        return $this->belongsTo(User::class, 'created_by', 'id');
     }
 }

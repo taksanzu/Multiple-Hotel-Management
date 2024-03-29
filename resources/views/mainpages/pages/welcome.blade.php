@@ -25,18 +25,15 @@
             <h1>{{ optional($user->settings->where('name', 'gioi_thieu_1')->first())->value }}</h1>
             <h2>{{ optional($user->settings->where('name', 'name')->first())->value }}</h2>
             <div class="d-lg-flex justify-content-center" style="gap:5px">
-                <a style="background: #0b2046" class="btn btn-primary btn-lg rounded-pill border mb-2 mb-lg-0" type="button" data-bs-toggle="modal" data-bs-target="#bookingModal"><strong>BOOK NOW</strong></a>
-                @if((new Jenssegers\Agent\Agent())->isDesktop())
-                    <div class="d-flex flex-row justify-content-center" style="gap:5px">
-                        <a data-bs-toggle="modal" data-bs-target="#videoModal" data-youtube-link="{{optional($user->settings->where('name', 'youtube')->first())->value}}" class="btn btn-danger btn-lg rounded-circle"><i class="fa-brands fa-youtube fa-xs"></i></a>
-                        <a data-bs-toggle="modal" data-bs-target="#webModal" data-web-link="{{optional($user->settings->where('name', 'linkweb')->first())->value}}" class="btn btn-primary btn-lg rounded-circle p-2"><label class="fs-5">360</label></a>
-                    </div>
-                @else
-                    <div class="d-flex flex-row justify-content-center" style="gap:5px">
-                        <a href="{{optional($user->settings->where('name', 'youtube')->first())->value}}" target="_blank" class="btn btn-danger btn-lg rounded-circle"><i class="fa-brands fa-youtube fa-xs"></i></a>
-                        <a href="{{optional($user->settings->where('name', 'linkweb')->first())->value}}" target="_blank" class="btn btn-primary btn-lg rounded-circle p-2"><label class="fs-5">360</label></a>
-                    </div>
-                @endif
+                <a style="background: #0b2046" class="btn btn-primary btn-lg rounded-pill border mb-2 mb-lg-0" type="button" href="{{route('loaiphong.index')}}"><strong>BOOK NOW</strong></a>
+                <div class="d-flex flex-row justify-content-center d-md-block d-none" style="gap:5px">
+                    <a data-bs-toggle="modal" data-bs-target="#videoModal" data-youtube-link="{{optional($user->settings->where('name', 'youtube')->first())->value}}" class="btn btn-danger btn-lg rounded-circle"><i class="fa-brands fa-youtube fa-xs"></i></a>
+                    <a data-bs-toggle="modal" data-bs-target="#webModal" data-web-link="{{optional($user->settings->where('name', 'linkweb')->first())->value}}" class="btn btn-primary btn-lg rounded-circle p-2"><label class="fs-5">360</label></a>
+                </div>
+                <div class="d-flex flex-row justify-content-center d-block d-md-none" style="gap:5px">
+                    <a href="{{optional($user->settings->where('name', 'youtube')->first())->value}}" target="_blank" class="btn btn-danger btn-lg rounded-circle"><i class="fa-brands fa-youtube fa-xs"></i></a>
+                    <a href="{{optional($user->settings->where('name', 'linkweb')->first())->value}}" target="_blank" class="btn btn-primary btn-lg rounded-circle p-2"><label class="fs-5">360</label></a>
+                </div>
             </div>
         </div>
     </div>
@@ -65,7 +62,11 @@
                 </div>
             </div>
             <div class="col-md-2 mb-3">
-                <a id="bookingbtn" data-bs-toggle="modal" data-bs-target="#bookingModal" class="btn btn-primary btn-lg rounded-pill border mt-md-4" style="background: #0b2046"><strong>BOOK NOW</strong></a>
+                @if(optional($user->settings->where('name', 'bookinglink')->first())->value != null)
+                    <a href="{{ optional($user->settings->where('name', 'bookinglink')->first())->value }}" target="_blank" class="btn btn-primary btn-lg rounded-pill border mt-md-4" style="background: #0b2046"><strong>BOOK NOW</strong></a>
+                @else
+                    <a id="bookingbtn" data-bs-toggle="modal" data-bs-target="#bookingModal" class="btn btn-primary btn-lg rounded-pill border mt-md-4" style="background: #0b2046"><strong>BOOK NOW</strong></a>
+                @endif
             </div>
         </form>
     </div>
@@ -86,23 +87,20 @@
     <div class="container py-5 rooms-section">
         <h1 class="text-center mb-5">CÁC LOẠI PHÒNG</h1>
         <div class="row mb-3">
-           @foreach($user->rooms as $room)
+           @foreach($user->rooms->where('deleted',0)->where('status', 1)->take(2) as $room)
                 <div class="col-lg-6 mb-5">
                     <a href="{{route('loaiphong.detail', ['id' => $room->id])}}" style="text-decoration:none">
                         <div class="card shadow">
                             <div class="rooms-img-section">
                                 <img src="images/rooms/{{$room->roomImages()->first()->name}}" class="card-img-top rounded h-lg-100 h-md-75 h-sm-50" alt="...">
-                                @if((new \Jenssegers\Agent\Agent())->isDesktop())
-                                    <div class="rooms-btn-overlay">
-                                        <a data-bs-toggle="modal" data-bs-target="#videoModal" data-youtube-link="{{$room->videolink}}" class="btn btn-danger btn-lg rounded-circle"><i class="fa-brands fa-youtube fa-xs"></i></a>
-                                        <a data-bs-toggle="modal" data-bs-target="#webModal" data-web-link="{{$room->link360}}" class="btn btn-primary btn-lg rounded-circle p-2"><label class="fs-5">360</label></a>
-                                    </div>
-                                @else
-                                    <div class="rooms-btn-overlay">
-                                        <a href="{{$room->videolink}}" target="_blank" class="btn btn-danger btn-lg rounded-circle"><i class="fa-brands fa-youtube fa-xs"></i></a>
-                                        <a href="{{$room->link360}}" target="_blank" class="btn btn-primary btn-lg rounded-circle p-2"><label class="fs-5">360</label></a>
-                                    </div>
-                                @endif
+                                <div class="rooms-btn-overlay d-md-block d-none">
+                                    <a data-bs-toggle="modal" data-bs-target="#videoModal" data-youtube-link="{{$room->videolink}}" class="btn btn-danger btn-lg rounded-circle"><i class="fa-brands fa-youtube fa-xs"></i></a>
+                                    <a data-bs-toggle="modal" data-bs-target="#webModal" data-web-link="{{$room->link360}}" class="btn btn-primary btn-lg rounded-circle p-2"><label class="fs-5">360</label></a>
+                                </div>
+                                <div class="rooms-btn-overlay d-block d-md-none">
+                                    <a href="{{$room->videolink}}" target="_blank" class="btn btn-danger btn-lg rounded-circle"><i class="fa-brands fa-youtube fa-xs"></i></a>
+                                    <a href="{{$room->link360}}" target="_blank" class="btn btn-primary btn-lg rounded-circle p-2"><label class="fs-5">360</label></a>
+                                </div>
                             </div>
                             <div class="card-body">
                                 <h5 class="card-title text-uppercase">{{ $room->name }}</h5>
@@ -158,7 +156,7 @@
     <div class="container p-5 news-section">
         <h1 class="text-center mb-5">Tin tức</h1>
         <div class="row mb-3">
-            @foreach($user->news->where('type', 1) as $new)
+            @foreach($user->news->where('type', 1)->where('deleted',0)->where('status', 1)->take(2) as $new)
                 <div class="col-lg-6 mb-5">
                     <a href="{{route('tintuc.detail', ['id' => $new->id])}}" style="text-decoration:none">
                         <div class="card shadow">

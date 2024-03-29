@@ -68,5 +68,25 @@ $(document).ready(function() {
 
         input.files = dataTransfer.files;
     }
+    $('#imageForm').validate({
+        rules: {
+            // Đặt các quy tắc kiểm tra tại đây
+            'image[]': {
+                required: true,
+                accept: 'image/*'
+            }
+        },
+        errorElement: 'span',
+        errorPlacement: function (error, element) {
+            element.addClass('has-error');
+        },
+        highlight: function (element, errorClass, validClass) {
+            $(element).addClass('is-invalid').removeClass(validClass);
+        },
+        unhighlight: function (element, errorClass, validClass) {
+            $(element).removeClass('is-invalid').addClass(validClass);
+        }
+    });
 });
+
 

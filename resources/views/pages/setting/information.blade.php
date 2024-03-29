@@ -32,6 +32,10 @@
                         <label for="address">Link youtube: </label>
                         <input type="text" class="form-control" name="youtube" value="{{ optional($user->settings->where('name', 'youtube')->first())->value }}" id="value"/>
                     </div>
+                    <div class="form-group mb-3">
+                        <label for="bookinglink">Link booking:</label>
+                        <input type="text" class="form-control" name="bookinglink" value="{{ optional($user->settings->where('name', 'bookinglink')->first())->value }}" id="value"/>
+                    </div>
                 </div>
                 <div class="col-lg-6">
                     <div class="form-group mb-3">

@@ -2,10 +2,10 @@
 <div class="modal fade" id="imagesModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-xl">
         <div class="modal-content">
-            <form id="newsForm" enctype="multipart/form-data" action="{{route('images.store')}}" method="POST">
+            <form id="imageForm" enctype="multipart/form-data" action="{{route('images.store')}}" method="POST">
                 @csrf
                 <div class="modal-body">
-                    <label for="image" id="fileLabel">Ảnh:</label>
+                    <label for="image" id="fileLabel">Ảnh<label class="text-danger">(*)</label> :</label>
                     <input type="file"  multiple class="form-control" name="image[]" id="image" accept="image/*"/>
                 </div>
                 <div class="modal-body">

@@ -9,23 +9,30 @@
         </div>
     </div>
     <div class="container pt-5">
-        <div class="owl-carousel owl-theme">
+        <div class="owl-carousel owl-theme" id="main-carousel">
             @foreach($images as $image)
                 <div class="item rooms-img-section">
                     <img src="/images/rooms/{{$image->name}}" alt="">
-                    @if((new \Jenssegers\Agent\Agent())->isDesktop())
-                        <div class="rooms-btn-overlay">
-                            <a data-bs-toggle="modal" data-bs-target="#videoModal" data-youtube-link="{{$rooms->videolink}}" class="btn btn-danger btn-lg rounded-circle"><i class="fa-brands fa-youtube fa-xs"></i></a>
-                            <a data-bs-toggle="modal" data-bs-target="#webModal" data-web-link="{{$rooms->link360}}" class="btn btn-primary btn-lg rounded-circle p-2"><label class="fs-5">360</label></a>
-                        </div>
-                    @else
-                        <div class="rooms-btn-overlay">
-                            <a href="{{$rooms->videolink}}" target="_blank" class="btn btn-danger btn-lg rounded-circle"><i class="fa-brands fa-youtube fa-xs"></i></a>
-                            <a href="{{$rooms->link360}}" target="_blank" class="btn btn-primary btn-lg rounded-circle p-2"><label class="fs-5">360</label></a>
-                        </div>
-                    @endif
+                    <div class="rooms-btn-overlay d-md-block d-none">
+                        <a data-bs-toggle="modal" data-bs-target="#videoModal" data-youtube-link="{{$rooms->videolink}}" class="btn btn-danger btn-lg rounded-circle"><i class="fa-brands fa-youtube fa-xs"></i></a>
+                        <a data-bs-toggle="modal" data-bs-target="#webModal" data-web-link="{{$rooms->link360}}" class="btn btn-primary btn-lg rounded-circle p-2"><label class="fs-5">360</label></a>
+                    </div>
+                    <div class="rooms-btn-overlay d-block d-md-none">
+                        <a href="{{$rooms->videolink}}" target="_blank" class="btn btn-danger btn-lg rounded-circle"><i class="fa-brands fa-youtube fa-xs"></i></a>
+                        <a href="{{$rooms->link360}}" target="_blank" class="btn btn-primary btn-lg rounded-circle p-2"><label class="fs-5">360</label></a>
+                    </div>
                 </div>
             @endforeach
+            @if($rooms->image360)
+                    <div class="item">
+                        <a class="d-block d-md-none" href="{{$rooms->link360}}" target="_blank">
+                            <img src="/images/rooms/{{$rooms->image360}}" alt="">
+                        </a>
+                        <a class="d-md-block d-none" data-bs-toggle="modal" data-bs-target="#webModal" data-web-link="{{$rooms->link360}}">
+                            <img src="/images/rooms/{{$rooms->image360}}" alt="">
+                        </a>
+                    </div>
+            @endif
         </div>
     </div>
     <div class="container my-5 rooms-detail">
@@ -33,19 +40,19 @@
         <div class="row">
             <div class="col-md-6">
                 <h1>{{$rooms->name}}</h1>
-                <h2>1.000.000VND</h2>
-                <p>{{$rooms->description}}</p>
             </div>
         </div>
 
         <!-- Khối thứ hai -->
         <div class="row mt-4">
             <div class="col-md-12">
-                <h3>Mô tả dài của phòng</h3>
-                <p>
-                    {{$rooms->longdesc}}
-                </p>
-                <a class="btn btn-primary rounded-pill border " style="background: #0b2046" data-bs-toggle="modal" data-bs-target="#bookingModal"><strong>BOOK NOW</strong></a>
+                <h3>Mô tả của phòng</h3>
+                {!! $rooms->description !!}
+                @if(optional($user->settings->where('name', 'bookinglink')->first())->value != null)
+                    <a href="{{ optional($user->settings->where('name', 'bookinglink')->first())->value }}" target="_blank" class="btn btn-primary btn-lg rounded-pill border" style="background: #0b2046"><strong>BOOK NOW</strong></a>
+                @else
+                    <a data-bs-toggle="modal" data-bs-target="#bookingModal" class="btn btn-primary btn-lg rounded-pill border" style="background: #0b2046"><strong>BOOK NOW</strong></a>
+                @endif
             </div>
         </div>
     </div>

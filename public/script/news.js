@@ -162,4 +162,27 @@ $(document).ready(function() {
 
         input.files = dataTransfer.files;
     }
+    $('#newsForm').validate({
+        rules: {
+            title: 'required',
+            description: 'required',
+            videolink: 'url',
+            link360: 'url',
+            imageNews: {
+                required: true,
+                accept: 'image/*'
+            },
+            contents: 'required'
+        },
+        errorElement: 'span',
+        errorPlacement: function (error, element) {
+            element.addClass('has-error');
+        },
+        highlight: function (element, errorClass, validClass) {
+            $(element).addClass('is-invalid').removeClass(validClass);
+        },
+        unhighlight: function (element, errorClass, validClass) {
+            $(element).removeClass('is-invalid').addClass(validClass);
+        }
+    });
 });
