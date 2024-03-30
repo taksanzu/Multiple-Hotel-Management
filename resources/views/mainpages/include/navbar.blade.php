@@ -4,7 +4,7 @@
                @if($user->settings->where('name', 'logo')->first())
                    <img src="{{ asset('logo').'/'.optional($user->settings->where('name', 'logo')->first())->value }}" alt="" style="object-fit: contain; margin-top: 10px" width="100" height="75">
                @else
-                   <img class="mx-auto align-middle" src="upload/placeholder.png" alt="" width="70" height="50">
+                   <img class="mx-auto align-middle" src="{{ asset('upload/placeholder.png') }}" alt="" width="70" height="50">
                @endif
            </a>
            <button class="navbar-toggler navbar-dark" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -28,7 +28,7 @@
                        @if($user->settings->where('name', 'logo')->first())
                            <img src="{{ asset('logo').'/'.optional($user->settings->where('name', 'logo')->first())->value }}" alt="" style="object-fit: contain; margin-top: 10px" width="100" height="75">
                        @else
-                           <img class="mx-auto align-middle" src="upload/placeholder.png" alt="" >
+                           <img class="mx-auto align-middle" src="{{ asset('upload/placeholder.png') }}" alt="" >
                        @endif
                    </a>
                    <li class="nav-item mx-3">
