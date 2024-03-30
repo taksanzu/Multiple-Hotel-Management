@@ -11,7 +11,7 @@
                     @if($user->settings->where('name', 'logo')->first())
                         <img src="{{ asset('logo').'/'.optional($user->settings->where('name', 'logo')->first())->value }}" alt="" style="object-fit: contain; margin-top: 10px" width="200" height="100">
                     @else
-                        <img class="mx-auto align-middle" src="https://tiffanyhotel.com.vn/upload/logo/tiffany_logo_header_new.png" alt="" width="200" height="100">
+                        <img class="mx-auto align-middle" src="upload/placeholder.png" alt="" width="200" height="100">
                     @endif
                 </a>
             </div>

@@ -19,7 +19,7 @@ class Controller extends BaseController
         $user = User::where('id', 1)->with('settings','rooms.roomImages', 'images', 'news')->first();
         if(count($subdomain) > 2){
             $user = User::where('domain', $subdomain[0])->with('settings','rooms.roomImages', 'images', 'news')->first();
-            if(!$user){
+            if($user == null){
                 return 'Không tìm thấy trang web';
             }
         }

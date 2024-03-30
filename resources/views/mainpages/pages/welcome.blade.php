@@ -7,7 +7,7 @@
                     <div class="overlay"></div>
                 </div>
             @else
-                <div class="carousel-item active" style="background-image: url('https://tiffanyhotel.com.vn/Upload/images/Slide/1.jpg');">
+                <div class="carousel-item active" style="background-image: url('upload/slide2.jpg');">
                     <div class="overlay"></div>
                 </div>
             @endif
@@ -16,7 +16,7 @@
                     <div class="overlay"></div>
                 </div>
             @else
-                <div class="carousel-item" style="background-image: url('https://tiffanyhotel.com.vn/Upload/images/Slide/2.jpg');">
+                <div class="carousel-item" style="background-image: url('upload/slide1.jpg');">
                     <div class="overlay"></div>
                 </div>
             @endif
@@ -126,23 +126,12 @@
                 @if($user->settings->where('name', 'image4')->first())
                     <img src="{{ asset('images').'/'.optional($user->settings->where('name', 'image4')->first())->value }}" alt="Services" >
                 @else
-                    <img src="https://tiffanyhotel.com.vn/Content/client/images/banner/bg-tienich-left.jpg" alt="Services" >
+                    <img src="upload/room.jpg" alt="Services" >
                 @endif
             </div>
         </div>
-        <div class="col-lg-6 p-5" @if($user->settings->where('name', 'image5')->first()) style="background-image: url('{{ asset('images').'/'.optional($user->settings->where('name', 'image5')->first())->value }}')" @else style="background-image: url('https://tiffanyhotel.com.vn/Content/client/images/banner/bg-tienich.jpg')"  @endif>
-            <div class="service-wrap">
-                <div class="single-service-wrap mb-5" style="">
-                    <div class="service-content mt-5">
-                        <h3 class="service-content-title text-gradient-gold">Tiện ích tuyệt vời</h3>
-                    </div>
-                </div>
-                <div class="single-service-wrap" style="">
-                    <div class="service-content">
-                        <h3 class="service-content-title text-gradient-gold">Không gian thư giãn</h3>
-                    </div>
-                </div>
-            </div>
+        <div class="col-lg-6 p-5" @if($user->settings->where('name', 'image5')->first()) style="background-image: url('{{ asset('images').'/'.optional($user->settings->where('name', 'image5')->first())->value }}')" @else style="background-image: url('upload/room2.jpg'); background-size: cover; background-position: center"  @endif>
+
         </div>
     </div>
     <!-- End Services -->
@@ -187,7 +176,7 @@
             @else
                 <div class="col-lg-3 ">
                     <div class="foods-img">
-                        <img style="height: 300px; object-fit: cover" src="https://tiffanyhotel.com.vn/Upload/images/brand-logo/ga-ham-sam-2-min.jpeg" alt="Foods">
+                        <img style="height: 300px; object-fit: cover" src="upload/dishes.jpg" alt="Foods">
                     </div>
                 </div>
             @endif
