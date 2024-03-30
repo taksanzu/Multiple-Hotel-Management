@@ -13,18 +13,10 @@ class NewsController extends Controller
         if (Auth::check()) {
             $type = $request->type;
             $user = Auth::user();
-            if ($user->roles == 0) {
-                $news = News::where('deleted', 0)->where('type', $type)->paginate(12);
-                $search = $request->search;
-                if ($search != null) {
-                    $news = News::where('title', 'like', '%' . $search . '%')->where('deleted', 0)->where('type', $type)->paginate(12);
-                }
-            } else {
-                $news = News::where('deleted', 0)->where('type', $type)->where('created_by', Auth::id())->paginate(12);
-                $search = $request->search;
-                if ($search != null) {
-                    $news = News::where('title', 'like', '%' . $search . '%')->where('deleted', 0)->where('type', $type)->where('created_by', Auth::id())->paginate(12);
-                }
+            $news = News::where('deleted', 0)->where('type', $type)->where('created_by', Auth::id())->paginate(12);
+            $search = $request->search;
+            if ($search != null) {
+                $news = News::where('title', 'like', '%' . $search . '%')->where('deleted', 0)->where('type', $type)->where('created_by', Auth::id())->paginate(12);
             }
             return view('pages.news.tintuc', ['news' => $news, 'user' => $user, 'type' => $type]);
         } else {

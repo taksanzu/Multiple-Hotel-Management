@@ -39,7 +39,7 @@
     </div>
     <div class="container bg-white p-5 border rounded shadow position-relative mt-n1 booking">
         <h1 class="text-center">THÔNG TIN ĐẶT PHÒNG</h1>
-        <form class="row">
+        <div class="row">
             <div class="col-md-3 flex-column mb-3">
                 <label class="text-center mb-2">Ngày đến</label>
                 <div class="input-group">
@@ -65,16 +65,15 @@
                 @if(optional($user->settings->where('name', 'bookinglink')->first())->value != null)
                     <a href="{{ optional($user->settings->where('name', 'bookinglink')->first())->value }}" target="_blank" class="btn btn-primary btn-lg rounded-pill border mt-md-4" style="background: #0b2046"><strong>BOOK NOW</strong></a>
                 @else
-                    <a id="bookingbtn" data-bs-toggle="modal" data-bs-target="#bookingModal" class="btn btn-primary btn-lg rounded-pill border mt-md-4" style="background: #0b2046"><strong>BOOK NOW</strong></a>
+                    <a data-bs-toggle="modal" data-bs-target="#bookingModal" class="btn btn-primary btn-lg rounded-pill border mt-md-4 btn-booking-1" style="background: #0b2046"><strong>BOOK NOW</strong></a>
                 @endif
             </div>
-        </form>
+        </div>
     </div>
     <!-- Header -->
     <div class="container-fluid about-us-section" @if($user->settings->where('name', 'image3')->first()) style="background: url('{{ asset('images').'/'.optional($user->settings->where('name', 'image3')->first())->value }}') no-repeat; background-size: cover" @endif>
         <div class="row">
             <div class="col-lg-6 mx-auto text-dark">
-                <h2>TẬN HƯỞNG KỲ NGHỈ TẠI</h2>
                 <h1 style="font-family: 'great vibes', sans-serif; font-size: 5rem; color: #0940a3">{{ optional($user->settings->where('name', 'name')->first())->value }}</h1>
                 <p>
                     {{ optional($user->settings->where('name', 'gioi_thieu_2')->first())->value }}
@@ -134,18 +133,13 @@
         <div class="col-lg-6 p-5" @if($user->settings->where('name', 'image5')->first()) style="background-image: url('{{ asset('images').'/'.optional($user->settings->where('name', 'image5')->first())->value }}')" @else style="background-image: url('https://tiffanyhotel.com.vn/Content/client/images/banner/bg-tienich.jpg')"  @endif>
             <div class="service-wrap">
                 <div class="single-service-wrap mb-5" style="">
-                    <div class="service-content">
-                        <h1 class="service-content-title text-gradient-gold">TIỆN ÍCH TUYỆT VỜI</h1>
-                    </div>
-                </div>
-                <div class="single-service-wrap mb-5" style="">
-                    <div class="service-content">
-                        <h3 class="service-content-title text-gradient-gold">View sân thượng</h3>
+                    <div class="service-content mt-5">
+                        <h3 class="service-content-title text-gradient-gold">Tiện ích tuyệt vời</h3>
                     </div>
                 </div>
                 <div class="single-service-wrap" style="">
                     <div class="service-content">
-                        <h3 class="service-content-title text-gradient-gold">Bãi tắm Đồi Dương</h3>
+                        <h3 class="service-content-title text-gradient-gold">Không gian thư giãn</h3>
                     </div>
                 </div>
             </div>
@@ -178,8 +172,7 @@
     <div class="container-fluid foods-section" @if($user->settings->where('name', 'image6')->first()) style="background: url('{{ asset('images').'/'.optional($user->settings->where('name', 'image6')->first())->value }}') no-repeat; background-size: cover" @endif>
         <div class="row">
             <div class="col-lg-6 mx-auto text-light">
-                <h2>Đa dạng ẩm thực á âu</h2>
-                <p>Mời bạn khám phá các trải nghiệm ẩm thực khác nhau, từ ẩm thực truyền thống Việt Nam đến ẩm thực Á Âu cao cấp sang trọng</p>
+                <h2 class="service-content-title">Đa dạng ẩm thực</h2>
             </div>
         </div>
     </div>

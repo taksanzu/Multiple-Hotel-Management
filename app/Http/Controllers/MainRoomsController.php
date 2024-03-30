@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\room_images;
 use App\Models\Rooms;
+use App\Models\ServiceCategory;
 use App\Models\User;
 use Illuminate\Http\Request;
 
@@ -30,6 +31,7 @@ class MainRoomsController extends Controller
         $rooms = Rooms::findOrFail($id);
         $images = room_images::where('room_id', $id)
             ->where('deleted',0)->get();
-        return view('mainpages.pages.loaiphong.details', ['rooms' => $rooms, 'images' => $images]);
+        $service_categories = ServiceCategory::all();
+        return view('mainpages.pages.loaiphong.details', ['rooms' => $rooms, 'images' => $images, 'service_categories' => $service_categories]);
     }
 }

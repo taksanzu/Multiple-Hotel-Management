@@ -3,6 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>Hotel</title>
     <link rel="stylesheet" href="{{asset('style/stylemain.css')}}">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
@@ -38,6 +39,27 @@
 <script src="/script/welcome.js"></script>
 <script src="https://www.youtube.com/iframe_api"></script>
 @yield('script')
+<script>
+    $('.btn-booking').on('click', function () {
+        let roomType = $(this).data('room-type');
+        $('#roomType').val(roomType);
+        $('#checkin').val(new Date().toLocaleDateString());
+        let tomorrow = new Date();
+        tomorrow.setDate(tomorrow.getDate() + 1);
+        $('#checkout').val(tomorrow.toLocaleDateString());
+        $('[name="number_of_adults"]').val(1);
+        $('[name="number_of_children"]').val(0);
+        $('[name="number_of_rooms"]').val(1);
+    });
+
+    $('.btn-booking-1').on('click', function () {
+        $('#checkin').val($('#checkinsource').val());
+        $('#checkout').val($('#checkoutsource').val());
+        $('[name="number_of_adults"]').val(1);
+        $('[name="number_of_children"]').val(0);
+        $('[name="number_of_rooms"]').val(1);
+    });
+</script>
 </body>
 </html>
 <?php

@@ -17,7 +17,7 @@
             <td>{{ $booking->phone}}</td>
             <td>{{ Carbon\Carbon::createFromFormat('Y-m-d', $booking->checkin)->format('d/m/Y')}}</td>
             <td>{{ Carbon\Carbon::createFromFormat('Y-m-d', $booking->checkout)->format('d/m/Y')}}</td>
-            <td>{{ $booking->room->name}}</td>
+            <td>{{ optional($booking->room)->name}}</td>
             <td>
                 @if($booking->status == 1)
                     <span class="badge rounded-pill bg-success">Đã xác nhận</span>

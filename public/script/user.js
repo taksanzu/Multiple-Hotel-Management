@@ -30,10 +30,6 @@ $(document).ready(function () {
                 required: true,
                 email: true
             },
-            password: {
-                required: true,
-                minlength: 6
-            },
             phone: 'required',
             roles: 'required',
         },

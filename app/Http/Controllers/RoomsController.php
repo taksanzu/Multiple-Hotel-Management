@@ -13,19 +13,13 @@ class RoomsController extends Controller
     {
         if (Auth::check()) {
             $user = Auth::user();
-            if ($user->roles == 0) {
-                $rooms = Rooms::where('deleted', 0)->paginate(12);
-                $search = $request->search;
-                if ($search != null) {
-                    $rooms = Rooms::where('name', 'like', '%' . $search . '%')->where('deleted', 0)->paginate(12);
-                }
-            } else {
-                $rooms = Rooms::where('deleted', 0)->where('created_by', Auth::id())->paginate(12);
-                $search = $request->search;
-                if ($search != null) {
-                    $rooms = Rooms::where('name', 'like', '%' . $search . '%')->where('deleted', 0)->where('created_by', Auth::id())->paginate(12);
-                }
+
+            $rooms = Rooms::where('deleted', 0)->where('created_by', Auth::id())->paginate(12);
+            $search = $request->search;
+            if ($search != null) {
+                $rooms = Rooms::where('name', 'like', '%' . $search . '%')->where('deleted', 0)->where('created_by', Auth::id())->paginate(12);
             }
+
             return view('pages.rooms.loaiphong', ['rooms' => $rooms], ['user' => $user]);
         } else {
             return redirect()->route('login');
@@ -148,7 +142,7 @@ class RoomsController extends Controller
         $id = $request->id;
         $rooms = Rooms::findOrFail($id);
         $rooms->update([
-            'status' => 1
+            'status' => $rooms->status == 1 ? 0 : 1
         ]);
     }
 }

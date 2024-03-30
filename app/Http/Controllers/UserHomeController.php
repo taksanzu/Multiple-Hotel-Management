@@ -12,17 +12,13 @@ class UserHomeController extends Controller
     {
         if (Auth::check()) {
             $user = Auth::user();
-            if ($user->roles == 0) {
-                $bookings = Booking::with(['room' => function ($query) {
+
+            $bookings = Booking::where('user_id', Auth::user()->id)->with(
+                ['room' => function ($query) {
                     $query->select('id', 'name'); // Chọn chỉ các trường cần thiết của bảng room
-                }])->paginate(12);
-            } else {
-                $bookings = Booking::where('user_id', Auth::user()->id)->with(
-                    ['room' => function ($query) {
-                        $query->select('id', 'name'); // Chọn chỉ các trường cần thiết của bảng room
-                    }]
-                )->paginate(12);
-            }
+                }]
+            )->paginate(12);
+
             return view('pages.user.userHome', ['user' => $user, 'bookings' => $bookings]);
         } else {
             return redirect()->route('login');

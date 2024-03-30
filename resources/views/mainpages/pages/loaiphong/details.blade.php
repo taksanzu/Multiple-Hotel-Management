@@ -48,10 +48,42 @@
             <div class="col-md-12">
                 <h3>Mô tả của phòng</h3>
                 {!! $rooms->description !!}
+                <hr>
+                <h3>Tiện ích</h3>
+                @foreach($service_categories as $service_category)
+                    <div class="mb-4">
+                         <?php
+                             $a = true;
+                            foreach ($service_category->services as $service) {
+                                $service_user = $service->service_user
+                                    ->where('user_id', $user->id)
+                                    ->where('status', 1)
+                                    ->first();
+                                if ($service_user) {
+                                    $a = false;
+                                    break;
+                                }
+                            }
+                        ?>
+                        @if(!$a)
+                            <h5>{{ $service_category->name }}</h5>
+                            <div class="d-flex flex-wrap gap-5">
+                                @foreach($service_category->services as $service)
+                                    @if(optional($service->service_user->where('user_id', $user->id)->first())->status == 1)
+                                        <div class="d-flex gap-2 align-items-center">
+                                            <img src="{{ asset('service').'/'.$service->image }}" alt="" style="width: 20px" height="20px">
+                                            <p class="mb-0">{{ $service->name }}</p>
+                                        </div>
+                                    @endif
+                                @endforeach
+                            </div>
+                        @endif
+                    </div>
+                @endforeach
                 @if(optional($user->settings->where('name', 'bookinglink')->first())->value != null)
                     <a href="{{ optional($user->settings->where('name', 'bookinglink')->first())->value }}" target="_blank" class="btn btn-primary btn-lg rounded-pill border" style="background: #0b2046"><strong>BOOK NOW</strong></a>
                 @else
-                    <a data-bs-toggle="modal" data-bs-target="#bookingModal" class="btn btn-primary btn-lg rounded-pill border" style="background: #0b2046"><strong>BOOK NOW</strong></a>
+                    <a data-bs-toggle="modal" data-bs-target="#bookingModal" class="btn btn-primary btn-lg rounded-pill border btn-booking" data-room-type="{{ $rooms->id }}" style="background: #0b2046"><strong>BOOK NOW</strong></a>
                 @endif
             </div>
         </div>

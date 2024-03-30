@@ -54,7 +54,7 @@ class User extends Authenticatable
 
     public function rooms()
     {
-        return $this->hasMany(Rooms::class, 'created_by', 'id');
+        return $this->hasMany(Rooms::class, 'created_by', 'id')->where('status', 1);
     }
 
     public function images()
@@ -65,5 +65,10 @@ class User extends Authenticatable
     public function news()
     {
         return $this->hasMany(News::class, 'created_by', 'id');
+    }
+
+    public function services_user()
+    {
+        return $this->hasMany(ServiceUser::class, 'user_id', 'id');
     }
 }

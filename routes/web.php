@@ -16,6 +16,7 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\UserHomeController;
 use App\Http\Controllers\WelcomeController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\ServiceController;
 
 /*
 |--------------------------------------------------------------------------
@@ -126,6 +127,13 @@ Route::controller(SettingController::class)->group(function () {
 Route::controller(SettingImageController::class)->group(function () {
     Route::get('/settingImage', [SettingImageController::class, 'index'])->name('settingImage');
     Route::post('/settingImage', [SettingImageController::class, 'store'])->name('settingImage.store');
+});
+
+Route::controller(ServiceController::class)->group(function () {
+    Route::get('/services', [\App\Http\Controllers\ServiceController::class, 'index'])->name('services');
+    Route::post('/services/category', [\App\Http\Controllers\ServiceController::class, 'storeCategory'])->name('services.category');
+    Route::post('/services', [\App\Http\Controllers\ServiceController::class, 'storeService'])->name('services.store');
+    Route::post('/services/change_status', [\App\Http\Controllers\ServiceController::class, 'change_status'])->name('services.change_status');
 });
 
 
