@@ -50,7 +50,7 @@
                             <h5 class="card-title">{{$service->title}}</h5>
                             <p class="card-text">{{$service->description}}
                             </p>
-                            <a href="{{route('tienich.detail',['id' => $service->id])}}" class="btn btn-primary btn-lg rounded-pill border mt-md-5" style="background: #0b2046"><strong>Xem thêm</strong></a>
+                            <a href="{{route('tienich.detail',['id' => $service->id, 'slug'=> $service->slug])}}" class="btn btn-primary btn-lg rounded-pill border mt-md-5" style="background: #0b2046"><strong>Xem thêm</strong></a>
                         </div>
                     </div>
                 </div>

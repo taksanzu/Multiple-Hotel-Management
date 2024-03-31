@@ -50,7 +50,7 @@
                             <h5 class="card-title">{{$new->title}}</h5>
                             <p class="card-text">{{$new->description}}
                             </p>
-                            <a href="{{route('tintuc.detail', ['id' => $new->id])}}" class="btn btn-primary btn-lg rounded-pill border mt-md-5" style="background: #0b2046"><strong>Xem thêm</strong></a>
+                            <a href="{{route('tintuc.detail', ['id' => $new->id, 'slug'=> $new->slug])}}" class="btn btn-primary btn-lg rounded-pill border mt-md-5" style="background: #0b2046"><strong>Xem thêm</strong></a>
                         </div>
                     </div>
                 </div>

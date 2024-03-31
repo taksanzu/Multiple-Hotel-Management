@@ -24,6 +24,7 @@ class News extends Model
         'videolink',
         'link360',
         'status',
+        'slug',
         'deleted',
         'created_at',
         'updated_at',

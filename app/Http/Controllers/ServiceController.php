@@ -12,16 +12,6 @@ class ServiceController extends Controller
     public function index()
     {
         $service_categories = ServiceCategory::all();
-        $service_user = ServiceUser::where('user_id', Auth::id())->get();
-        if($service_user->count() == 0){
-            $service = Service::all();
-            foreach ($service as $key => $value) {
-                $service_user = new ServiceUser();
-                $service_user->user_id = Auth::user()->id;
-                $service_user->service_id = $value->id;
-                $service_user->save();
-            }
-        }
         return view('pages.services.index', ['service_categories' => $service_categories]);
     }
     public function storeCategory(Request $request)

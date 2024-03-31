@@ -88,7 +88,7 @@
         <div class="row mb-3">
            @foreach($user->rooms->where('deleted',0)->where('status', 1)->take(2) as $room)
                 <div class="col-lg-6 mb-5">
-                    <a href="{{route('loaiphong.detail', ['id' => $room->id])}}" style="text-decoration:none">
+                    <a href="{{route('loaiphong.detail', ['id' => $room->id, 'slug' => $room->slug])}}" style="text-decoration:none">
                         <div class="card shadow">
                             <div class="rooms-img-section">
                                 <img src="images/rooms/{{$room->roomImages()->first()->name}}" class="card-img-top rounded h-lg-100 h-md-75 h-sm-50" alt="...">
@@ -141,7 +141,7 @@
         <div class="row mb-3">
             @foreach($user->news->where('type', 1)->where('deleted',0)->where('status', 1)->take(2) as $new)
                 <div class="col-lg-6 mb-5">
-                    <a href="{{route('tintuc.detail', ['id' => $new->id])}}" style="text-decoration:none">
+                    <a href="{{route('tintuc.detail', ['id' => $new->id, 'slug'=>$new->slug])}}" style="text-decoration:none">
                         <div class="card shadow">
                             <img src="/images/news/mainnews/{{$new->images}}" class="card-img-top rounded h-lg-100 h-md-75 h-sm-50" alt="...">
                             <div class="card-img-overlay">

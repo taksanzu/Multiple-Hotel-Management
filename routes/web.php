@@ -89,13 +89,13 @@ Route::get('/', [WelcomeController::class, 'index'])->name('welcome');
 // Xử lý loại phòng chính
 Route::controller(MainRoomsController::class)->group(function () {
     Route::get('/loaiphong', [MainRoomsController::class, 'index'])->name('loaiphong.index');
-    Route::get('/loaiphong/{id}', [MainRoomsController::class, 'detail'])->name('loaiphong.detail');
+    Route::get('/loaiphong/{id}/{slug}', [MainRoomsController::class, 'detail'])->name('loaiphong.detail');
 });
 
 // Xử lý tin tức chính
 Route::controller(MainNewsController::class)->group(function () {
     Route::get('/tintuc', [MainNewsController::class, 'index'])->name('tintuc.index');
-    Route::get('/tintuc/{id}', [MainNewsController::class, 'detail'])->name('tintuc.detail');
+    Route::get('/tintuc/{id}/{slug}', [MainNewsController::class, 'detail'])->name('tintuc.detail');
 });
 
 // Xử lý hình ảnh chính
@@ -104,7 +104,7 @@ Route::get('/hinhanh', [MainImagesController::class, 'index'])->name('hinhanh.in
 //Xử lý tiện ích chính
 Route::controller(MainServicesController::class)->group(function () {
     Route::get('/tienich', [MainServicesController::class, 'index'])->name('tienich.index');
-    Route::get('/tienich/{id}', [MainServicesController::class, 'detail'])->name('tienich.detail');
+    Route::get('/tienich/{id}/{slug}', [MainServicesController::class, 'detail'])->name('tienich.detail');
 });
 
 // Xử lý đặt phòng

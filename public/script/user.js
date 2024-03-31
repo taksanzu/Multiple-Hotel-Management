@@ -1,9 +1,3 @@
-$.ajaxSetup({
-    headers: {
-        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('contents')
-    }
-});
-
 function getUserId(id) {
     $.ajax({
         type: 'GET',
@@ -46,6 +40,7 @@ $(document).ready(function () {
     });
     $('#userAdminModal').on('hidden.bs.modal', function () {
         $('#usersForm').trigger('reset');
+        $('#id').val('');
         $('#usersForm').validate().resetForm();
         $('#usersForm').find('.is-invalid').removeClass('is-invalid');
     });

@@ -169,7 +169,6 @@ $(document).ready(function() {
             videolink: 'url',
             link360: 'url',
             imageNews: {
-                required: true,
                 accept: 'image/*'
             },
             contents: 'required'

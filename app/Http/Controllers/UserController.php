@@ -10,6 +10,9 @@ use App\Models\Images;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use App\Models\ServiceCategory;
+use App\Models\ServiceUser;
+use App\Models\Service;
 
 class UserController extends Controller
 {
@@ -31,7 +34,7 @@ class UserController extends Controller
     public function store(Request $request)
     {
         $id = $request->id;
-        $password = User::findOrFail($id) ? User::findOrFail($id)->password : Hash::make('123456');
+        $password = $request->id ? User::findOrFail($id)->password : Hash::make('123456');
         $user = User::updateOrCreate(
             ['id' => $id],
             [
@@ -58,6 +61,10 @@ class UserController extends Controller
 
         if($user->images->count() == 0) {
             $this->initImages($user->id);
+        }
+
+        if($user->services_user->count() == 0) {
+            $this->initService($user->id);
         }
 
         return redirect()->route('userList');
@@ -150,6 +157,17 @@ class UserController extends Controller
                 $newImage->created_by = $user_id;
                 $newImage->save();
             }
+        }
+    }
+
+    public function initService($user_id)
+    {
+        $service = Service::all();
+        foreach ($service as $key => $value) {
+            $service_user = new ServiceUser();
+            $service_user->user_id = $user_id;
+            $service_user->service_id = $value->id;
+            $service_user->save();
         }
     }
 }

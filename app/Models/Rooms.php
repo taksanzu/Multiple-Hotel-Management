@@ -23,6 +23,7 @@ class Rooms extends Model
         'deleted',
         'created_by',
         'videolink',
+        'slug',
         'link360',
         'image360',
     ];

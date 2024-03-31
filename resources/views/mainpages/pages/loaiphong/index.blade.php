@@ -78,7 +78,7 @@
                                     @else
                                         <a data-bs-toggle="modal" data-bs-target="#bookingModal" class="btn btn-primary btn-lg rounded-pill border btn-booking" data-room-type="{{ $room->id }}" style="background: #0b2046"><strong>BOOK NOW</strong></a>
                                     @endif
-                                    <a href="{{route('loaiphong.detail', ['id' => $room->id])}}" class="btn btn-outline-primary rounded-pill border border-primary"><strong>VIEW DETAIL</strong></a>
+                                    <a href="{{route('loaiphong.detail', ['id' => $room->id, 'slug' => $room->slug])}}" class="btn btn-outline-primary rounded-pill border border-primary"><strong>VIEW DETAIL</strong></a>
                                 </div>
                             </div>
                         </div>
@@ -166,7 +166,7 @@
                                     @else
                                         <a data-bs-toggle="modal" data-bs-target="#bookingModal" class="btn btn-primary btn-lg rounded-pill border btn-booking" data-room-type="{{ $room->id }}" style="background: #0b2046"><strong>BOOK NOW</strong></a>
                                     @endif
-                                    <a href="{{route('loaiphong.detail', ['id' => $room->id])}}" class="btn btn-outline-primary rounded-pill border border-primary"><strong>VIEW DETAIL</strong></a>
+                                    <a href="{{route('loaiphong.detail', ['id' => $room->id, 'slug' => $room->slug])}}" class="btn btn-outline-primary rounded-pill border border-primary"><strong>VIEW DETAIL</strong></a>
                                 </div>
                             </div>
                         </div>
