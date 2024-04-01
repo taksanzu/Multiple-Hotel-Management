@@ -133,13 +133,14 @@ function deleteRooms(id) {
     }
 }
 
-function postRooms(id) {
-    if (confirm('Bạn có chắc chắn muốn đăng phòng này không?')) {
+function postRooms(id, status) {
+    let action = status == 1 ? 'gỡ' : 'đăng';
+    if (confirm(`Bạn có chắc chắn muốn ${action} phòng này không?`)) {
         $.ajax({
             type: 'GET',
             url: '/rooms/post/' + id,
             success: function (data) {
-                alert('Đăng phòng thành công');
+                alert(`${action} phòng thành công`);
                 location.reload();
             },
             error: function (error) {

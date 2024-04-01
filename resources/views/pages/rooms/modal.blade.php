@@ -53,8 +53,8 @@
                 </div>
                 <div class="px-3 pt-1 pb-3">
                     @foreach($service_categories as $service_category)
-                        <div class="mb-2">
-                            <h5>{{ $service_category->name }}</h5>
+                        <div class="mb-3">
+                            <h6>{{ $service_category->name }}</h6>
                             <div class="d-flex flex-wrap gap-5">
                                 @foreach($service_category->services as $service)
                                     <div class="d-flex gap-2 align-items-center">
