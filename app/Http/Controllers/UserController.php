@@ -63,10 +63,6 @@ class UserController extends Controller
             $this->initImages($user->id);
         }
 
-        if($user->services_user->count() == 0) {
-            $this->initService($user->id);
-        }
-
         return redirect()->route('userList');
     }
 
