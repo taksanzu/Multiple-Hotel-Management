@@ -56,7 +56,7 @@
                              $a = true;
                             foreach ($service_category->services as $service) {
                                 $service_user = $service->service_user
-                                    ->where('user_id', $user->id)
+                                    ->where('room_id', $rooms->id)
                                     ->where('status', 1)
                                     ->first();
                                 if ($service_user) {
@@ -69,7 +69,7 @@
                             <h5>{{ $service_category->name }}</h5>
                             <div class="d-flex flex-wrap gap-5">
                                 @foreach($service_category->services as $service)
-                                    @if(optional($service->service_user->where('user_id', $user->id)->first())->status == 1)
+                                    @if(optional($service->service_user->where('room_id', $rooms->id)->first())->status == 1)
                                         <div class="d-flex gap-2 align-items-center">
                                             <img src="{{ asset('service').'/'.$service->image }}" alt="" style="width: 20px" height="20px">
                                             <p class="mb-0">{{ $service->name }}</p>
