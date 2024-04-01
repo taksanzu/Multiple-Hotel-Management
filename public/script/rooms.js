@@ -25,6 +25,7 @@ function clearRoom() {
     $('#number_of_rooms').val('');
     $('#videolink').val('');
     $('#link360').val('');
+    $('#price').val(0);
     $('#image').val('');
     $('#output').empty();
     $('#image360').val('');
@@ -48,6 +49,7 @@ function getRoomsId(id) {
             $('#stars').val(data.rooms.stars);
             editors.setData(data.rooms.description);
             $('#videolink').val(data.rooms.videolink);
+            $('#price').val(data.rooms.price);
             $('#link360').val(data.rooms.link360);
             $('#number_of_rooms').val(data.rooms.number_of_rooms);
             data.rooms.service_user.forEach(service => {

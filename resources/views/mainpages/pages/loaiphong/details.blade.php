@@ -40,6 +40,7 @@
         <div class="row">
             <div class="col-md-6">
                 <h1>{{$rooms->name}}</h1>
+                <h3 class="card-subtitle mb-2 text-muted">{{ number_format($rooms->price) }} VNĐ</h3>
             </div>
         </div>
 

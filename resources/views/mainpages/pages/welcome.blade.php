@@ -103,6 +103,7 @@
                             </div>
                             <div class="card-body">
                                 <h5 class="card-title text-uppercase">{{ $room->name }}</h5>
+                                <h5 class="card-subtitle mb-2 text-muted">{{ number_format($room->price) }} VNĐ</h5>
                                 <p class="card-text">
                                     @for($x = 0; $x < $room->stars; $x++)
                                         <i class="fa-solid fa-star text-warning"></i>

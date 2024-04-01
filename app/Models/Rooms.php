@@ -24,6 +24,7 @@ class Rooms extends Model
         'created_by',
         'videolink',
         'slug',
+        'price',
         'link360',
         'image360',
     ];

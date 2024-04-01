@@ -22,6 +22,10 @@
                     <input type="number" step="1" min="0" class="form-control" name="number_of_rooms" id="number_of_rooms"/>
                 </div>
                 <div class="form-group py-1 px-3">
+                    <label for="number_of_rooms">Giá:</label>
+                    <input type="number" step="1" min="0" class="form-control" name="price" id="price"/>
+                </div>
+                <div class="form-group py-1 px-3">
                     <label for="videolink">Link Video:</label>
                     <input type="text" class="form-control" name="videolink" id="videolink"/>
                 </div>

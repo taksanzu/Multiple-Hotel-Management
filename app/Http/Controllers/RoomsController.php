@@ -57,6 +57,7 @@ class RoomsController extends Controller
                 'name' => $request->name,
                 'stars' => $request->stars,
                 'description' => $request->description,
+                'price' => $request->price,
                 'slug' => ChangeToSlug($request->name),
                 'number_of_rooms' => $request->number_of_rooms,
                 'videolink' => $request->videolink,
@@ -99,6 +100,7 @@ class RoomsController extends Controller
                 'stars' => $request->stars,
                 'description' => $request->description,
                 'slug' => ChangeToSlug($request->name),
+                'price' => $request->price,
                 'number_of_rooms' => $request->number_of_rooms,
                 'videolink' => $request->videolink,
                 'link360' => $request->link360,
@@ -128,9 +130,6 @@ class RoomsController extends Controller
                 );
             }
         }
-
-
-
         return redirect()->route('rooms');
     }
 
