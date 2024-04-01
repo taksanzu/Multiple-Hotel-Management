@@ -67,8 +67,8 @@
                             }
                         ?>
                         @if(!$a)
-                            <h5>{{ $service_category->name }}</h5>
-                            <div class="d-flex flex-wrap gap-5">
+                            <h6>{{ $service_category->name }}</h6>
+                            <div class="d-flex flex-wrap gap-5 mb-3">
                                 @foreach($service_category->services as $service)
                                     @if(optional($service->service_user->where('room_id', $rooms->id)->first())->status == 1)
                                         <div class="d-flex gap-2 align-items-center">
