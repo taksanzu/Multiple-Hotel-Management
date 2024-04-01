@@ -67,19 +67,19 @@
                         <div class="card rounded-0 p-3 shadow" style="{{ $key % 2 == 0 ? 'left: 0' : 'right: 0' }}">
                             <div class="card-body">
                                 <h5 class="card-title">{{ $room->name }}</h5>
-                                <h5 class="card-subtitle mb-2 text-muted">{{ number_format($room->price) }} VNĐ</h5>
-                                <p class="card-text">
-                                    @for($x = 0; $x < $room->stars; $x++)
-                                        <i class="fa-solid fa-star text-warning"></i>
-                                    @endfor
-                                </p>
+                                <h5 class="card-subtitle mb-2 text-danger">{{ number_format($room->price) }} VNĐ</h5>
+{{--                                <p class="card-text">--}}
+{{--                                    @for($x = 0; $x < $room->stars; $x++)--}}
+{{--                                        <i class="fa-solid fa-star text-warning"></i>--}}
+{{--                                    @endfor--}}
+{{--                                </p>--}}
                                 <div class="text-center d-flex flex-row" style="justify-content: space-between;">
                                     @if(optional($user->settings->where('name', 'bookinglink')->first())->value != null)
                                         <a href="{{ optional($user->settings->where('name', 'bookinglink')->first())->value }}" target="_blank" class="btn btn-primary btn-lg rounded-pill border" style="background: #0b2046"><strong>BOOK NOW</strong></a>
                                     @else
                                         <a data-bs-toggle="modal" data-bs-target="#bookingModal" class="btn btn-primary btn-lg rounded-pill border btn-booking" data-room-type="{{ $room->id }}" style="background: #0b2046"><strong>BOOK NOW</strong></a>
                                     @endif
-                                    <a href="{{route('loaiphong.detail', ['id' => $room->id, 'slug' => $room->slug])}}" class="btn btn-outline-primary rounded-pill border border-primary"><strong>VIEW DETAIL</strong></a>
+                                    <a href="{{route('loaiphong.detail', ['id' => $room->id, 'slug' => $room->slug])}}" class="btn btn-outline-primary rounded-pill border border-primary d-flex align-items-center"><strong>VIEW DETAIL</strong></a>
                                 </div>
                             </div>
                         </div>
@@ -156,19 +156,19 @@
                         <div class="card rounded-0 p-3 shadow" style="{{ $key % 2 == 0 ? 'left: 0' : 'right: 0' }}">
                             <div class="card-body">
                                 <h5 class="card-title">{{ $room->name }}</h5>
-                                <h5 class="card-subtitle mb-2 text-muted">{{ number_format($room->price) }} VNĐ</h5>
-                                <p class="card-text">
-                                    @for($x = 0; $x < $room->stars; $x++)
-                                        <i class="fa-solid fa-star text-warning"></i>
-                                    @endfor
-                                </p>
+                                <h5 class="card-subtitle mb-2 text-danger">{{ number_format($room->price) }} VNĐ</h5>
+{{--                                <p class="card-text">--}}
+{{--                                    @for($x = 0; $x < $room->stars; $x++)--}}
+{{--                                        <i class="fa-solid fa-star text-warning"></i>--}}
+{{--                                    @endfor--}}
+{{--                                </p>--}}
                                 <div class="text-center d-flex flex-row" style="justify-content: space-between;">
                                     @if(optional($user->settings->where('name', 'bookinglink')->first())->value != null)
                                         <a href="{{ optional($user->settings->where('name', 'bookinglink')->first())->value }}" target="_blank" class="btn btn-primary btn-lg rounded-pill border" style="background: #0b2046"><strong>BOOK NOW</strong></a>
                                     @else
                                         <a data-bs-toggle="modal" data-bs-target="#bookingModal" class="btn btn-primary btn-lg rounded-pill border btn-booking" data-room-type="{{ $room->id }}" style="background: #0b2046"><strong>BOOK NOW</strong></a>
                                     @endif
-                                    <a href="{{route('loaiphong.detail', ['id' => $room->id, 'slug' => $room->slug])}}" class="btn btn-outline-primary rounded-pill border border-primary"><strong>VIEW DETAIL</strong></a>
+                                    <a href="{{route('loaiphong.detail', ['id' => $room->id, 'slug' => $room->slug])}}" class="btn btn-outline-primary rounded-pill border border-primary d-flex align-items-center"><strong>VIEW DETAIL</strong></a>
                                 </div>
                             </div>
                         </div>
