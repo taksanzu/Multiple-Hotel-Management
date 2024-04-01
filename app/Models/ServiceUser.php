@@ -12,7 +12,7 @@ class ServiceUser extends Model
     protected $table = 'service_user';
 
     protected $fillable = [
-        'user_id',
+        'room_id',
         'service_id',
         'status',
     ];

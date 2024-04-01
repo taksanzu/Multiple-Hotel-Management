@@ -17,12 +17,12 @@
                         <strong>Dịch vụ</strong>
                     </a>
                 </li>
-                <li class="nav-item mb-3">
-                    <a href="{{ route('services') }}" class="nav-link link-dark {{ request()->routeIs('services') && request()->input('type') == 0 ? ' active' : '' }}">
-                        <i class="fa-solid fa-hand-holding-dollar fa-2xs"></i>
-                        <strong>Tiện ích</strong>
-                    </a>
-                </li>
+{{--                <li class="nav-item mb-3">--}}
+{{--                    <a href="{{ route('services') }}" class="nav-link link-dark {{ request()->routeIs('services') && request()->input('type') == 0 ? ' active' : '' }}">--}}
+{{--                        <i class="fa-solid fa-hand-holding-dollar fa-2xs"></i>--}}
+{{--                        <strong>Tiện ích</strong>--}}
+{{--                    </a>--}}
+{{--                </li>--}}
                 <li class="nav-item mb-3">
                     <a href="{{ route('news', ['type' => 1]) }}" class="nav-link link-dark {{ request()->routeIs('news') && request()->input('type') == 1 ? ' active' : '' }}">
                         <i class="fa-solid fa-newspaper fa-2xs"></i>
@@ -85,12 +85,12 @@
                 <strong>Dịch vụ</strong>
             </a>
         </li>
-        <li class="nav-item mb-3">
-            <a href="{{ route('services') }}" class="nav-link link-dark {{ request()->routeIs('services') && request()->input('type') == 0 ? ' active' : '' }}">
-                <i class="fa-solid fa-hand-holding-dollar fa-2xs"></i>
-                <strong>Tiện ích</strong>
-            </a>
-        </li>
+{{--        <li class="nav-item mb-3">--}}
+{{--            <a href="{{ route('services') }}" class="nav-link link-dark {{ request()->routeIs('services') && request()->input('type') == 0 ? ' active' : '' }}">--}}
+{{--                <i class="fa-solid fa-hand-holding-dollar fa-2xs"></i>--}}
+{{--                <strong>Tiện ích</strong>--}}
+{{--            </a>--}}
+{{--        </li>--}}
         <li class="nav-item mb-3">
             <a href="{{ route('news', ['type' => 1]) }}" class="nav-link link-dark {{ request()->routeIs('news') && request()->input('type') == 1 ? ' active' : '' }}">
                 <i class="fa-solid fa-newspaper fa-2xs"></i>

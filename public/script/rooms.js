@@ -11,7 +11,6 @@ ClassicEditor
         }
     })
     .then( editor => {
-        console.log( editor );
         editors = editor;
     } )
     .catch( error => {
@@ -19,6 +18,7 @@ ClassicEditor
     } );
 
 function clearRoom() {
+    $('#id').val('');
     $('#name').val('');
     editors.setData('');
     $('#stars').val('');
@@ -29,13 +29,20 @@ function clearRoom() {
     $('#output').empty();
     $('#image360').val('');
     $('#output360').empty();
-
+    $('[name="status[]"]').prop('checked', false);
 }
+
+$('#roomsModal').on('hidden.bs.modal', function () {
+    clearRoom();
+    $('#roomsForm').validate().resetForm();
+    $('#roomsForm').find('.is-invalid').removeClass('is-invalid');
+})
 function getRoomsId(id) {
     $.ajax({
         type: 'GET',
         url: '/rooms/' + id,
         success: function (data) {
+            console.log(data.rooms);
             $('#id').val(data.rooms.id);
             $('#name').val(data.rooms.name);
             $('#stars').val(data.rooms.stars);
@@ -43,6 +50,9 @@ function getRoomsId(id) {
             $('#videolink').val(data.rooms.videolink);
             $('#link360').val(data.rooms.link360);
             $('#number_of_rooms').val(data.rooms.number_of_rooms);
+            data.rooms.service_user.forEach(service => {
+                $('[name="status[]"][value="' + service.service_id + '"]').prop('checked', true);
+            });
             if (data.rooms.image360){
                 var outputContainer360 = $('#output360');
                 let roomsImage360 = $('<img>').attr('src', '/images/rooms/' + data.rooms.image360).css({

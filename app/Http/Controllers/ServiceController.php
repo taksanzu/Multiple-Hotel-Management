@@ -44,10 +44,10 @@ class ServiceController extends Controller
     public function change_status(Request $request)
     {
         $service_user = ServiceUser::where('service_id', $request->service_id)
-            ->where('user_id', Auth::id())
+            ->where('room_id', $request->id)
             ->first();
         $service_user = ServiceUser::updateOrCreate(
-            ['service_id' => $request->service_id, 'user_id' => Auth::id()],
+            ['service_id' => $request->service_id, 'room_id' => $request->id],
             ['status' => $service_user->status == 1 ? 0 : 1]
         );
 

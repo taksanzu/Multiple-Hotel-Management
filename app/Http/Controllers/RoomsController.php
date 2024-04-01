@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\room_images;
 use App\Models\Rooms;
+use App\Models\ServiceCategory;
+use App\Models\ServiceUser;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -14,13 +16,14 @@ class RoomsController extends Controller
         if (Auth::check()) {
             $user = Auth::user();
 
+            $service_categories = ServiceCategory::all();
             $rooms = Rooms::where('deleted', 0)->where('created_by', Auth::id())->paginate(12);
             $search = $request->search;
             if ($search != null) {
                 $rooms = Rooms::where('name', 'like', '%' . $search . '%')->where('deleted', 0)->where('created_by', Auth::id())->paginate(12);
             }
 
-            return view('pages.rooms.loaiphong', ['rooms' => $rooms], ['user' => $user]);
+            return view('pages.rooms.loaiphong', ['rooms' => $rooms ,'user' => $user, 'service_categories' => $service_categories]);
         } else {
             return redirect()->route('login');
         }
@@ -39,6 +42,7 @@ class RoomsController extends Controller
             'image360.*' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg',
         ]);
         $id = $request->id;
+        $statusValues = $request->input('status', []);
 
         if ($id) {
             $rooms = Rooms::findOrFail($id);
@@ -73,6 +77,15 @@ class RoomsController extends Controller
                     $room_images->save();
                 }
             }
+            foreach ($statusValues as $serviceId) {
+                $isChecked = in_array($serviceId, $request->input('status', []));
+                $status = $isChecked ? 1 : 0;
+                ServiceUser::updateOrCreate(
+                    ['service_id' => $serviceId, 'room_id' => $room_id],
+                    ['status' => $status, 'room_id' => $room_id]
+                );
+            }
+
         } else {
             if ($request->hasFile('image360')) {
                 $image360 = $request->file('image360');
@@ -92,7 +105,6 @@ class RoomsController extends Controller
                 'created_by' => Auth::user()->id,
                 'image360' => $image360Name,
             ]);
-            $room->save();
             $room_id = $room->id;
             if ($request->hasFile('image')) {
                 $images = $request->file('image');
@@ -107,7 +119,17 @@ class RoomsController extends Controller
                     $room_images->save();
                 }
             }
+            foreach ($statusValues as $serviceId) {
+                $isChecked = in_array($serviceId, $request->input('status', []));
+                $status = $isChecked ? 1 : 0;
+                ServiceUser::updateOrCreate(
+                    ['service_id' => $serviceId, 'room_id' => $room_id],
+                    ['status' => $status, 'room_id' => $room_id]
+                );
+            }
         }
+
+
 
         return redirect()->route('rooms');
     }
@@ -116,9 +138,10 @@ class RoomsController extends Controller
     public function getRooms(Request $request)
     {
         $id = $request->id;
-        $rooms = Rooms::findOrFail($id);
+        $rooms = Rooms::where('id', $id)->with('service_user')->first();
         $images = room_images::where('room_id', $id)
-            ->where('deleted',0)->get();
+            ->
+            where('deleted',0)->get();
         return response()->json(array('rooms' => $rooms, 'images' => $images));
     }
     public function deleteRooms(Request $request)

@@ -32,6 +32,11 @@ class Rooms extends Model
     {
         return $this->hasMany(room_images::class, 'room_id', 'id');
     }
+
+    public function service_user()
+    {
+        return $this->hasMany(ServiceUser::class, 'room_id', 'id');
+    }
     public function userCreated()
     {
         return $this->belongsTo(User::class, 'created_by', 'id');
