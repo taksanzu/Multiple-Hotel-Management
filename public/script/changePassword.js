@@ -33,6 +33,12 @@ $(document).ready(function () {
                 error.insertAfter(element);
             }
         },
+        highlight: function (element, errorClass, validClass) {
+            $(element).addClass('is-invalid').removeClass(validClass);
+        },
+        unhighlight: function (element, errorClass, validClass) {
+            $(element).removeClass('is-invalid').addClass(validClass);
+        },
         submitHandler: function (form) {
             $.ajax({
                 url: '/changePassword',
@@ -40,16 +46,15 @@ $(document).ready(function () {
                 data: $(form).serialize(),
                 success: function(response) {
                     if (response.error) {
-                        // Hiển thị thông báo lỗi trong modal
-                        alert(response.error)
+                        // Hiển thị thông báo lỗi vơ mât khẩu cũ
+                        $('#oldPassword').after('<span class="error invalid-feedback">' + response.error + '</span>');
                     } else {
                         // Đóng modal và hiển thị thông báo thành công
-                        $('#changePasswordModal').modal('hide');
                         alert('Đổi mật khẩu thành công.');
+                        location.reload();
                     }
                 },
                 error: function(xhr, status, error) {
-                    // Xử lý lỗi nếu có
                     console.error(xhr.responseText);
                 }
             });
