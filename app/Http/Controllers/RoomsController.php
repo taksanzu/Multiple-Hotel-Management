@@ -17,7 +17,7 @@ class RoomsController extends Controller
             $user = Auth::user();
 
             $service_categories = ServiceCategory::all();
-            $rooms = Rooms::where('deleted', 0)->where('created_by', Auth::id())->paginate(12);
+            $rooms = Rooms::where('deleted', 0)->where('created_by', Auth::id())->orderBy('id','desc')->paginate(12);
             $search = $request->search;
             if ($search != null) {
                 $rooms = Rooms::where('name', 'like', '%' . $search . '%')->where('deleted', 0)->where('created_by', Auth::id())->paginate(12);

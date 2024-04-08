@@ -12,7 +12,7 @@ class ImagesController extends Controller
     {
         if (Auth::check()) {
             $user = Auth::user();
-            $images = Images::where('deleted', 0)->where('created_by', Auth::user()->id)->paginate(24);
+            $images = Images::where('deleted', 0)->where('created_by', Auth::user()->id)->orderBy('id','desc')->paginate(24);
             return view('pages.images.index', ['user' => $user, 'images' => $images]);
         } else {
             return redirect()->route('login');

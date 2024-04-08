@@ -20,8 +20,8 @@ class UsersSeeder extends Seeder
             'email' => 'admin@gmail.com',
             'phone' => '0123456789',
             'password' => Hash::make('password'),
-            'domain' => 'admin',
             'roles' => 0,
+            'created_at' => now(),
         ]);
     }
 }

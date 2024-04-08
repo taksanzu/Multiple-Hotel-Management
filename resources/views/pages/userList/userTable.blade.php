@@ -16,8 +16,8 @@
         <tr>
             <td class="text-start">{{ $userList->name }}</td>
             <td>{{ $userList->phone}}</td>
-            <td>{{ $userList->created_at}}</td>
-            <td>{{ $userList->updated_at}}</td>
+            <td>{{ $userList->created_at->format('d-m-Y')}}</td>
+            <td>{{ $userList->updated_at->format('d-m-Y')}}</td>
             <td>
                 @if($userList->roles == 0)
                     <span class="badge rounded-pill bg-primary ">Admin</span>
@@ -29,7 +29,7 @@
                 @if($userList->status == 0)
                     <span class="badge rounded-pill bg-success">Đang kích hoạt</span>
                 @else
-                    <span class="badge rounded-pill bg-warning text-dark">Chưa kích hoạt</span>
+                    <span class="badge rounded-pill bg-danger">Hủy kích hoạt</span>
                 @endif
             </td>
             <td>{{ $userList->domain }}</td>

@@ -30,7 +30,7 @@ use App\Http\Controllers\ServiceController;
 */
 
 // Xử lý đăng nhập
-Route::get('/login', [AuthenticationController::class, 'loginIndex'] )->name('login');
+Route::get('/login', [AuthenticationController::class, 'loginIndex'] )->name('login')->middleware('redirect.subdomain.login');
 Route::post('/login', [AuthenticationController::class, 'loginStore'] )->name('login.store');
 Route::post('/changePassword', [AuthenticationController::class, 'changePassword'] )->name('changePassword');
 
@@ -84,25 +84,25 @@ Route::get('/imagesgallery/{id}',[ImagesController::class, 'getImages'])->name('
 Route::get('/imagesgallery/delete/{id}',[ImagesController::class, 'delete'])->name('images.delete');
 
 // Xử lý chào mừng
-Route::get('/', [WelcomeController::class, 'index'])->name('welcome');
+Route::get('/', [WelcomeController::class, 'index'])->name('welcome')->middleware('checkuser');
 
 // Xử lý loại phòng chính
-Route::controller(MainRoomsController::class)->group(function () {
+Route::middleware('checkuser')->group(function () {
     Route::get('/loaiphong', [MainRoomsController::class, 'index'])->name('loaiphong.index');
     Route::get('/loaiphong/{id}/{slug}', [MainRoomsController::class, 'detail'])->name('loaiphong.detail');
 });
 
 // Xử lý tin tức chính
-Route::controller(MainNewsController::class)->group(function () {
+Route::prefix('')->middleware('checkuser')->group(function () {
     Route::get('/tintuc', [MainNewsController::class, 'index'])->name('tintuc.index');
     Route::get('/tintuc/{id}/{slug}', [MainNewsController::class, 'detail'])->name('tintuc.detail');
 });
 
 // Xử lý hình ảnh chính
-Route::get('/hinhanh', [MainImagesController::class, 'index'])->name('hinhanh.index');
+Route::get('/hinhanh', [MainImagesController::class, 'index'])->name('hinhanh.index')->middleware('checkuser');
 
 //Xử lý tiện ích chính
-Route::controller(MainServicesController::class)->group(function () {
+Route::middleware('checkuser')->group(function () {
     Route::get('/tienich', [MainServicesController::class, 'index'])->name('tienich.index');
     Route::get('/tienich/{id}/{slug}', [MainServicesController::class, 'detail'])->name('tienich.detail');
 });
