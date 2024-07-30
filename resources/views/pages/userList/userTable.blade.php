@@ -35,6 +35,7 @@
             <td>{{ $userList->domain }}</td>
             <td>
                 <a type="button" class="btn btn-primary btn-sm text-light" data-bs-toggle="modal" data-bs-target="#userAdminModal" onclick="getUserId({{$userList->id}})" ><i class="fa-solid fa-pen-to-square fa fa-2xs"></i></a>
+                <a type="button" class="btn btn-danger btn-sm text-light " onclick="deleteUser({{$userList->id}})"><i class="fa-solid fa-trash fa-2xs"></i></a>
             </td>
         </tr>
     @empty

@@ -46,12 +46,9 @@ $(document).ready(function () {
                 data: $(form).serialize(),
                 success: function(response) {
                     if (response.error) {
-                        // Hiển thị thông báo lỗi vơ mât khẩu cũ
-                        $('#oldPassword').after('<span class="error invalid-feedback">' + response.error + '</span>');
+                        showConfirmModal('Thất bại', response.error, 'Thử lại')
                     } else {
-                        // Đóng modal và hiển thị thông báo thành công
-                        alert('Đổi mật khẩu thành công.');
-                        location.reload();
+                        showConfirmModal('Thành công', 'Đổi mật khẩu thành công', 'OK')
                     }
                 },
                 error: function(xhr, status, error) {
@@ -64,3 +61,21 @@ $(document).ready(function () {
         $('#chagePasswordForm').trigger('reset');
     });
 });
+function showConfirmModal(title, message, action) {
+    $('#modalTitle').text(title);
+    $('#modalBody').html(message);
+    $('#cancel').hide();
+    $('#confirmActionBtn').text(action);
+    if (title === 'Thành công') {
+        $('#confirmActionBtn').off('click').on('click', function() {
+            $('#confirmModal').modal('hide');
+            location.reload();
+        });
+    } else {
+        $('#confirmActionBtn').off('click').on('click', function() {
+            $('#confirmModal').modal('hide');
+        });
+    }
+
+    $('#confirmModal').modal('show');
+}

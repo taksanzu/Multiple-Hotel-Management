@@ -1,24 +1,4 @@
 $(document).ready(function () {
-    $('#bookingForm').submit(function (e) {
-        e.preventDefault(); // Ngăn chặn form submit mặc định
-
-        // Gửi yêu cầu AJAX đến server
-        $.ajax({
-            url: '/booking', // Đặt URL tương ứng với route Laravel của bạn
-            method: 'POST',
-            headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
-            data: $(this).serialize(),
-            success: function (response) {
-                console.log(response);
-                window.location.reload();
-            },
-            error: function (error) {
-
-                console.error('Error submitting booking: ', error);
-            }
-        });
-    });
-
     $('#bookingForm').validate({
         rules: {
             name: 'required',
@@ -51,6 +31,21 @@ $(document).ready(function () {
         },
         unhighlight: function (element, errorClass, validClass) {
             $(element).removeClass('is-invalid').addClass(validClass);
+        },
+        submitHandler: function (form) {
+            e.preventDefault();
+            $.ajax({
+                url: '/booking',
+                type: 'POST',
+                data: $('#bookingForm').serialize(),
+                success: function (response) {
+                    alert('Đặt phòng thành công');
+                    location.reload();
+                },
+                error: function (xhr, status, error) {
+                    alert('Đã có lỗi xảy ra, vui lòng thử lại sau');
+                }
+            })
         }
     });
 

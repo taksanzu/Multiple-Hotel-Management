@@ -22,11 +22,22 @@ class AuthenticationController extends Controller
         ]);
 
         if (auth()->attempt($request->only('email', 'password'))) {
-            return redirect()->route('userHome');
+            if (auth()->user()->status == 0) {
+                if (auth()->user()->roles == 0) {
+                    return redirect()->route('userList');
+                } else {
+                    return redirect()->route('userHome');
+                }
+            } else {
+                Auth::logout();
+                throw ValidationException::withMessages([
+                    'error' => ['Tài khoản của bạn đã bị khóa. Vui lòng liên hệ quản trị viên để biết thêm chi tiết.'],
+                ]);
+            }
         }
 
         throw ValidationException::withMessages([
-            'email' => ['Email hoặc mật khẩu không chính xác.'],
+            'error' => ['Email hoặc mật khẩu không chính xác.'],
         ]);
     }
     public function logout()

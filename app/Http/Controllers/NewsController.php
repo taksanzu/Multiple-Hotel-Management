@@ -13,10 +13,18 @@ class NewsController extends Controller
         if (Auth::check()) {
             $type = $request->type;
             $user = Auth::user();
-            $news = News::where('deleted', 0)->where('type', $type)->where('created_by', Auth::id())->orderBy('id','desc')->paginate(12);
-            $search = $request->search;
-            if ($search != null) {
-                $news = News::where('title', 'like', '%' . $search . '%')->where('deleted', 0)->where('type', $type)->where('created_by', Auth::id())->paginate(12);
+            if($user->roles == 0){
+                $news = News::where('deleted', 0)->where('type', $type)->orderBy('id','desc')->paginate(12);
+                $search = $request->search;
+                if ($search != null) {
+                    $news = News::where('title', 'like', '%' . $search . '%')->where('deleted', 0)->where('type', $type)->paginate(12);
+                }
+            } else {
+                $news = News::where('deleted', 0)->where('type', $type)->where('created_by', Auth::id())->orderBy('id','desc')->paginate(12);
+                $search = $request->search;
+                if ($search != null) {
+                    $news = News::where('title', 'like', '%' . $search . '%')->where('deleted', 0)->where('type', $type)->where('created_by', Auth::id())->paginate(12);
+                }
             }
             return view('pages.news.tintuc', ['news' => $news, 'user' => $user, 'type' => $type]);
         } else {
@@ -108,8 +116,14 @@ class NewsController extends Controller
     {
         $id = $request->id;
         $news = News::findOrFail($id);
-        $news->update([
-            'status' => 1
-        ]);
+        if ($news->status == 0) {
+            $news->update([
+                'status' => 1
+            ]);
+        } else {
+            $news->update([
+                'status' => 0
+            ]);
+        }
     }
 }

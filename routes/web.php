@@ -15,6 +15,8 @@ use App\Http\Controllers\SettingImageController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\UserHomeController;
 use App\Http\Controllers\WelcomeController;
+use App\Mail\MyTestMaill;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ServiceController;
 
@@ -41,6 +43,8 @@ Route::controller(UserHomeController::class)->group(function () {
     Route::get('/userHome/cancel/{id}', [UserHomeController::class, 'cancel'])->name('userHome.cancel');
     Route::get('/userHome/{id}', [UserHomeController::class, 'getBooking'])->name('userHome.booking');
 });
+// Xử lý trang chủ admin
+Route::get('/adminHome', [App\Http\Controllers\AdminHomeController::class, 'index'])->name('adminHome');
 // Xử lý đăng xuất
 Route::get('/logout', [AuthenticationController::class, 'logout'] )->name('logout');
 
@@ -115,6 +119,7 @@ Route::controller(UserController::class)->group(function () {
     Route::get('/userList', [UserController::class, 'index'])->name('userList');
     Route::post('/userList', [UserController::class, 'store'])->name('userList.store');
     Route::get('/userList/{id}', [UserController::class, 'getUser'])->name('userList.edit');
+    Route::get('/userList/delete/{id}', [UserController::class, 'delete'])->name('userList.delete');
 });
 
 // Xử lý trang cấu hình
@@ -136,4 +141,9 @@ Route::controller(ServiceController::class)->group(function () {
     Route::post('/services/change_status', [\App\Http\Controllers\ServiceController::class, 'change_status'])->name('services.change_status');
 });
 
+Route::controller(\App\Http\Controllers\SettingTemplateController::class)->group(function () {
+    Route::get('/settingTemplate', [\App\Http\Controllers\SettingTemplateController::class, 'index'])->name('settingTemplate');
+    Route::get('/settingTemplate/changeTemplateMau1', [\App\Http\Controllers\SettingTemplateController::class, 'changeTemplateMau1'])->name('settingTemplate.changeTemplateMau1');
+    Route::get('/settingTemplate/changeTemplateMau2', [\App\Http\Controllers\SettingTemplateController::class, 'changeTemplateMau2'])->name('settingTemplate.changeTemplateMau2');
+});
 

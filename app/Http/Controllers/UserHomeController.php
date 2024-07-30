@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\MyTestMaill;
 use App\Models\Booking;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Mail;
 
 class UserHomeController extends Controller
 {
@@ -46,6 +48,9 @@ class UserHomeController extends Controller
         $booking->update([
             'status' => 1
         ]);
+        $total = $booking->room->price * $booking->number_of_rooms;
+        $user = Auth::user()->name;
+        Mail::to($booking->email)->send(new MyTestMaill($booking, $total, $user));
         return redirect()->route('userHome');
     }
 

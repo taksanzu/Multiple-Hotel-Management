@@ -117,8 +117,23 @@ function deleteRoomsImage(id, e) {
         });
     }
 }
+function showConfirmModal(title, message, callback) {
+    $('#modalTitle').text(title);
+    $('#modalBody').html(message);
+
+    $('#confirmActionBtn').off('click').on('click', function() {
+        $('#confirmDeleteModal').modal('hide');
+        callback();
+    });
+
+    $('#confirmModal').modal('show');
+}
+
 function deleteRooms(id) {
-    if (confirm('Bạn có chắc chắn muốn xóa phòng này không?')) {
+    var title = 'Xóa Phòng';
+    var message = '<p>Bạn có chắc chắn muốn xóa phòng này không?</p>';
+
+    showConfirmModal(title, message, function() {
         $.ajax({
             type: 'GET',
             url: '/rooms/delete/' + id,
@@ -130,24 +145,26 @@ function deleteRooms(id) {
                 console.log(error);
             }
         });
-    }
+    });
 }
 
 function postRooms(id, status) {
     let action = status == 1 ? 'gỡ' : 'đăng';
-    if (confirm(`Bạn có chắc chắn muốn ${action} phòng này không?`)) {
+    var title = action.charAt(0).toUpperCase() + action.slice(1) + ' Phòng';
+    var message = '<p>Bạn có chắc chắn muốn ' + action + ' phòng này không?</p>';
+    showConfirmModal(title, message, function() {
         $.ajax({
             type: 'GET',
             url: '/rooms/post/' + id,
             success: function (data) {
-                alert(`${action} phòng thành công`);
+                alert(action + ' thành công');
                 location.reload();
             },
             error: function (error) {
                 console.log(error);
             }
         });
-    }
+    });
 }
 
 $(document).ready(function() {

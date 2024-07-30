@@ -15,14 +15,20 @@ class RoomsController extends Controller
     {
         if (Auth::check()) {
             $user = Auth::user();
-
             $service_categories = ServiceCategory::all();
-            $rooms = Rooms::where('deleted', 0)->where('created_by', Auth::id())->orderBy('id','desc')->paginate(12);
-            $search = $request->search;
-            if ($search != null) {
-                $rooms = Rooms::where('name', 'like', '%' . $search . '%')->where('deleted', 0)->where('created_by', Auth::id())->paginate(12);
+            if ($user->roles == 0) {
+                $rooms = Rooms::where('deleted', 0)->orderBy('id', 'desc')->paginate(12);
+                $search = $request->search;
+                if ($search != null) {
+                    $rooms = Rooms::where('name', 'like', '%' . $search . '%')->where('deleted', 0)->paginate(12);
+                }
+            } else {
+                $rooms = Rooms::where('deleted', 0)->where('created_by', Auth::id())->orderBy('id', 'desc')->paginate(12);
+                $search = $request->search;
+                if ($search != null) {
+                    $rooms = Rooms::where('name', 'like', '%' . $search . '%')->where('deleted', 0)->where('created_by', Auth::id())->paginate(12);
+                }
             }
-
             return view('pages.rooms.loaiphong', ['rooms' => $rooms ,'user' => $user, 'service_categories' => $service_categories]);
         } else {
             return redirect()->route('login');

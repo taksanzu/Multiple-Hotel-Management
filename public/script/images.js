@@ -7,19 +7,32 @@ function clearImage() {
     $('#image').val('');
     $('#output').html('');
 }
+function showConfirmModal(title, message, callback) {
+    $('#modalTitle').text(title);
+    $('#modalBody').html(message); // Thay đổi nội dung của phần thân modal
+
+    $('#confirmActionBtn').off('click').on('click', function() {
+        $('#confirmModal').modal('hide');
+        callback();
+    });
+
+    $('#confirmModal').modal('show');
+}
+
 function deleteImages(id) {
-    if (confirm('Bạn có chắc chắn muốn xóa?')) {
+    showConfirmModal('Xác nhận xóa', 'Bạn có chắc chắn muốn xóa ảnh này không?', function() {
         $.ajax({
             type: 'GET',
             url: '/imagesgallery/delete/' + id,
             success: function (data) {
+                alert('Xóa ảnh thành công');
                 location.reload();
             },
             error: function (error) {
                 console.log(error);
             }
         });
-    }
+    });
 }
 function getImagesId(src) {
     $('#imageShow').attr('src', src);

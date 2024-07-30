@@ -88,35 +88,48 @@ function clearNews() {
     $('#videolink').val('');
     $('#link360').val('');
 }
+function showConfirmModal(title, message, callback) {
+    $('#modalTitle').text(title);
+    $('#modalBody').html(message); // Thay đổi nội dung của phần thân modal
+
+    $('#confirmActionBtn').off('click').on('click', function() {
+        $('#confirmDeleteModal').modal('hide');
+        callback();
+    });
+
+    $('#confirmModal').modal('show');
+}
 
 function deleteNews(id) {
-    if (confirm('Bạn có chắc chắn muốn xóa không?')) {
+    showConfirmModal('Xác nhận xóa', 'Bạn có chắc chắn muốn xóa tin này không?', function() {
         $.ajax({
             type: 'GET',
             url: '/news/delete/' + id,
             success: function (data) {
+                alert('Xóa tin thành công');
                 location.reload();
             },
             error: function (error) {
                 console.log(error);
             }
         });
-    }
+    });
 }
-function postNews(id) {
-    if (confirm('Bạn có chắc chắn muốn đăng tin này không?')) {
+function postNews(id, status) {
+    let action = status == 1 ? 'hủy' : 'đăng';
+    showConfirmModal('Xác nhận ' + action, 'Bạn có chắc chắn muốn ' + action + ' tin này không?', function() {
         $.ajax({
             type: 'GET',
             url: '/news/post/' + id,
             success: function (data) {
-                alert('Đăng tin thành công');
+                alert(action + ' tin thành công');
                 location.reload();
             },
             error: function (error) {
                 console.log(error);
             }
         });
-    }
+    });
 }
 $(document).ready(function() {
     var input = document.getElementById('image');

@@ -24,7 +24,11 @@
             <td>{{ $new->userCreated()->first()->name}}</td>
             <td>{{ $new->userUpdated()->first() != null ? $new->userUpdated()->first()->name : ''}}</td>
             <td>
-                <a type="button" class="btn btn-success btn-sm text-light " onclick="postNews({{$new->id}})"><i class="fa-solid fa-upload fa-2xs"></i></a>
+                @if($new->status == 1)
+                    <a type="button" class="btn btn-danger btn-sm text-light" onclick="postNews({{$new->id}}, {{$new->status}})"><i class="fa-solid fa-x fa-2xs"></i></a>
+                @else
+                    <a type="button" class="btn btn-success btn-sm text-light" onclick="postNews({{$new->id}}, {{$new->status}})"><i class="fa-solid fa-upload fa-2xs"></i></a>
+                @endif
                 <a type="button" class="btn btn-primary btn-sm text-light " data-bs-toggle="modal" data-bs-target="#newsModal" onclick="getNewsId({{$new->id}})"><i class="fa-solid fa-pen-to-square fa-2xs"></i></a>
                 <a type="button" class="btn btn-danger btn-sm text-light " onclick="deleteNews({{$new->id}})"><i class="fa-solid fa-trash fa-2xs"></i></a>
             </td>

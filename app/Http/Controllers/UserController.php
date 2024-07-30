@@ -16,14 +16,18 @@ use App\Models\Service;
 
 class UserController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
         if (Auth::check()) {
             $user = Auth::user();
             if ($user->roles == 0) {
-                $userLists = User::paginate(12);
+                $userLists = User::where('status', 0)->paginate(12);
             } else {
                 return redirect()->route('userHome');
+            }
+            $search = $request->search;
+            if ($search) {
+                $userLists = User::where('name', 'like', '%' . $search . '%')->paginate(12);
             }
             return view('pages.userList.userList', ['userLists' => $userLists, 'user' => $user]);
         } else {
@@ -72,6 +76,19 @@ class UserController extends Controller
         $user = User::findOrFail($id);
         return response()->json(['user' => $user]);
     }
+    public function delete(Request $request)
+    {
+        $id = $request->id;
+        $user = User::findOrFail($id);
+        if ($user->id == Auth::id()) {
+            return response()->json(['error' => 'Không thể xóa tài khoản đang đăng nhập']);
+        }else{
+            $user->update([
+                'status' => 1
+            ]);
+            return response()->json(['success' => 'Xóa tài khoản thành công']);
+        }
+    }
 
     public function initInformation($user_id)
     {
@@ -88,6 +105,7 @@ class UserController extends Controller
             'gioi_thieu_2' => 'Điểm đến tuyệt vời vào mùa hè',
             'youtube' => 'https://www.youtube.com/embed/1a2b3c4d5e6f7g8h9i0j',
             'linkweb' => 'https://web-premierpearlhotel.vt360.vn/',
+            'template' => 'mau1',
         ];
 
         foreach ($settings_key as $key => $value) {

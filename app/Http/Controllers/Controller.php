@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Booking;
 use App\Models\Rooms;
 use App\Models\Setting;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
@@ -23,6 +24,7 @@ class Controller extends BaseController
                 return 'Không tìm thấy trang web';
             }
         }
-        view()->share(['roomTypes' => $roomTypes , 'user' => $user]);
+        $bookingStatus = Booking::where('status', 0)->get();
+        view()->share(['roomTypes' => $roomTypes , 'user' => $user, 'bookingStatus' => $bookingStatus]);
     }
 }

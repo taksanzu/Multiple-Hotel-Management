@@ -42,9 +42,6 @@ class BookingController extends Controller
             'user_id' => $user->id,
         ]);
         $booking->save();
-        return response()->json([
-            'success' => true,
-            'message' => 'Đặt phòng thành công'
-        ]);
+        return redirect()->route('loaiphong.index');
     }
 }

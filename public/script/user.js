@@ -16,6 +16,37 @@ function getUserId(id) {
         }
     });
 }
+function deleteUser(id) {
+    showConfirmModal('Xác nhận xóa', 'Bạn có chắc muốn xóa người dùng này không?', function () {
+        $.ajax({
+            type: 'GET',
+            url: '/userList/delete/' + id,
+            success: function (response) {
+                if (response.success) {
+                    alert('Xóa người dùng thành công');
+                    location.reload();
+                }else if (response.error) {
+                    alert('Không thể xóa người dùng đang đăng nhập');
+                }
+            },
+            error: function (error) {
+                console.log(error);
+            }
+        });
+    });
+}
+
+function showConfirmModal(title, message, callback) {
+    $('#modalTitle').text(title);
+    $('#modalBody').html(message);
+
+    $('#confirmActionBtn').off('click').on('click', function () {
+        $('#confirmModal').modal('hide');
+        callback();
+    });
+
+    $('#confirmModal').modal('show');
+}
 $(document).ready(function () {
     $('#usersForm').validate({
         rules: {
