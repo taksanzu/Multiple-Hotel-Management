@@ -1,1 +1,1 @@
-An andmitrator's page for traveling
+aAn andmitrator's page for hotel
