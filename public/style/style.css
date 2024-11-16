@@ -1,0 +1,80 @@
+.table {
+    table-layout: fixed;
+}
+
+@media screen and (min-width: 768px) {
+    .table tbody {
+        display: block;
+        overflow: auto;
+        width: 100%;
+    }
+    .table thead, .table tbody tr {
+        display: table;
+        width: 100%;
+        table-layout: fixed;
+        font-size: 1em;
+    }
+    .table th {
+        background: rgba(0, 255, 231, 0.13);
+        text-align: center;
+        font-size: 1em;
+    }
+    .table td {
+        padding: 2px 2px 0;
+        vertical-align: middle;
+        text-align: center;
+        font-size: 1em;
+    }
+}
+
+@media (max-width: 768px) {
+    .table tbody {
+        display: table-row-group;
+    }
+    .table thead, .table tbody tr {
+        display: table;
+        width: 100%;
+        table-layout: fixed;
+        font-size: 0.5em;
+    }
+    .table th {
+        background: rgba(0, 255, 231, 0.13);
+        text-align: center;
+        font-size: 0.5em;
+    }
+    .table td {
+        padding: 2px 2px 0;
+        vertical-align: middle;
+        text-align: center;
+        font-size: 0.5em;
+    }
+}
+.nav-link:hover {
+    background-color: rgba(0, 255, 231, 0.13);
+}
+
+#imageGallery {
+    width: 100%;
+    object-fit: cover;
+}
+.overlay {
+    display: none;
+    background-color: rgba(0, 0, 0, 0.5);
+    width: 100%;
+    height: 100%;
+}
+
+.position-relative:hover .overlay {
+    display: flex;
+    flex-direction: row; /* Xếp hai nút theo chiều ngang */
+    align-items: center; /* Canh giữa nút theo chiều dọc */
+    justify-content: center; /* Canh giữa nút theo chiều ngang */
+}
+.row {
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+}
+
+
+
+

@@ -1,0 +1,535 @@
+
+@media screen and (min-width: 960px) {
+    .navbar .nav-item img {
+        width: 130px;
+        height: 120px;
+    }
+    .navbar.scrolled {
+        background: linear-gradient(to right, #0940a3, #0b2046, #0940a3);
+        padding: 20px;
+    }
+    .navbar.scrolled .nav-item img {
+        width: 90px;
+        height: 75px;
+    }
+    .navbar {
+        background: linear-gradient(to bottom, rgba(11, 32, 70, 0.8), rgba(9, 64, 163, 0));
+        -webkit-transition: all 0.6s ease-out;
+        -moz-transition: all 0.6s ease-out;
+        -o-transition: all 0.6s ease-out;
+        -ms-transition: all 0.6s ease-out;
+        transition: all 0.6s ease-out;
+        padding: 2rem 0;
+    }
+}
+@media screen and (max-width: 960px){
+    .navbar {
+        background: linear-gradient(to right, #0940a3, #0b2046, #0940a3);
+    }
+    .navbar .nav-item img {
+        width: 200px;
+        height: 150px;
+    }
+}
+
+.navbar-nav .nav-link {
+    background: linear-gradient(to right, #ffc877 0%, #ffe6b3 14%, #ffe6b3 23%, #ffc877 48%, #ffe6b3 81%, #ffc877 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    color: #fff;
+    text-transform: uppercase;
+    font-weight: 900;
+    font-family: Oswald, sans-serif;
+}
+/* width */
+::-webkit-scrollbar {
+    width: 10px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+    background: #f1f1f1;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+    background: #0940a3;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+    background: #0b2046;
+}
+.row {
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+}
+/* carousel */
+.carousel-item {
+    height: 100vh; /* Điều chỉnh chiều cao của carousel */
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    background-color: rgba(0, 0, 0, 0.5);
+}
+.carousel-text {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    color: white;
+    font-size: larger;
+    font-family: Oswald, sans-serif;
+}
+.carousel-text h2{
+    text-transform: uppercase;
+}
+
+@media screen and (min-width: 960px) {
+    .carousel-text h1 {
+        font-family: "great vibes", sans-serif;
+        font-size: 4em;
+    }
+    .carousel-text h2 {
+        font-size: 3em;
+    }
+}
+@media screen and (max-width: 960px) {
+    .carousel-text h1 {
+        font-family: "great vibes", sans-serif;
+        font-size: 2em;
+    }
+    .carousel-text h2 {
+        font-size: 1.5em;
+    }
+}
+.overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.4); /* Màu đen với độ trong suốt */
+}
+/* end carousel */
+@media screen and (min-width: 600px) {
+    .mt-n1 {
+        margin-top: -8rem !important;
+    }
+}
+.booking label{
+    color: #000;
+    font-size: 1rem;
+    font-weight: 700;
+}
+.booking h1{
+    font-family: Oswald, sans-serif;
+    font-size: 3rem;
+    margin-bottom: 20px;
+    color: #0940a3;
+}
+/* About */
+.about-us-section {
+    padding: 100px 0;
+    text-align: center;
+    color: #fff;
+}
+
+.about-us-section {
+    background-image: url('/upload/beach.jpg');
+    filter: brightness(90%);
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+
+.about-us-section h2 {
+    font-size: 3rem;
+    margin-bottom: 20px;
+    font-family: Oswald, sans-serif;
+}
+
+.about-us-section p {
+    font-size: 1.2rem;
+    line-height: 1.6;
+    margin-bottom: 30px;
+    font-family: Oswald, sans-serif;
+}
+
+/* end About */
+
+/* Footer */
+footer {
+    background-color: #333;
+    color: #fff;
+    padding: 30px 0;
+}
+
+footer img {
+    max-width: 100%;
+    height: auto;
+}
+
+.contact-info, .categories, .social-media {
+    text-align: left;
+}
+
+.contact-info h4, .categories h4, .social-media h4 {
+    text-transform: uppercase;
+    font-family: Oswald, sans-serif;
+}
+.contact-info p, .categories ul, .social-media ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    font-family: Oswald, sans-serif;
+}
+
+.social-media ul li {
+    display: inline-block;
+    margin-right: 10px;
+}
+
+.contact-info p, .categories ul li a, .social-media ul li a{
+    color: #000;
+    text-decoration: none;
+    font-size: 1rem;
+    font-family: Oswald, sans-serif;
+}
+
+/* end Footer */
+
+/* Map Container */
+.map-container {
+    width: 100%;
+    height: 400px;
+    border-radius: 5px;
+    overflow: hidden;
+    margin-top: 20px;
+}
+
+.map-container iframe {
+    width: 100%;
+    height: 100%;
+    border: 0;
+}
+
+/* end Map Container */
+
+/* Rooms */
+.rooms-section h1{
+    font-family: Oswald, sans-serif;
+    color: #0940a3;
+    text-transform: uppercase;
+}
+.card-text {
+    font-family: Oswald, sans-serif;
+    font-size: 1.1rem;
+    color: #000000;
+    font-weight: 100;
+}
+.card-img-overlay {
+    top: auto !important;
+    background: linear-gradient(to top, rgba(11, 32, 70, 1), rgba(9, 64, 163, 0));
+}
+.card-title {
+    font-family: Oswald, sans-serif;
+    font-size: 1.6rem;
+    color: #0940a3;
+}
+.card {
+    border-radius: 25px !important;
+    background-color: transparent;
+    box-shadow: 0 0 0 0 rgba(0, 0, 0, 0.2);
+    transition: all 0.3s ease-in-out;
+}
+.rooms-section .card img {
+    border-radius: 25px 25px 0 0 !important;
+}
+
+.btn:hover {
+background-color: #0940a3 !important;
+    color: #fff !important;
+    border: 1px solid #fff !important;
+}
+/* end rooms */
+
+/* Datepicker */
+input {
+    border-radius: 5px !important;
+    background-color: transparent;
+    box-shadow: 0 0 0 0 rgba(0, 0, 0, 0.2);
+    padding: 5px !important;
+    transition: all 0.3s ease-in-out;
+}
+
+/* end Datepicker */
+
+/* Services */
+.services-img {
+    width: 100%;
+    height: 100%;
+}
+.services-img img {
+    width: 100%;
+    height: 500px;
+    object-fit: cover;
+}
+.service-wrap {
+    position: relative;
+    overflow: hidden;
+    transition: all 0.3s ease-in-out;
+}
+.service-content {
+    color: white;
+    font-size: 1.3rem;
+    font-family: Oswald, sans-serif;
+}
+.service-content h3 {
+    font-family: "great vibes", sans-serif;
+    font-size: 3rem;
+}
+.text-gradient-gold {
+    background: linear-gradient(90deg, #cc9446 0%, #f0dc7d 14%, #f0dc7d 23%, #cc9446 48%, #f0dc7d 81%, #cc9446 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    position: relative;
+}
+/* end Services */
+
+/*News*/
+.news-section h1{
+    font-family: Oswald, sans-serif;
+    color: #0940a3;
+    text-transform: uppercase;
+}
+.news-section{
+}
+/* Foods */
+.foods-section {
+    background-image: url('/upload/dish.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    padding: 200px 0;
+    text-align: center;
+    color: #fff;
+}
+.foods-section h2 {
+    font-size: 3rem;
+    margin-bottom: 20px;
+    font-family: Oswald, sans-serif;
+    text-transform: uppercase;
+}
+
+.foods-section p {
+    font-size: 1.2rem;
+    line-height: 1.6;
+    margin-bottom: 30px;
+    font-family: Oswald, sans-serif;
+}
+.foods-img img {
+    width: 100%;
+    height: 75%;
+    border-radius: 25px !important;
+    border: 3px solid #cc9446;
+}
+.foods-img-sm {
+    width: 100%;
+    height: 75%;
+    border-radius: 25px !important;
+    border: 3px solid #cc9446;
+}
+.px-100 {
+    padding-left: 100px !important;
+    padding-right: 100px !important;
+}
+
+/* end Foods */
+
+/* Rooms Main */
+.rooms-main-section .carousel {
+    max-height: 500px;
+    width: 100%;
+}
+.rooms-main-section .carousel-item {
+    max-height: 500px;
+}
+
+.rooms-main-section .carousel-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* hoặc contain tùy thuộc vào yêu cầu của bạn */
+}
+@media screen and (min-width: 960px) {
+    .rooms-main-section {
+        position: relative;
+    }
+    .rooms-main-items {
+        position: relative;
+        overflow: hidden;
+        transition: all 0.3s ease-in-out;
+    }
+    .rooms-main-section .card {
+        position: absolute;
+        bottom: 0;
+        z-index: 1; /* Đảm bảo card nằm trên cùng */
+        width: 30%;
+        height: 70%;
+    }
+}
+
+/* end Rooms Main */
+
+/* News main */
+.news-main-section .card {
+    border: none;
+}
+.main-header {
+    background-image: url('/upload/room3.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    padding: 200px 0;
+    text-align: center;
+    color: #fff;
+}
+
+
+.main-header h1 {
+    font-family: Oswald, sans-serif;
+    font-size: 4rem;
+    text-transform: uppercase;
+}
+
+.images-main-gallery .card .images-container{
+    width: 100%;
+    height: 250px;
+    border-radius: 25px !important;
+    border: 3px solid #cc9446;
+}
+.images-main-gallery .card img{
+    height: 250px;
+    object-fit: cover;
+    transition: transform .5s ease;
+}
+.images-container {
+    position: relative;
+    overflow: hidden;
+}
+
+.images-overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to top, rgba(11, 32, 70, 0.8), rgba(9, 64, 163, 0));
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transition: opacity .3s ease;
+    border-radius: 25px !important;
+}
+
+.images-overlay i {
+    color: #fff;
+    font-size: 40px;
+}
+
+.images-main-gallery .card:hover .images-overlay {
+    opacity: 1;
+}
+.images-main-gallery .card:hover img {
+    transform: scale(110%);
+}
+.modal-title {
+    font-family: Oswald, sans-serif;
+    font-size: 2rem;
+    color: #0940a3;
+}
+
+/* end News main */
+
+/* Gallery */
+.images-modal-contents .modal-header {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1;
+    border: none;
+}
+.images-model-contents {
+    position: relative;
+    overflow: hidden;
+}
+.owl-carousel .owl-item img {
+    width: 100%;
+    height: 70vh;
+    object-fit: cover;
+}
+
+.rooms-detail h1 {
+    font-family: Oswald, sans-serif;
+    font-size: 3rem;
+    color: #0940a3;
+    text-transform: uppercase;
+}
+.rooms-detail h2 {
+    font-family: Oswald, sans-serif;
+    font-size: 2rem;
+    color: #0940a3;
+    text-transform: uppercase;
+}
+.rooms-detail p {
+    font-size: 1.2rem;
+    color: #000000;
+}
+.news-contents p {
+    align-self: flex-start!important;
+}
+.limited-lines {
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    -webkit-line-clamp: 2; /* Số dòng muốn hiển thị */
+}
+.rooms-img-section {
+    position: relative;
+}
+
+.rooms-img-section .rooms-btn-overlay{
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+}
+.rooms-img-section .rooms-btn-overlay-r{
+    position: absolute;
+    bottom: 10px;
+    left: 10px;
+}
+
+.owl-dots-custom {
+    justify-content: center;
+    align-items: center;
+    margin-top: 10px;
+}
+
+.owl-dot-image {
+    width: 10vw;
+    height: 10vh;
+    cursor: pointer;
+}
+
+.owl-dot-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
